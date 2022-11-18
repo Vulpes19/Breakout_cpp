@@ -5,6 +5,7 @@ Window::Window( void )
 	window = nullptr;
 	renderer = nullptr;
 	running = false;
+	level = 1;
 }
 
 Window::~Window( void )
@@ -34,6 +35,9 @@ int    Window::createWindow( void )
 		return (EXIT_FAILURE);
 	}
 	running = true;
+	lvl = new Map( std::to_string(level) );
+	bricks = new Texture( "/Users/asus/Documents/Breakout/assets/bricks.png" );
+	empty = new Texture( "/Users/asus/Documents/Breakout/assets/empty.png" );
 	return (EXIT_SUCCESS);
 }
 
@@ -57,7 +61,41 @@ void	Window::handleEvents( void )
 
 void	Window::render( void )
 {
+	int	x, y;
+	std::string	bricksText = "bricks";
+	std::string	emptyText = "empty";
+	SDL_Texture	*tmp;
 	SDL_RenderClear( renderer );
-	SDL_SetRenderDrawColor( renderer, 255, 255, 255, SDL_ALPHA_OPAQUE );
+
+	x = 0;
+	y = 0;
+	bricks->createTexture( renderer );
+	empty->createTexture( renderer );
+	tmp = bricks->getTexture();
+	SDL_RenderCopy( renderer, tmp, NULL, &lvl->pos );
 	SDL_RenderPresent( renderer );
+	SDL_Delay(10);
+	exit(1);
+	std::cout << "hello" << std::endl;
+	while (lvl->map[y])
+	{
+		x = 0;
+		while (lvl->map[y][x])
+		{
+			std::cout << lvl->map[y][x];
+			lvl->pos.x = x * 40;
+			lvl->pos.y = y * 40;
+			if (lvl->map[y][x] == '1')
+				tmp = bricks->getTexture();
+			else
+				tmp = empty->getTexture();
+			SDL_RenderCopy( renderer, tmp, NULL, &lvl->pos );
+			SDL_RenderPresent( renderer );
+			x++; 
+		}
+		std::cout << std::endl;
+		y++;
+	}
+	//SDL_SetRenderDrawColor( renderer, 255, 255, 255, SDL_ALPHA_OPAQUE );
+	//SDL_RenderPresent( renderer );
 }

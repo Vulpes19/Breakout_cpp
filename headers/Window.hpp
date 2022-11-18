@@ -2,6 +2,9 @@
 
 #include <SDL.h>
 #include <iostream>
+#include <string>
+#include "Map.hpp"
+#include "Texture.hpp"
 
 #define printOut(input) std::cout << input << std::endl
 #define printErr(input, func) std::cerr << input << func << std::endl
@@ -23,4 +26,8 @@ class Window
 		SDL_Renderer	*renderer;
 		SDL_Event		event;
 		bool			running;
+		int				level;
+		Map				*lvl;
+		Texture			*bricks;
+		Texture			*empty;
 };
