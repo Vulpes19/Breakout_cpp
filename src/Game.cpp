@@ -33,12 +33,14 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
         return (false);
     }
     running = true;
+    textureManger.loadImage("assets/paddle.png", "paddle", renderer );
     return (true);
 }
 
 void    Game::render( void )
 {
     SDL_SetRenderDrawColor( renderer, 255, 255, 0, 0 );
+    textureManger.draw( "paddle", 0, 0, 80, 20, renderer );
     SDL_RenderClear( renderer );
     SDL_RenderPresent( renderer );
 }

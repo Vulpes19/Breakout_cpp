@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL.h>
+#include "TextureManager.hpp"
 
 class Game
 {
@@ -17,4 +18,6 @@ class Game
         SDL_Event   event;
         SDL_Window  *window;
         SDL_Renderer    *renderer;
+        int         currentFrame;
+        Texture     textureManger;
 };
