@@ -2,7 +2,7 @@
 TARGET = breakout
 
 #*SOURCE FILES *#
-FILES = main.cpp Window.cpp Texture.cpp Score.cpp Map.cpp DisplayText.cpp
+FILES = main.cpp Game.cpp
 		
 SRC = $(addprefix src/, $(FILES))
 

@@ -1,15 +1,21 @@
 #include <SDL.h>
 #include <iostream>
-#include "Window.hpp"
+#include "Game.hpp"
 
 int main( int ac, char **av )
 {
     (void)ac;
     (void)av;
-    Window game;
+    Game *gameObject = new Game();
 
-    if ( game.createWindow() )
+    if ( !gameObject->init( "Breakout", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 720, 1280 ))
         return (EXIT_FAILURE);
-    game.gameLoop();
-    return (EXIT_SUCCESS);
+    while ( gameObject->getRunning() )
+    {
+        gameObject->handleEvents();
+        //update();
+        gameObject->render();
+    }
+    delete gameObject;
+    return (0);
 }
