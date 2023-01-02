@@ -19,5 +19,4 @@ class Game
         SDL_Window  *window;
         SDL_Renderer    *renderer;
         int         currentFrame;
-        Texture     textureManger;
 };

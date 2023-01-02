@@ -1,5 +1,18 @@
 #include "TextureManager.hpp"
 
+Texture *Texture::instancePtr = nullptr;
+
+Texture  &Texture::getInstance( void )
+{
+    if ( instancePtr == nullptr )
+    {
+        instancePtr = new Texture();
+        return (*instancePtr);
+    }
+    
+    return (*instancePtr);
+}
+
 Texture::Texture( void )
 {
     if ( IMG_Init( IMG_INIT_PNG ) < 0 )
