@@ -10,3 +10,10 @@ void    GameObject::loadTexture( int x, int y, int width, int height, std::strin
     frame = 1;
     row = 1;
 }
+
+void    GameObject::draw( SDL_Renderer *renderer )
+{
+    Texture::getInstance().drawFrame( texture, x, y, w, h, row, frame, renderer );
+}
+
+
