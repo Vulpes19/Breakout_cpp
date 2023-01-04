@@ -9,5 +9,6 @@ class Player : public GameObject
         ~Player( void ) {};
         void    loadTexture( int x, int y, int width, int height, std::string ID );
         void    draw( SDL_Renderer *renderer);
+        void    handleInput( void );
         void    update( void );
 };

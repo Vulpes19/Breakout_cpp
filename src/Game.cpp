@@ -54,6 +54,7 @@ void    Game::handleEvents( void )
     {
         if ( event.type == SDL_QUIT )
             running = false;
+        player.handleInput();
     }
 }
 

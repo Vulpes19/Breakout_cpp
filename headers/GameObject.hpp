@@ -16,6 +16,7 @@ class GameObject
     protected:
         Vector  position;
         Vector  velocity;
+        Vector  acceleration;
         int w;
         int h;
         int row;

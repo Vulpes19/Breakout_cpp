@@ -18,5 +18,6 @@ void    GameObject::draw( SDL_Renderer *renderer )
 
 void    GameObject::update( void )
 {
+    position += acceleration;
     position += velocity;
 }

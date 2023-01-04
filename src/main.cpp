@@ -2,20 +2,30 @@
 #include <iostream>
 #include "Game.hpp"
 
+const   int FPS = 60;
+const   int DELAY = 1000.0f / FPS;
+
 int main( int ac, char **av )
 {
+    Uint32 frameStart;
+    Uint32 frameTime;
+
+    frameStart = SDL_GetTicks();
     (void)ac;
     (void)av;
-    Game *gameObject = new Game();
+    Game *theGame = new Game();
 
-    if ( !gameObject->init( "Breakout", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 720, 1280 ))
+    if ( !theGame->init( "Breakout", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 720, 1280 ))
         return (EXIT_FAILURE);
-    while ( gameObject->getRunning() )
+    while ( theGame->getRunning() )
     {
-        gameObject->handleEvents();
+        theGame->handleEvents();
         //update();
-        gameObject->render();
+        theGame->render();
+        frameTime = SDL_GetTicks() - frameStart;
+        if (frameTime < DELAY)
+            SDL_Delay((int)(DELAY - frameTime));
     }
-    delete gameObject;
+    delete theGame;
     return (0);
 }
