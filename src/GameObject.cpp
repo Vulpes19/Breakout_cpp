@@ -13,7 +13,7 @@ void    GameObject::loadTexture( int x, int y, int width, int height, std::strin
 
 void    GameObject::draw( SDL_Renderer *renderer )
 {
-    Texture::getInstance().drawFrame( texture, x, y, w, h, row, frame, renderer );
+    Texture::getInstance().draw( texture, x, y, w, h, renderer );
 }
 
 

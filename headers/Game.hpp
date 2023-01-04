@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include "TextureManager.hpp"
+#include "Player.hpp"
 
 class Game
 {
@@ -19,4 +20,5 @@ class Game
         SDL_Window  *window;
         SDL_Renderer    *renderer;
         int         currentFrame;
+        Player  player;
 };

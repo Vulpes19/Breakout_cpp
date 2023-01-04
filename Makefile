@@ -2,7 +2,7 @@
 TARGET = breakout
 
 #*SOURCE FILES *#
-FILES = main.cpp Game.cpp TextureManager.cpp
+FILES = main.cpp Game.cpp TextureManager.cpp Player.cpp GameObject.cpp
 		
 SRC = $(addprefix src/, $(FILES))
 
@@ -10,7 +10,7 @@ SRC = $(addprefix src/, $(FILES))
 OBJS = $(SRC:%.cpp=%.o)
 
 #* FLAGS *#
-FLAGS = #-Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 SDL = -lmingw32 -lSDL2main -lSDL2 
 TTF = -lSDL2_ttf 
 IMG = -lSDL2_image

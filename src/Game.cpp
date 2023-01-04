@@ -34,6 +34,7 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     }
     running = true;
     Texture::getInstance().loadImage("assets/paddle.png", "paddle", renderer );
+    player.loadTexture( 0, 0, 80, 20, "paddle" );
     return (true);
 }
 
@@ -41,7 +42,8 @@ void    Game::render( void )
 {
     SDL_SetRenderDrawColor( renderer, 255, 255, 0, 0 );
     SDL_RenderClear( renderer );
-    Texture::getInstance().draw( "paddle", 0, 0, 80, 20, renderer );
+    player.draw( renderer );
+    //Texture::getInstance().draw( "paddle", 0, 0, 80, 20, renderer );
     SDL_RenderPresent( renderer );
 }
 
