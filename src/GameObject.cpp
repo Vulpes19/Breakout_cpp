@@ -2,8 +2,8 @@
 
 void    GameObject::loadTexture( int x, int y, int width, int height, std::string ID )
 {
-    this->x = x;
-    this->y = y;
+    position.setX(x);
+    position.setY(y);
     this->w = width;
     this->h = height;
     this->texture = ID;
@@ -13,7 +13,10 @@ void    GameObject::loadTexture( int x, int y, int width, int height, std::strin
 
 void    GameObject::draw( SDL_Renderer *renderer )
 {
-    Texture::getInstance().draw( texture, x, y, w, h, renderer );
+    Texture::getInstance().draw( texture, (int)position.getX(), (int)position.getY(), w, h, renderer );
 }
 
-
+void    GameObject::update( void )
+{
+    position += velocity;
+}

@@ -5,6 +5,7 @@
 class Vector
 {
     public:
+        Vector( void ) : x(0), y(0) {};
         Vector( float x, float y ) : x(x), y(y) {};
         float   getX( void ) const { return (x); };
         float   getY( void ) const { return (y); };

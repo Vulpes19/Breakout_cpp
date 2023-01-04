@@ -14,6 +14,7 @@ class Game
         void    handleEvents( void );
         void    clean( void );
         bool    getRunning( void ) { return (running); };
+        void    update( void );
     private:
         bool running;
         SDL_Event   event;
