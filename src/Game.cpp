@@ -35,7 +35,6 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
         return (false);
     }
     running = true;
-    states
     Texture::getInstance().loadImage("assets/paddle.png", "paddle", renderer );
     player.loadTexture( 0, 700, 80, 20, "paddle" );
     return (true);
@@ -57,6 +56,8 @@ void    Game::handleEvents( void )
     {
         if ( event.type == SDL_QUIT )
             running = false;
+        if ( InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_RETURN) )
+            states->changeState( new PlayState() );
         player.handleInput();
     }
 }

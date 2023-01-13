@@ -1,6 +1,6 @@
 #include "StateControl.hpp"
 
-void    StateControl::pushState( GameStates *state )
+void    StateControl::pushState( GameState *state )
 {
     gameStates.push_back(state);
     gameStates.back()->onEnter();

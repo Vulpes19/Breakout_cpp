@@ -6,6 +6,7 @@
 class GameState
 {
     public:
+        virtual ~GameState( void ) {};
         virtual void    update( void ) = 0;
         virtual void    render( void ) = 0;
         virtual bool    onEnter( void ) = 0;
