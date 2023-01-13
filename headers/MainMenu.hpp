@@ -2,7 +2,7 @@
 
 #include "GameStates.hpp"
 
-class   MainMenu : GameState
+class   MainMenu : public GameState
 {
     public:
         virtual void    update( void );

@@ -2,7 +2,7 @@
 
 #include "GameStates.hpp"
 
-class   PlayState : GameState
+class   PlayState : public GameState
 {
    public:
         virtual void    update( void );
