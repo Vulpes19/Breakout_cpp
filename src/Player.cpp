@@ -13,9 +13,9 @@ void    Player::draw( SDL_Renderer *renderer )
 
 void    Player::handleInput( void )
 {
-    if (InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_RIGHT))
+    if (InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_RIGHT) || InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_D))
         velocity.setX(10);
-    if (InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_LEFT))
+    if (InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_LEFT) || InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_A))
         velocity.setX(-10);
 }
 
@@ -23,6 +23,8 @@ void    Player::update( void )
 {
     this->frame = int(((SDL_GetTicks() / 100) % 6));
     // acceleration.setX(1);
+    // velocity.setX(1);
+    // velocity.setY(1);
     GameObject::update();
     velocity.setX(0);
 }

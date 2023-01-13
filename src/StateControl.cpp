@@ -1,5 +1,21 @@
 #include "StateControl.hpp"
 
+void    StateControl::update( void )
+{
+    if ( !gameStates.empty() )
+    {
+        gameStates.back()->update();
+    }
+}
+
+void    StateControl::render( void )
+{
+    if ( !gameStates.empty() )
+    {
+        gameStates.back()->render();
+    }
+}
+
 void    StateControl::pushState( GameState *state )
 {
     gameStates.push_back(state);
