@@ -4,6 +4,10 @@
 #include "TextureManager.hpp"
 #include "Player.hpp"
 #include "InputHandling.hpp"
+#include "StateControl.hpp"
+#include "GameStates.hpp"
+#include "MainMenu.hpp"
+#include "PlayState.hpp"
 
 class Game
 {
@@ -23,4 +27,5 @@ class Game
         SDL_Renderer    *renderer;
         int         currentFrame;
         Player  player;
+        StateControl   *states;
 };

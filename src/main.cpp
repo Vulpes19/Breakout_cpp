@@ -20,8 +20,8 @@ int main( int ac, char **av )
     while ( theGame->getRunning() )
     {
         theGame->handleEvents();
-        //update();
         theGame->render();
+        theGame->update();
         frameTime = SDL_GetTicks() - frameStart;
         if (frameTime < DELAY)
             SDL_Delay((int)(DELAY - frameTime));

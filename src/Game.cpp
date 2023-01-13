@@ -6,6 +6,8 @@ Game::Game( void )
     running = false;
     window = nullptr;
     renderer = nullptr;
+    states = new StateControl();
+    states->changeState( new MainMenu() ); 
 }
 
 Game::~Game( void )
@@ -33,17 +35,18 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
         return (false);
     }
     running = true;
+    states
     Texture::getInstance().loadImage("assets/paddle.png", "paddle", renderer );
-    player.loadTexture( 0, 0, 80, 20, "paddle" );
+    player.loadTexture( 0, 700, 80, 20, "paddle" );
     return (true);
 }
 
 void    Game::render( void )
 {
-    SDL_SetRenderDrawColor( renderer, 255, 255, 0, 0 );
+    SDL_SetRenderDrawColor( renderer, 255, 255, 255, 0 );
     SDL_RenderClear( renderer );
     player.draw( renderer );
-    player.update();
+    //player.update();
     //Texture::getInstance().draw( "paddle", 0, 0, 80, 20, renderer );
     SDL_RenderPresent( renderer );
 }
@@ -68,4 +71,5 @@ void    Game::clean()
 void Game::update( void )
 {
     currentFrame = int(((SDL_GetTicks() / 100) % 6));
+    player.update();
 }
