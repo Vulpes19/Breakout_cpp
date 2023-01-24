@@ -2,12 +2,17 @@
 TARGET = breakout
 
 #*SOURCE FILES *#
-FILES = main.cpp Game.cpp TextureManager.cpp Player.cpp GameObject.cpp InputHandling.cpp MainMenu.cpp PlayState.cpp StateControl.cpp
+FILES = main.cpp Game.cpp TextureManager.cpp Player.cpp \
+	GameObject.cpp InputHandling.cpp MainMenu.cpp PlayState.cpp \
+	StateControl.cpp
 		
 SRC = $(addprefix src/, $(FILES))
 
+#* OBJECT DIRECTORY *#
+OBJ_DIR = obj
+
 #* OBJECT FILES *#
-OBJS = $(SRC:%.cpp=%.o)
+OBJS = $(SRC:src/%.cpp=$(OBJ_DIR)/%.o)
 
 #* FLAGS *#
 FLAGS = -Wall -Wextra -Werror
@@ -26,7 +31,7 @@ DEL = rm -f
 
 all: $(TARGET)
 
-%.o: %.cpp
+$(OBJ_DIR)/%.o: src/%.cpp
 	g++ $(FLAGS) -c -I $(INCLUDE) -I $(SDL_INCLUDE) -L $(LIB) $(IMG) $(TTF) $(SDL) $< -o $@
 
 $(TARGET): $(OBJS) $(INCLUDE)
