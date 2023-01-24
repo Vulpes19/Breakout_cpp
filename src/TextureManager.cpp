@@ -56,6 +56,7 @@ void    Texture::draw( std::string ID, int x, int y, int width, int height, SDL_
     dest.y = y;
 
     SDL_RenderCopyEx( renderer, textures[ID], &src, &dest, 0, 0, SDL_FLIP_NONE );
+
 }
 
 void    Texture::drawFrame( std::string ID, int x, int y, int width, int height, int row, int frame, SDL_Renderer *renderer )

@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include "TextureManager.hpp"
 #include "Player.hpp"
+#include "Ball.hpp"
 #include "InputHandling.hpp"
 #include "StateControl.hpp"
 #include "GameStates.hpp"
@@ -27,5 +28,6 @@ class Game
         SDL_Renderer    *renderer;
         int         currentFrame;
         Player  player;
+        Ball    ball;
         StateControl   *states;
 };

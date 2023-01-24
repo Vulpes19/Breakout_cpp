@@ -45,6 +45,7 @@ void    Game::render( void )
     SDL_SetRenderDrawColor( renderer, 255, 255, 255, 0 );
     SDL_RenderClear( renderer );
     player.draw( renderer );
+    ball.draw( renderer );
     //player.update();
     //Texture::getInstance().draw( "paddle", 0, 0, 80, 20, renderer );
     SDL_RenderPresent( renderer );
