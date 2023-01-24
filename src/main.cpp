@@ -15,7 +15,7 @@ int main( int ac, char **av )
     (void)av;
     Game *theGame = new Game();
 
-    if ( !theGame->init( "Breakout", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 720, 1280 ))
+    if ( !theGame->init( "Breakout", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 720, 1080 ))
         return (EXIT_FAILURE);
     while ( theGame->getRunning() )
     {

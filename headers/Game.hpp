@@ -1,5 +1,7 @@
 #pragma once
 
+#define HEIGHT 1080
+#define WIDTH 720
 #include <SDL.h>
 #include "TextureManager.hpp"
 #include "Player.hpp"

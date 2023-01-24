@@ -46,8 +46,6 @@ void    Game::render( void )
     SDL_RenderClear( renderer );
     player.draw( renderer );
     ball.draw( renderer );
-    //player.update();
-    //Texture::getInstance().draw( "paddle", 0, 0, 80, 20, renderer );
     SDL_RenderPresent( renderer );
 }
 
@@ -74,4 +72,5 @@ void Game::update( void )
 {
     currentFrame = int(((SDL_GetTicks() / 100) % 6));
     player.update();
+    ball.update();
 }
