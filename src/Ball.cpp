@@ -23,14 +23,10 @@ void    Ball::draw( SDL_Renderer *renderer )
 void    Ball::update( void )
 {
     this->frame = int(((SDL_GetTicks() / 100) % 6));
-    // acceleration.setX(1);
-    // GameObject::update();
+    std::cout << frame << std::endl;
     wallCollision();
     velocity += acceleration;
-    position += velocity;
-    std::cout << "vel.x = " << velocity.getX() << std::endl;
-    std::cout << "vel.y = " << velocity.getY() << std::endl;
-    // velocity.setX(0);
+    position += velocity * frame;
 }
 
 void    Ball::wallCollision( void )
