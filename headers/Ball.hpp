@@ -1,7 +1,7 @@
 #pragma once
 
-#define HEIGHT 1080
-#define WIDTH 720
+#define HEIGHT 720
+#define WIDTH 1080
 #include "GameObject.hpp"
 #include "Player.hpp"
 
@@ -11,8 +11,8 @@ class   Ball : public GameObject
         Ball( void ) : GameObject()
         {
             radius = 10;
-            velocity.setX(5.0f);
-            velocity.setY(-5.0f);
+            velocity.setX(0.2f);
+            velocity.setY(0.2f);
             this->position.setX(WIDTH / 2);
             this->position.setY(HEIGHT / 2);
             acceleration.setX(0.0f);

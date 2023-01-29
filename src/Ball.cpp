@@ -23,16 +23,39 @@ void    Ball::draw( SDL_Renderer *renderer )
 void    Ball::update( void )
 {
     this->frame = int(((SDL_GetTicks() / 100) % 6));
-    std::cout << frame << std::endl;
+    // std::cout << frame << std::endl;
     wallCollision();
     velocity += acceleration;
-    position += velocity * frame;
+    position += velocity;
 }
 
 void    Ball::wallCollision( void )
 {
-    if ( position.getX() - radius < 0 || position.getX() + radius > WIDTH )
+    if ( position.getX() - radius <= 0 )
+    {
+        position.setX( radius );
         velocity.setX( -velocity.getX() );
-    if ( position.getY() - radius < 0 || position.getY() + radius > HEIGHT )
+    }
+    else if ( position.getX() + radius >= WIDTH )
+    {
+        position.setX( WIDTH - radius );
+        velocity.setX( -velocity.getX() );
+    }
+    if ( position.getY() - radius <= 0 )
+    {
+        position.setY( radius );
         velocity.setY( -velocity.getY() );
+    }
+    else if ( position.getY() + radius >= HEIGHT )
+    {
+        position.setY( HEIGHT - radius );
+        velocity.setY( -velocity.getY() );
+    }
+    // if ( position.getX() - radius < 0 || position.getX() + radius > WIDTH )
+    // {
+    //     // std::cout << "x collision ! position.x = " << position.getX() << std::endl;
+    //     velocity.setX( -velocity.getX() );
+    // }
+    // if ( position.getY() - radius < 0 || position.getY() + radius > HEIGHT )
+    //     velocity.setY( -velocity.getY() );
 }
