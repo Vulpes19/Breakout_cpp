@@ -72,5 +72,5 @@ void Game::update( void )
 {
     currentFrame = int(((SDL_GetTicks() / 100) % 6));
     player.update();
-    ball.update();
+    ball.update(player);
 }

@@ -1,9 +1,15 @@
 #include "Ball.hpp"
 #include "Game.hpp"
 
-void    Ball::loadTexture( int x, int y, int width, int height, std::string ID )
+Ball::Ball( void ) : GameObject()
 {
-    GameObject::loadTexture( x, y, width, height, ID );
+    radius = 10;
+    velocity.setX(0.2f);
+    velocity.setY(0.2f);
+    this->position.setX(WIDTH / 2);
+    this->position.setY(HEIGHT / 2);
+    acceleration.setX(0.0f);
+    acceleration.setY(0.0f);
 }
 
 void    Ball::draw( SDL_Renderer *renderer )
@@ -20,16 +26,16 @@ void    Ball::draw( SDL_Renderer *renderer )
     SDL_RenderFillRect( renderer, &rect );
 }
 
-void    Ball::update( void )
+void    Ball::update( Player &player )
 {
     this->frame = int(((SDL_GetTicks() / 100) % 6));
     // std::cout << frame << std::endl;
-    wallCollision();
+    wallCollision( player );
     velocity += acceleration;
     position += velocity;
 }
 
-void    Ball::wallCollision( void )
+void    Ball::wallCollision( Player &player )
 {
     if ( position.getX() - radius <= 0 )
     {
@@ -51,6 +57,9 @@ void    Ball::wallCollision( void )
         position.setY( HEIGHT - radius );
         velocity.setY( -velocity.getY() );
     }
+
+    if (  position.getY() + radius >= player.getPosition().getY() && position.getX() - radius >= player.getPosition().getX() && position.getX() + radius <= player.getPosition().getX() + 80 )
+        velocity.setY( -velocity.getY() );
     // if ( position.getX() - radius < 0 || position.getX() + radius > WIDTH )
     // {
     //     // std::cout << "x collision ! position.x = " << position.getX() << std::endl;
