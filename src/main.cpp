@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <iostream>
 #include "Game.hpp"
+#include "LevelManager.hpp"
 
 const   int FPS = 60;
 const   int DELAY = 1000.0f / FPS;
@@ -9,7 +10,9 @@ int main( int ac, char **av )
 {
     Uint32 frameStart;
     Uint32 frameTime;
+    LevelManager lvl;
 
+    lvl.readFile("1");
     frameStart = SDL_GetTicks();
     (void)ac;
     (void)av;
