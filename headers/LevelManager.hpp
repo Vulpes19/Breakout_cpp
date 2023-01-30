@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include "TextureManager.hpp"
 
 #define TILE_SIZE 32
 #define GRID_WIDTH 34
@@ -13,10 +14,14 @@
 class LevelManager
 {
     public:
-        LevelManager( void ) {};
-        ~LevelManager( void ) {};
+        static LevelManager   &getInstance( void );
         void    readFile( std::string level );
-    protected:
+        void    getTexture( SDL_Renderer *renderer );
+        void    render( SDL_Renderer *renderer );
         std::vector<std::string> mapGrid;
+    private:
+        LevelManager( void );
+        ~LevelManager( void ) {};
+        static LevelManager    *instancePtr;
         std::ifstream levelFile;
 };

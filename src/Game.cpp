@@ -37,8 +37,8 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     running = true;
     Texture::getInstance().loadImage("assets/paddle.png", "paddle", renderer );
     player.loadTexture( 0, HEIGHT - 20, 80, 20, "paddle" );
-    map.readFile("1");
-    map.getTexture(renderer);
+    LevelManager::getInstance().readFile("1");
+    LevelManager::getInstance().getTexture(renderer);
     return (true);
 }
 
@@ -48,7 +48,7 @@ void    Game::render( void )
     SDL_RenderClear( renderer );
     player.draw( renderer );
     ball.draw( renderer );
-    map.render( renderer );
+    LevelManager::getInstance().render( renderer );
     SDL_RenderPresent( renderer );
 }
 

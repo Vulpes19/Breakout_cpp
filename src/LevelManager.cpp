@@ -1,5 +1,21 @@
 #include "levelManager.hpp"
 
+LevelManager *LevelManager::instancePtr = nullptr;
+
+LevelManager  &LevelManager::getInstance( void )
+{
+    if ( instancePtr == nullptr )
+    {
+        instancePtr = new LevelManager();
+        return (*instancePtr);
+    }
+    
+    return (*instancePtr);
+}
+
+LevelManager::LevelManager( void )
+{}
+
 void	LevelManager::readFile( std::string level )
 {
 	std::string levelName = "./assets/levels/lvl";
@@ -24,21 +40,21 @@ void	LevelManager::readFile( std::string level )
 	levelFile.close();
 }
 
-// void	LevelManager::render( SDL_Renderer *renderer )
-// {
-// 	SDL_Rect tile;
+void    LevelManager::getTexture( SDL_Renderer *renderer )
+{
+    Texture::getInstance().loadImage("assets/brick.png", "brick", renderer );
+}
 
-// 	tile.h = TILE_SIZE;
-// 	tile.w = TILE_SIZE;
-// 	for ( auto row = 0; row < GRID_HEIGHT; row++ )
-// 	{
-// 		for ( auto col = 0; col < GRID_WIDTH; col++ )
-// 		{
-// 			if ( mapGrid[row][col] > 0 )
-// 			{
-// 				tile.x = col;
-// 				tile.y = row;
-// 			}
-// 		}
-// 	}
-// }
+void    LevelManager::render( SDL_Renderer *renderer )
+{
+	for ( auto row = 0; row < GRID_HEIGHT; row++ )
+	{
+		for ( auto col = 0; col < GRID_WIDTH; col++ )
+		{
+            char oneTile = mapGrid[row][col];
+            int tilePos = oneTile - '0';
+			if ( tilePos == 3 )
+                Texture::getInstance().draw("brick", col * TILE_SIZE, row * TILE_SIZE, TILE_SIZE, TILE_SIZE, renderer);
+        }
+	}
+}

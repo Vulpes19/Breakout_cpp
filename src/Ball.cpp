@@ -67,3 +67,15 @@ void    Ball::wallCollision( Player &player )
     // if ( position.getY() - radius < 0 || position.getY() + radius > HEIGHT )
     //     velocity.setY( -velocity.getY() );
 }
+
+void    Ball::bricksCollision( void )
+{
+    int x, y;
+
+    x = position.getX();
+    y = position.getY();
+    if ( LevelManager::getInstance().mapGrid[y / TILE_SIZE][x / TILE_SIZE] > 0)
+    {
+        if ( )
+    }
+}

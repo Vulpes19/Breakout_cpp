@@ -4,6 +4,7 @@
 #define WIDTH 1088
 #include "GameObject.hpp"
 #include "Player.hpp"
+#include "LevelManager.hpp"
 
 class   Ball : public GameObject
 {
@@ -13,6 +14,7 @@ class   Ball : public GameObject
         void    draw( SDL_Renderer *renderer );
         void    update( Player &player );
         void    wallCollision( Player &player );
+        void    bricksCollision( void );
         // void    handleCollision( Player &player );
     private:
         double  radius;

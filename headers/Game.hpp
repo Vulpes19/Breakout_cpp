@@ -11,7 +11,7 @@
 #include "GameStates.hpp"
 #include "MainMenu.hpp"
 #include "PlayState.hpp"
-#include "BricksManager.hpp"
+#include "LevelManager.hpp"
 
 class Game
 {
@@ -33,5 +33,4 @@ class Game
         Player  player;
         Ball    ball;
         StateControl   *states;
-        BricksManager map;
 };
