@@ -3,7 +3,10 @@
 InputHandler *InputHandler::instancePtr = nullptr;
 
 InputHandler::InputHandler( void )
-{}
+{
+    cursorPosition.setX(-1);
+    cursorPosition.setY(-1);
+}
 
 InputHandler  &InputHandler::getInstance( void )
 {
@@ -26,4 +29,15 @@ bool    InputHandler::isKeyPressed( SDL_Scancode key )
             return (false);
     }
     return (false);
+}
+
+Vector  InputHandler::getCursorPosition( void ) const
+{
+    return (cursorPosition);
+}
+
+void    InputHandler::setCursorPosition( int x, int y )
+{
+    cursorPosition.setX(x);
+    cursorPosition.setY(y);
 }

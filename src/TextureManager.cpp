@@ -59,18 +59,18 @@ void    Texture::draw( std::string ID, int x, int y, int width, int height, SDL_
 
 }
 
-void    Texture::drawFrame( std::string ID, int x, int y, int width, int height, int row, int frame, SDL_Renderer *renderer )
-{
-    SDL_Rect    src;
-    SDL_Rect    dest;
+// void    Texture::drawFrame( std::string ID, int x, int y, int width, int height, int row, int frame, SDL_Renderer *renderer )
+// {
+//     SDL_Rect    src;
+//     SDL_Rect    dest;
     
-    src.x = width * frame;
-    src.y = height * (frame - 1);
-    src.w = dest.w = width;
-    src.h = dest.h = height;
-    dest.x = x;
-    dest.y = y;
+//     src.x = width * frame;
+//     src.y = height * (frame - 1);
+//     src.w = dest.w = width;
+//     src.h = dest.h = height;
+//     dest.x = x;
+//     dest.y = y;
 
-    row += 1;
-    SDL_RenderCopyEx( renderer, textures[ID], &src, &dest, 0, 0, SDL_FLIP_NONE );
-}
+//     row += 1;
+//     SDL_RenderCopyEx( renderer, textures[ID], &src, &dest, 0, 0, SDL_FLIP_NONE );
+// }
