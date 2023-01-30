@@ -16,10 +16,7 @@ class LevelManager
         LevelManager( void ) {};
         ~LevelManager( void ) {};
         void    readFile( std::string level );
-        // bool    loadLevel( void );
-        // void    render( SDL_Renderer *renderer );
-        // void    update( void );
-    private:
-        std::vector<std::vector<std::string>> mapGrid;
+    protected:
+        std::vector<std::string> mapGrid;
         std::ifstream levelFile;
 };

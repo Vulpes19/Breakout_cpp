@@ -16,35 +16,29 @@ void	LevelManager::readFile( std::string level )
 	}
 	while ( levelFile && index < GRID_HEIGHT )
 	{
-		std::vector<std::string> row;
 		if ( !std::getline( levelFile, fileContent ) )
 			break ;
-		row.push_back( fileContent );
-		mapGrid.push_back( row );
+		mapGrid.push_back( fileContent );
 		index++;
-	}
-	for (const auto& row : mapGrid)
-	{
-		for (const auto& item : row)
-		{
-			std::cout << item << " ";
-		}
-		std::cout << std::endl;
 	}
 	levelFile.close();
 }
 
-// bool	LevelManager::loadLevel( void )
-// {
-// 	return true;
-// }
-
 // void	LevelManager::render( SDL_Renderer *renderer )
 // {
+// 	SDL_Rect tile;
 
-// }
-
-// void	LevelManager::update( void )
-// {
-
+// 	tile.h = TILE_SIZE;
+// 	tile.w = TILE_SIZE;
+// 	for ( auto row = 0; row < GRID_HEIGHT; row++ )
+// 	{
+// 		for ( auto col = 0; col < GRID_WIDTH; col++ )
+// 		{
+// 			if ( mapGrid[row][col] > 0 )
+// 			{
+// 				tile.x = col;
+// 				tile.y = row;
+// 			}
+// 		}
+// 	}
 // }
