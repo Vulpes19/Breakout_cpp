@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <utility>
 #include "TextureManager.hpp"
 
 #define TILE_SIZE 32
@@ -19,6 +20,7 @@ class LevelManager
         void    getTexture( SDL_Renderer *renderer );
         void    render( SDL_Renderer *renderer );
         std::vector<std::string> mapGrid;
+        std::vector<std::pair<int, int>> brickPositions;
     private:
         LevelManager( void );
         ~LevelManager( void ) {};

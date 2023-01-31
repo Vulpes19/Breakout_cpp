@@ -54,7 +54,10 @@ void    LevelManager::render( SDL_Renderer *renderer )
             char oneTile = mapGrid[row][col];
             int tilePos = oneTile - '0';
 			if ( tilePos == 3 )
+			{
                 Texture::getInstance().draw("brick", col * TILE_SIZE, row * TILE_SIZE, TILE_SIZE, TILE_SIZE, renderer);
+				brickPositions.emplace_back(col * TILE_SIZE, row * TILE_SIZE);
+			}
         }
 	}
 }
