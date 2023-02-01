@@ -89,20 +89,4 @@ void    Ball::bricksCollision( void )
             }
         }
     }
-    // LevelManager::getInstance().mapGrid.size() / GRID_HEIGHT;
-    // for ( unsigned int i = 0; i < LevelManager::getInstance().brickPositions.size(); i++)
-    // {
-    //     int brickX = LevelManager::getInstance().brickPositions[i].first;
-    //     int brickY = LevelManager::getInstance().brickPositions[i].second;
-    //     int brickCenterX = brickX + TILE_SIZE / 2;
-    //     int brickCenterY = brickY + TILE_SIZE / 2;
-    //     if ( (abs(ballY - brickCenterY) <= (radius * 2 + TILE_SIZE) / 2) && (ballX >= brickX && ballX + radius * 2 <= brickX ))
-    //         velocity.setY( -velocity.getY() );
-    //     if ( (abs(ballX - brickCenterX) <= (radius * 2 + TILE_SIZE) / 2) && (ballY >= brickY && ballY + radius * 2 <= brickY ))
-    //         velocity.setX( -velocity.getX() );
-    // }
-    // if ( LevelManager::getInstance().mapGrid[ball_y / TILE_SIZE][ball_x / TILE_SIZE] > 0 && ball_x - ball_x <= (radius * 2 + TILE_SIZE) / 2)
-    //     velocity.setY( -velocity.getY());
-    // else if (LevelManager::getInstance().mapGrid[ball_y / TILE_SIZE][ball_x / TILE_SIZE] > 0 && ball_y - ball_y <= (radius * 2 + TILE_SIZE) / 2)
-    //     velocity.setX( -velocity.getX());
 }
