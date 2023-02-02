@@ -43,6 +43,8 @@ void	LevelManager::readFile( std::string level )
 void    LevelManager::getTexture( SDL_Renderer *renderer )
 {
     Texture::getInstance().loadImage("assets/brick.png", "brick", renderer );
+    Texture::getInstance().loadImage("assets/brick2.png", "brick2", renderer );
+    Texture::getInstance().loadImage("assets/brick3.png", "brick3", renderer );
 }
 
 void    LevelManager::render( SDL_Renderer *renderer )
@@ -54,10 +56,11 @@ void    LevelManager::render( SDL_Renderer *renderer )
             char oneTile = mapGrid[row][col];
             int tilePos = oneTile - '0';
 			if ( tilePos == 3 )
-			{
+                Texture::getInstance().draw("brick3", col * TILE_SIZE, row * TILE_SIZE, TILE_SIZE, TILE_SIZE, renderer);
+			else if ( tilePos == 2 )
+                Texture::getInstance().draw("brick2", col * TILE_SIZE, row * TILE_SIZE, TILE_SIZE, TILE_SIZE, renderer);
+			else if ( tilePos == 1 )
                 Texture::getInstance().draw("brick", col * TILE_SIZE, row * TILE_SIZE, TILE_SIZE, TILE_SIZE, renderer);
-				brickPositions.emplace_back(col * TILE_SIZE, row * TILE_SIZE);
-			}
         }
 	}
 }

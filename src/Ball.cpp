@@ -58,13 +58,14 @@ void    Ball::wallCollision( Player &player )
         velocity.setY( -velocity.getY() );
     }
 
-    if (  position.getY() + radius >= player.getPosition().getY() && position.getX() - radius >= player.getPosition().getX() && position.getX() + radius <= player.getPosition().getX() + 80 )
+    if (  position.getY() >= player.getPosition().getY() && position.getX() - radius >= player.getPosition().getX() && position.getX() + radius <= player.getPosition().getX() + 80 )
         velocity.setY( -velocity.getY() );
 }
 
 void    Ball::bricksCollision( void )
 {
     int columns, rows;
+
     columns = LevelManager::getInstance().mapGrid[0].size();
     rows = LevelManager::getInstance().mapGrid.size();
     for (int r = 0; r < rows; r++)
@@ -78,13 +79,30 @@ void    Ball::bricksCollision( void )
                 int brickY = r * TILE_SIZE;
                 if ( position.getX() >= brickX && position.getX() <= brickX + TILE_SIZE && position.getY() >= brickY && position.getY() <= brickY + TILE_SIZE)
                 {
-                    velocity.setX( -velocity.getX() );
-                    std::cout << "I collided in X" << std::endl;
-                }
-                if ( position.getY() >= brickY && position.getY() <= brickY + TILE_SIZE && position.getX() >= brickX && position.getX() <= brickX + TILE_SIZE)
-                {
+                    LevelManager::getInstance().mapGrid[r][c] = '2';
                     velocity.setY( -velocity.getY() );
-                    std::cout << "I collided in Y" << std::endl;
+                }
+            }
+            else if (LevelManager::getInstance().mapGrid[r][c] == '2')
+            {
+                // std::cout << "I collided !" << std::endl;
+                int brickX = c * TILE_SIZE;
+                int brickY = r * TILE_SIZE;
+                if ( position.getX() >= brickX && position.getX() <= brickX + TILE_SIZE && position.getY() >= brickY && position.getY() <= brickY + TILE_SIZE)
+                {
+                    LevelManager::getInstance().mapGrid[r][c] = '1';
+                    velocity.setY( -velocity.getY() );
+                }
+            }
+            else if (LevelManager::getInstance().mapGrid[r][c] == '1')
+            {
+                // std::cout << "I collided !" << std::endl;
+                int brickX = c * TILE_SIZE;
+                int brickY = r * TILE_SIZE;
+                if ( position.getX() >= brickX && position.getX() <= brickX + TILE_SIZE && position.getY() >= brickY && position.getY() <= brickY + TILE_SIZE)
+                {
+                    LevelManager::getInstance().mapGrid[r][c] = '0';
+                    velocity.setY( -velocity.getY() );
                 }
             }
         }
