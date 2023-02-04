@@ -21,6 +21,11 @@ Text::Text( void )
     }
 }
 
+Text::~Text( void )
+{
+    TTF_Quit();
+}
+
 bool    Text::loadFont( const char *fontPath, std::string ID )
 {
     TTF_Font    *font = nullptr;

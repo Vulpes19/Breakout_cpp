@@ -4,8 +4,10 @@ InputHandler *InputHandler::instancePtr = nullptr;
 
 InputHandler::InputHandler( void )
 {
-    cursorPosition.setX(-1);
-    cursorPosition.setY(-1);
+    // cursorPosition.setX(-1);
+    // cursorPosition.setY(-1);
+    for ( int i = 0; i < 3; i++ )
+        mouseButtonStates.push_back(false);
 }
 
 InputHandler  &InputHandler::getInstance( void )
@@ -40,4 +42,9 @@ void    InputHandler::setCursorPosition( int x, int y )
 {
     cursorPosition.setX(x);
     cursorPosition.setY(y);
+}
+
+void    InputHandler::setMouseButtons( int button, bool state )
+{
+    mouseButtonStates[button] = state;
 }

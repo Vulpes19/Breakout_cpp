@@ -1,4 +1,4 @@
-*.o
+
 .vscode
 include
 lib

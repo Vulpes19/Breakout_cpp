@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Game.hpp"
+#include "TextManager.hpp"
 
 Game::Game( void )
 {
@@ -7,7 +8,8 @@ Game::Game( void )
     window = nullptr;
     renderer = nullptr;
     states = new StateControl();
-    states->changeState( new MainMenu() ); 
+    // states->pushState( play );
+    states->pushState( new MainMenu() ); 
 }
 
 Game::~Game( void )
@@ -39,16 +41,23 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     player.loadTexture( 0, HEIGHT - 20, 80, 20, "paddle" );
     LevelManager::getInstance().readFile("1");
     LevelManager::getInstance().getTexture(renderer);
+    Text::getInstance().loadFont("assets/regular.ttf", "regular");
     return (true);
 }
 
 void    Game::render( void )
 {
-    SDL_SetRenderDrawColor( renderer, 255, 255, 255, 0 );
+    SDL_SetRenderDrawColor( renderer, 11, 32, 39, 0 );
     SDL_RenderClear( renderer );
-    player.draw( renderer );
-    ball.draw( renderer );
-    LevelManager::getInstance().render( renderer );
+    if ( states->getState() == "Main Menu")
+        states->render( renderer );
+    else if ( states->getState() == "Play")
+    {
+        states->render( renderer );
+        player.draw( renderer );
+        ball.draw( renderer );
+        LevelManager::getInstance().render( renderer );
+    }
     SDL_RenderPresent( renderer );
 }
 
@@ -60,6 +69,24 @@ void    Game::handleEvents( void )
             running = false;
         if ( event.type == SDL_MOUSEMOTION )
             InputHandler::getInstance().setCursorPosition(event.motion.x, event.motion.y);
+        if ( event.type == SDL_MOUSEBUTTONDOWN )
+        {
+            if ( event.button.button == SDL_BUTTON_LEFT )
+                InputHandler::getInstance().setMouseButtons(LEFT, true);
+            if ( event.button.button == SDL_BUTTON_RIGHT )
+                InputHandler::getInstance().setMouseButtons(RIGHT, true);
+            if ( event.button.button == SDL_BUTTON_MIDDLE )
+                InputHandler::getInstance().setMouseButtons(MIDDLE, true);
+        }
+        if ( event.type == SDL_MOUSEBUTTONUP )
+        {
+            if ( event.button.button == SDL_BUTTON_LEFT )
+                InputHandler::getInstance().setMouseButtons(LEFT, false);
+            if ( event.button.button == SDL_BUTTON_RIGHT )
+                InputHandler::getInstance().setMouseButtons(RIGHT, false);
+            if ( event.button.button == SDL_BUTTON_MIDDLE )
+                InputHandler::getInstance().setMouseButtons(MIDDLE, false);
+        }
         if ( InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_RETURN) )
             states->changeState( new PlayState() );
         player.handleInput();
@@ -76,6 +103,10 @@ void    Game::clean()
 void Game::update( void )
 {
     currentFrame = int(((SDL_GetTicks() / 100) % 6));
-    player.update();
-    ball.update(player);
+    states->update();
+    if ( states->getState() == "Play")
+    {
+        player.update();
+        ball.update(player);
+    }
 }

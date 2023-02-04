@@ -5,11 +5,11 @@
 class   PlayState : public GameState
 {
    public:
-        virtual void    update( void );
-        virtual void    render( void );
-        virtual bool    onEnter( void );
-        virtual bool    onExit( void );
-        virtual std::string getState( void ) const;
+        void    update( void );
+        void    render( SDL_Renderer *renderer );
+        bool    onEnter( void );
+        bool    onExit( void );
+        std::string getState( void ) const;
     private:
         static  const   std::string state;
 };

@@ -7,9 +7,9 @@ void    PlayState::update( void )
 
 }
 
-void    PlayState::render( void )
+void    PlayState::render( SDL_Renderer *renderer )
 {
-
+    (void)renderer;
 }
 
 bool    PlayState::onEnter( void )

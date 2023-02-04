@@ -33,4 +33,5 @@ class Game
         Player  player;
         Ball    ball;
         StateControl   *states;
+        // PlayState       *play;
 };

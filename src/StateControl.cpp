@@ -8,11 +8,11 @@ void    StateControl::update( void )
     }
 }
 
-void    StateControl::render( void )
+void    StateControl::render( SDL_Renderer *renderer )
 {
     if ( !gameStates.empty() )
     {
-        gameStates.back()->render();
+        gameStates.back()->render(renderer);
     }
 }
 
@@ -48,4 +48,9 @@ void    StateControl::changeState( GameState *state )
     }
     gameStates.push_back(state);
     gameStates.back()->onEnter();
+}
+
+std::string StateControl::getState( void ) const
+{
+    return (gameStates.back()->getState());
 }
