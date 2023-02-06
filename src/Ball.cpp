@@ -83,29 +83,29 @@ void    Ball::bricksCollision( void )
                 // std::cout << "I collided !" << std::endl;
                 int brickX = c * TILE_SIZE;
                 int brickY = r * TILE_SIZE;
-                if ( position.getX() >= brickX && position.getX() <= brickX + TILE_SIZE && position.getY() >= brickY && position.getY() + radius <= brickY + TILE_SIZE)
+                if ( position.getX() >= brickX && position.getX() + radius * 2 <= brickX + TILE_SIZE && position.getY() + radius * 2 >= brickY && position.getY() <= brickY + TILE_SIZE)
                 {
                     LevelManager::getInstance().mapGrid[r][c] = '2';
                     velocity.setY( -velocity.getY() );
                 }
             }
-            else if (LevelManager::getInstance().mapGrid[r][c] == '2')
+            if (LevelManager::getInstance().mapGrid[r][c] == '2')
             {
                 // std::cout << "I collided !" << std::endl;
                 int brickX = c * TILE_SIZE;
                 int brickY = r * TILE_SIZE;
-                if ( position.getX() >= brickX && position.getX() <= brickX + TILE_SIZE && position.getY() >= brickY && position.getY() + radius <= brickY + TILE_SIZE)
+                if ( position.getX() >= brickX && position.getX() + radius * 2 <= brickX + TILE_SIZE && position.getY() + radius * 2 >= brickY && position.getY() <= brickY + TILE_SIZE)
                 {
                     LevelManager::getInstance().mapGrid[r][c] = '1';
                     velocity.setY( -velocity.getY() );
                 }
             }
-            else if (LevelManager::getInstance().mapGrid[r][c] == '1')
+            if (LevelManager::getInstance().mapGrid[r][c] == '1')
             {
                 // std::cout << "I collided !" << std::endl;
                 int brickX = c * TILE_SIZE;
                 int brickY = r * TILE_SIZE;
-                if ( position.getX() >= brickX && position.getX() <= brickX + TILE_SIZE && position.getY() >= brickY && position.getY() + radius <= brickY + TILE_SIZE)
+                if ( position.getX() >= brickX && position.getX() + radius * 2 <= brickX + TILE_SIZE && position.getY() + radius * 2 >= brickY && position.getY() <= brickY + TILE_SIZE)
                 {
                     LevelManager::getInstance().mapGrid[r][c] = '0';
                     velocity.setY( -velocity.getY() );

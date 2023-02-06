@@ -41,6 +41,7 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     Texture::getInstance().loadImage("assets/ball.png", "ball", renderer );
     player.loadTexture( 0, HEIGHT - 20, 100, 20, "paddle" );
     ball.loadTexture( WIDTH / 2, HEIGHT / 2 + 5, 20, 20, "ball" );
+    // ball.loadTexture( 0, 0, 20, 20, "ball" );
     LevelManager::getInstance().readFile("1");
     LevelManager::getInstance().getTexture(renderer);
     Text::getInstance().loadFont("assets/regular.ttf", "regular");
