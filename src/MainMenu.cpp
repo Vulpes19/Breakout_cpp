@@ -7,22 +7,28 @@ const   std::string MainMenu::state = "Main Menu";
 MainMenu::MainMenu( void )
 {
     color_title = {64, 121, 140, 0};
-    color_button = {165, 145, 50, 0};
+    color_button1 = {165, 145, 50, 0};
+    color_button2 = {165, 145, 50, 0};
+    color_button3 = {165, 145, 50, 0};
 }
 void    MainMenu::update( void )
 {
     Vector cursor = InputHandler::getInstance().getCursorPosition();
-    if ( cursor.getX() >= WIDTH / 2 - 90 && cursor.getX() <= WIDTH / 2 - 90 + 150 && cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 150)
-        color_button = {249, 235, 224, 0};
+    if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70)
+        color_button1 = {249, 235, 224, 0};
     else
-        color_button = {165, 145, 50, 0};
+        color_button1 = {165, 145, 50, 0};
+    if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 + 5 && cursor.getY() <= HEIGHT / 2 + 75)
+        color_button2 = {249, 235, 224, 0};
+    else
+        color_button2 = {165, 145, 50, 0};
 }
 
 void    MainMenu::render( SDL_Renderer *renderer )
 {
     Text::getInstance().writeText("regular", WIDTH / 2 - 280, HEIGHT / 2 - 400, 600, 300, renderer, "BREAKOUT", color_title);
-    Text::getInstance().writeText("regular", WIDTH / 2 - 80, HEIGHT / 2 - 80, 140, 70, renderer, "Play", color_button);
-    Text::getInstance().writeText("regular", WIDTH / 2 - 80, HEIGHT / 2 + 5, 140, 70, renderer, "Options", color_button);
+    Text::getInstance().writeText("regular", WIDTH / 2 - 80, HEIGHT / 2 - 80, 140, 70, renderer, "Play", color_button1);
+    Text::getInstance().writeText("regular", WIDTH / 2 - 80, HEIGHT / 2 + 5, 140, 70, renderer, "Options", color_button2);
 }
 
 bool    MainMenu::onEnter( void )

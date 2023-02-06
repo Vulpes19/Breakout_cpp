@@ -11,6 +11,7 @@ class   Ball : public GameObject
     public:
         Ball( void );
         virtual ~Ball( void ) {};
+        void    loadTexture( int x, int y, int width, int height, std::string ID );
         void    draw( SDL_Renderer *renderer );
         void    update( Player &player );
         void    wallCollision( Player &player );

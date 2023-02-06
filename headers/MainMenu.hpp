@@ -15,5 +15,7 @@ class   MainMenu : public GameState
     private:
         static  const   std::string state;
         SDL_Color   color_title;
-        SDL_Color   color_button;
+        SDL_Color   color_button1;
+        SDL_Color   color_button2;
+        SDL_Color   color_button3;
 };

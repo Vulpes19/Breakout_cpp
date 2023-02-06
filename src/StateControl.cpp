@@ -4,7 +4,7 @@ void    StateControl::update( void )
 {
     if ( !gameStates.empty() )
     {
-        gameStates.back()->update();
+        return (gameStates.back()->update());
     }
 }
 

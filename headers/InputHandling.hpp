@@ -18,6 +18,7 @@ class InputHandler
         bool    isKeyPressed( SDL_Scancode key );
         Vector  getCursorPosition( void ) const;
         void    setCursorPosition( int x, int y );
+        bool    getMouseButton( int button );
         void    setMouseButtons( int button, bool state );
         void    update( void );
         void    clean( void );

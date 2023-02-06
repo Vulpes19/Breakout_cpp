@@ -7,23 +7,29 @@ Ball::Ball( void ) : GameObject()
     velocity.setX(0.2f);
     velocity.setY(0.2f);
     this->position.setX(WIDTH / 2);
-    this->position.setY(HEIGHT / 2);
+    this->position.setY(HEIGHT / 2 + 5);
     acceleration.setX(0.0f);
     acceleration.setY(0.0f);
 }
 
+void    Ball::loadTexture( int x, int y, int width, int height, std::string ID )
+{
+    GameObject::loadTexture( x, y, width, height, ID );
+}
+
 void    Ball::draw( SDL_Renderer *renderer )
 {
+    GameObject::draw( renderer );
     // this->position.setX(WIDTH / 2);
     // this->position.setY(HEIGHT / 2);
-    SDL_Rect rect;
+    // SDL_Rect rect;
 
-    rect.x = this->position.getX() - radius;
-    rect.y = this->position.getY() - radius;
-    rect.w = radius * 2;
-    rect.h = radius * 2;
-    SDL_SetRenderDrawColor( renderer, 255, 0, 0, 0);
-    SDL_RenderFillRect( renderer, &rect );
+    // rect.x = this->position.getX() - radius;
+    // rect.y = this->position.getY() - radius;
+    // rect.w = radius * 2;
+    // rect.h = radius * 2;
+    // SDL_SetRenderDrawColor( renderer, 255, 0, 0, 0);
+    // SDL_RenderFillRect( renderer, &rect );
 }
 
 void    Ball::update( Player &player )
@@ -37,28 +43,28 @@ void    Ball::update( Player &player )
 
 void    Ball::wallCollision( Player &player )
 {
-    if ( position.getX() - radius <= 0 )
+    if ( position.getX() <= 0 )
     {
-        position.setX( radius );
+        position.setX( position.getX() );
         velocity.setX( -velocity.getX() );
     }
-    else if ( position.getX() + radius >= WIDTH )
+    else if ( position.getX() + radius * 2 >= WIDTH )
     {
-        position.setX( WIDTH - radius );
+        position.setX( WIDTH - radius * 2 );
         velocity.setX( -velocity.getX() );
     }
-    if ( position.getY() - radius <= 0 )
+    if ( position.getY() <= 0 )
     {
-        position.setY( radius );
+        position.setY( position.getY() );
         velocity.setY( -velocity.getY() );
     }
-    else if ( position.getY() + radius >= HEIGHT )
+    else if ( position.getY() + radius * 2 >= HEIGHT )
     {
-        position.setY( HEIGHT - radius );
+        position.setY( HEIGHT - radius * 2 );
         velocity.setY( -velocity.getY() );
     }
 
-    if (  position.getY() >= player.getPosition().getY() && position.getX() - radius >= player.getPosition().getX() && position.getX() + radius <= player.getPosition().getX() + 80 )
+    if (  position.getY() >= player.getPosition().getY() && position.getX() - radius >= player.getPosition().getX() && position.getX() + radius <= player.getPosition().getX() + 100 )
         velocity.setY( -velocity.getY() );
 }
 
@@ -77,7 +83,7 @@ void    Ball::bricksCollision( void )
                 // std::cout << "I collided !" << std::endl;
                 int brickX = c * TILE_SIZE;
                 int brickY = r * TILE_SIZE;
-                if ( position.getX() >= brickX && position.getX() <= brickX + TILE_SIZE && position.getY() >= brickY && position.getY() <= brickY + TILE_SIZE)
+                if ( position.getX() >= brickX && position.getX() <= brickX + TILE_SIZE && position.getY() >= brickY && position.getY() + radius <= brickY + TILE_SIZE)
                 {
                     LevelManager::getInstance().mapGrid[r][c] = '2';
                     velocity.setY( -velocity.getY() );
@@ -88,7 +94,7 @@ void    Ball::bricksCollision( void )
                 // std::cout << "I collided !" << std::endl;
                 int brickX = c * TILE_SIZE;
                 int brickY = r * TILE_SIZE;
-                if ( position.getX() >= brickX && position.getX() <= brickX + TILE_SIZE && position.getY() >= brickY && position.getY() <= brickY + TILE_SIZE)
+                if ( position.getX() >= brickX && position.getX() <= brickX + TILE_SIZE && position.getY() >= brickY && position.getY() + radius <= brickY + TILE_SIZE)
                 {
                     LevelManager::getInstance().mapGrid[r][c] = '1';
                     velocity.setY( -velocity.getY() );
@@ -99,7 +105,7 @@ void    Ball::bricksCollision( void )
                 // std::cout << "I collided !" << std::endl;
                 int brickX = c * TILE_SIZE;
                 int brickY = r * TILE_SIZE;
-                if ( position.getX() >= brickX && position.getX() <= brickX + TILE_SIZE && position.getY() >= brickY && position.getY() <= brickY + TILE_SIZE)
+                if ( position.getX() >= brickX && position.getX() <= brickX + TILE_SIZE && position.getY() >= brickY && position.getY() + radius <= brickY + TILE_SIZE)
                 {
                     LevelManager::getInstance().mapGrid[r][c] = '0';
                     velocity.setY( -velocity.getY() );

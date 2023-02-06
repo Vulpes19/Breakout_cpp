@@ -38,7 +38,9 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     }
     running = true;
     Texture::getInstance().loadImage("assets/paddle.png", "paddle", renderer );
-    player.loadTexture( 0, HEIGHT - 20, 80, 20, "paddle" );
+    Texture::getInstance().loadImage("assets/ball.png", "ball", renderer );
+    player.loadTexture( 0, HEIGHT - 20, 100, 20, "paddle" );
+    ball.loadTexture( WIDTH / 2, HEIGHT / 2 + 5, 20, 20, "ball" );
     LevelManager::getInstance().readFile("1");
     LevelManager::getInstance().getTexture(renderer);
     Text::getInstance().loadFont("assets/regular.ttf", "regular");
@@ -72,7 +74,12 @@ void    Game::handleEvents( void )
         if ( event.type == SDL_MOUSEBUTTONDOWN )
         {
             if ( event.button.button == SDL_BUTTON_LEFT )
+            {
                 InputHandler::getInstance().setMouseButtons(LEFT, true);
+                   Vector cursor = InputHandler::getInstance().getCursorPosition();
+                if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70)
+                    states->changeState(new PlayState());
+            }
             if ( event.button.button == SDL_BUTTON_RIGHT )
                 InputHandler::getInstance().setMouseButtons(RIGHT, true);
             if ( event.button.button == SDL_BUTTON_MIDDLE )
