@@ -8,8 +8,9 @@
 #include <utility>
 #include "TextureManager.hpp"
 
-#define TILE_SIZE 32
-#define GRID_WIDTH 34
+#define TILE_SIZE_H 32
+#define TILE_SIZE_W 64
+#define GRID_WIDTH 17
 #define GRID_HEIGHT 22
 
 class LevelManager

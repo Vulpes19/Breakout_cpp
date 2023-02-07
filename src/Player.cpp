@@ -14,9 +14,9 @@ void    Player::draw( SDL_Renderer *renderer )
 void    Player::handleInput( void )
 {
     if (InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_RIGHT) || InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_D))
-        velocity.setX(10);
+        velocity.setX(14);
     if (InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_LEFT) || InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_A))
-        velocity.setX(-10);
+        velocity.setX(-14);
 }
 
 void    Player::update( void )

@@ -39,7 +39,7 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     running = true;
     Texture::getInstance().loadImage("assets/paddle.png", "paddle", renderer );
     Texture::getInstance().loadImage("assets/ball.png", "ball", renderer );
-    player.loadTexture( 0, HEIGHT - 20, 100, 20, "paddle" );
+    player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
     ball.loadTexture( WIDTH / 2, HEIGHT / 2 + 5, 20, 20, "ball" );
     // ball.loadTexture( 0, 0, 20, 20, "ball" );
     LevelManager::getInstance().readFile("1");
@@ -78,7 +78,7 @@ void    Game::handleEvents( void )
             {
                 InputHandler::getInstance().setMouseButtons(LEFT, true);
                    Vector cursor = InputHandler::getInstance().getCursorPosition();
-                if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70)
+                if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70 && states->getState() == "Main Menu" )
                     states->changeState(new PlayState());
             }
             if ( event.button.button == SDL_BUTTON_RIGHT )
