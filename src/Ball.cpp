@@ -32,11 +32,11 @@ void    Ball::draw( SDL_Renderer *renderer )
     // SDL_RenderFillRect( renderer, &rect );
 }
 
-void    Ball::update( Player &player )
+void    Ball::update( Player &player, int &score )
 {
     this->frame = int(((SDL_GetTicks() / 100) % 6));
     wallCollision( player );
-    bricksCollision();
+    bricksCollision( score );
     velocity += acceleration;
     position += velocity;
 }
@@ -68,10 +68,11 @@ void    Ball::wallCollision( Player &player )
         velocity.setY( -velocity.getY() );
 }
 
-void    Ball::bricksCollision( void )
+void    Ball::bricksCollision( int &score )
 {
     int columns, rows;
 
+    (void)score;
     columns = LevelManager::getInstance().mapGrid[0].size();
     rows = LevelManager::getInstance().mapGrid.size();
     for (int r = 0; r < rows; r++)
@@ -81,6 +82,10 @@ void    Ball::bricksCollision( void )
             char i = LevelManager::getInstance().mapGrid[r][c];
             if ( i == '3' || i == '4' || i == '1' || i == '2' )
             {
+                // if ( LevelManager::getInstance().mapGrid[r][c] == '1' ) score += 1;
+                // else if ( LevelManager::getInstance().mapGrid[r][c] == '2' ) score += 3;
+                // else if ( LevelManager::getInstance().mapGrid[r][c] == '3' ) score += 5;
+                // else if ( LevelManager::getInstance().mapGrid[r][c] == '4' ) score += 7;
                 // std::cout << "I collided !" << std::endl;
                 int brickX = c * TILE_SIZE_W;
                 int brickY = r * TILE_SIZE_H;

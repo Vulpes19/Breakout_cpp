@@ -33,5 +33,7 @@ class Game
         Player  player;
         Ball    ball;
         StateControl   *states;
+        int score;
+        int prevScore;
         // PlayState       *play;
 };

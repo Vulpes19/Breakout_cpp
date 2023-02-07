@@ -1,5 +1,7 @@
 #pragma once
 
+#define HEIGHT 704
+#define WIDTH 1088
 #include <SDL.h>
 #include <iostream>
 

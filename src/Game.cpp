@@ -7,8 +7,9 @@ Game::Game( void )
     running = false;
     window = nullptr;
     renderer = nullptr;
+    score = 0;
+    prevScore = 0;
     states = new StateControl();
-    // states->pushState( play );
     states->pushState( new MainMenu() ); 
 }
 
@@ -41,7 +42,6 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     Texture::getInstance().loadImage("assets/ball.png", "ball", renderer );
     player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
     ball.loadTexture( WIDTH / 2, HEIGHT / 2 + 5, 20, 20, "ball" );
-    // ball.loadTexture( 0, 0, 20, 20, "ball" );
     LevelManager::getInstance().readFile("1");
     LevelManager::getInstance().getTexture(renderer);
     Text::getInstance().loadFont("assets/regular.ttf", "regular");
@@ -56,10 +56,17 @@ void    Game::render( void )
         states->render( renderer );
     else if ( states->getState() == "Play")
     {
-        states->render( renderer );
+        // states->render( renderer );
         player.draw( renderer );
         ball.draw( renderer );
         LevelManager::getInstance().render( renderer );
+        if ( prevScore != score )
+        {
+            std::string tmp = std::to_string(score);
+            const char *toDisplay = tmp.c_str();
+            SDL_Color color = {165, 145, 50, 255};
+            Text::getInstance().writeText("regular", WIDTH / 2, 10, 50, 50, renderer, toDisplay, color);
+        }
     }
     SDL_RenderPresent( renderer );
 }
@@ -95,8 +102,6 @@ void    Game::handleEvents( void )
             if ( event.button.button == SDL_BUTTON_MIDDLE )
                 InputHandler::getInstance().setMouseButtons(MIDDLE, false);
         }
-        if ( InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_RETURN) )
-            states->changeState( new PlayState() );
         player.handleInput();
     }
 }
@@ -112,9 +117,10 @@ void Game::update( void )
 {
     currentFrame = int(((SDL_GetTicks() / 100) % 6));
     states->update();
+    prevScore = score;
     if ( states->getState() == "Play")
     {
         player.update();
-        ball.update(player);
+        ball.update(player, score);
     }
 }

@@ -1,4 +1,6 @@
 #include "PlayState.hpp"
+#include "TextManager.hpp"
+#include <string>
 
 const   std::string PlayState::state = "Play";
 
