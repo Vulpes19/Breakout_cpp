@@ -42,9 +42,10 @@ void	LevelManager::readFile( std::string level )
 
 void    LevelManager::getTexture( SDL_Renderer *renderer )
 {
-    Texture::getInstance().loadImage("assets/brick.png", "brick", renderer );
-    Texture::getInstance().loadImage("assets/brick2.png", "brick2", renderer );
-    Texture::getInstance().loadImage("assets/brick3.png", "brick3", renderer );
+    Texture::getInstance().loadImage("assets/red_brick.png", "red_brick", renderer );
+    Texture::getInstance().loadImage("assets/orange_brick.png", "orange_brick", renderer );
+    Texture::getInstance().loadImage("assets/green_brick.png", "green_brick", renderer );
+    Texture::getInstance().loadImage("assets/yellow_brick.png", "yellow_brick", renderer );
 }
 
 void    LevelManager::render( SDL_Renderer *renderer )
@@ -55,12 +56,14 @@ void    LevelManager::render( SDL_Renderer *renderer )
 		{
             char oneTile = mapGrid[row][col];
             int tilePos = oneTile - '0';
-			if ( tilePos == 3 )
-                Texture::getInstance().draw("brick3", col * TILE_SIZE_W, row * TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, renderer);
+			if ( tilePos == 4 )
+                Texture::getInstance().draw("red_brick", col * TILE_SIZE_W, row * TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, renderer);
+			else if ( tilePos == 3 )
+                Texture::getInstance().draw("orange_brick", col * TILE_SIZE_W, row * TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, renderer);
 			else if ( tilePos == 2 )
-                Texture::getInstance().draw("brick2", col * TILE_SIZE_W, row * TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, renderer);
+                Texture::getInstance().draw("green_brick", col * TILE_SIZE_W, row * TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, renderer);
 			else if ( tilePos == 1 )
-                Texture::getInstance().draw("brick", col * TILE_SIZE_W, row * TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, renderer);
-        }
+                Texture::getInstance().draw("yellow_brick", col * TILE_SIZE_W, row * TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, renderer);
+		}
 	}
 }

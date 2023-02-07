@@ -78,29 +78,8 @@ void    Ball::bricksCollision( void )
     {
         for (int c = 0; c < columns; c++)
         {
-            if (LevelManager::getInstance().mapGrid[r][c] == '3')
-            {
-                // std::cout << "I collided !" << std::endl;
-                int brickX = c * TILE_SIZE_W;
-                int brickY = r * TILE_SIZE_H;
-                if ( position.getX() >= brickX && position.getX() + radius * 2 <= brickX + TILE_SIZE_W && position.getY() + radius * 2 >= brickY && position.getY() <= brickY + TILE_SIZE_H)
-                {
-                    LevelManager::getInstance().mapGrid[r][c] = '2';
-                    velocity.setY( -velocity.getY() );
-                }
-            }
-            if (LevelManager::getInstance().mapGrid[r][c] == '2')
-            {
-                // std::cout << "I collided !" << std::endl;
-                int brickX = c * TILE_SIZE_W;
-                int brickY = r * TILE_SIZE_H;
-                if ( position.getX() >= brickX && position.getX() + radius * 2 <= brickX + TILE_SIZE_W && position.getY() + radius * 2 >= brickY && position.getY() <= brickY + TILE_SIZE_H)
-                {
-                    LevelManager::getInstance().mapGrid[r][c] = '1';
-                    velocity.setY( -velocity.getY() );
-                }
-            }
-            if (LevelManager::getInstance().mapGrid[r][c] == '1')
+            char i = LevelManager::getInstance().mapGrid[r][c];
+            if ( i == '3' || i == '4' || i == '1' || i == '2' )
             {
                 // std::cout << "I collided !" << std::endl;
                 int brickX = c * TILE_SIZE_W;
