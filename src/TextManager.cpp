@@ -40,7 +40,7 @@ bool    Text::loadFont( const char *fontPath, std::string ID )
     return (true);
 }
 
-void    Text::writeText( std::string ID, int x, int y, int width, int height, SDL_Renderer *renderer, const char *toDisplay, SDL_Color color )
+void    Text::writeText( std::string ID, int x, int y, int width, int height, SDL_Renderer *renderer, const char *toDisplay, SDL_Color color, std::string state )
 {
     static std::map<std::pair<std::string, std::string>, SDL_Texture *> cache; 
     SDL_Surface *text = nullptr;
@@ -53,7 +53,7 @@ void    Text::writeText( std::string ID, int x, int y, int width, int height, SD
     pos.h = height;
     auto key = std::make_pair(ID, toDisplay);
     auto it = cache.find(key);
-    if ( it != cache.end() )
+    if ( it != cache.end() && state == "Play")
         textTexture = it->second;
     else
     {
@@ -65,8 +65,8 @@ void    Text::writeText( std::string ID, int x, int y, int width, int height, SD
         }
         textTexture = SDL_CreateTextureFromSurface( renderer, text );
         SDL_FreeSurface( text );
-        cache[key] = textTexture;
+        if ( state == "Play" ) cache[key] = textTexture;
     }
     SDL_RenderCopy( renderer, textTexture, NULL, &pos );
-    // SDL_DestroyTexture( textTexture );
+    if ( state != "Play") SDL_DestroyTexture( textTexture );
 }

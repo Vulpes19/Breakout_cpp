@@ -30,10 +30,7 @@ void    Player::handleInput( void )
 
 void    Player::update( void )
 {
-    this->frame = int(((SDL_GetTicks() / 100) % 6));
-    // acceleration.setX(1);
-    // velocity.setX(1);
-    // velocity.setY(1);
+    // this->frame = int(((SDL_GetTicks() / 100) % 6));
     GameObject::update();
     velocity.setX(0);
 }

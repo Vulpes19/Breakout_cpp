@@ -11,7 +11,7 @@ class Text
         static Text &getInstance( void );
         bool    loadFont( const char *fontPath, std::string ID );
         void    writeText( std::string ID, int x, int y, int width,
-            int height, SDL_Renderer *renderer, const char *toDisplay, SDL_Color color );
+            int height, SDL_Renderer *renderer, const char *toDisplay, SDL_Color color, std::string state );
     private:
         Text( void );
         ~Text( void );

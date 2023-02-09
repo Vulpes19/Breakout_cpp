@@ -57,6 +57,7 @@ void    Ball::wallCollision( Player &player )
     {
         this->position.setX(WIDTH / 2);
         this->position.setY(HEIGHT / 2 + 5);
+        player.setPosition( WIDTH / 2 - 100, HEIGHT - 20);
         // position.setY( position.getY() );
         // velocity.setY( -velocity.getY() );
     }
@@ -64,11 +65,12 @@ void    Ball::wallCollision( Player &player )
     {
         this->position.setX(WIDTH / 2);
         this->position.setY(HEIGHT / 2 + 5);
+        player.setPosition( WIDTH / 2 - 100, HEIGHT - 20);
         // position.setY( HEIGHT - radius * 2 );
         // velocity.setY( -velocity.getY() );
     }
 
-    if (  position.getY() + radius * 2 >= player.getPosition().getY() && position.getX() >= player.getPosition().getX() && position.getX() + radius * 2 <= player.getPosition().getX() + 100 )
+    if (  position.getY() + radius * 2 >= player.getPosition().getY() && position.getX() - 0.01 >= player.getPosition().getX() && position.getX() + radius * 2 + 0.01 <= player.getPosition().getX() + 100 )
         velocity.setY( -velocity.getY() );
 }
 
@@ -87,8 +89,8 @@ void    Ball::bricksCollision( int &score )
             if ( i == '3' || i == '4' || i == '1' || i == '2' )
             {
                 // std::cout << "I collided !" << std::endl;
-                int brickX = c * TILE_SIZE_W;
-                int brickY = r * TILE_SIZE_H;
+                float brickX = c * TILE_SIZE_W;
+                float brickY = r * TILE_SIZE_H;
                 if ( position.getX() >= brickX && position.getX() + radius * 2 <= brickX + TILE_SIZE_W && position.getY() + radius * 2 >= brickY && position.getY() <= brickY + TILE_SIZE_H)
                 {
                     if ( LevelManager::getInstance().mapGrid[r][c] == '1' ) score += 1;

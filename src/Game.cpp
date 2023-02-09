@@ -63,7 +63,7 @@ void    Game::render( void )
         std::string tmp = "Score: " + std::to_string(score);
         const char *toDisplay = tmp.c_str();
         SDL_Color color = {165, 145, 50, 255};
-        Text::getInstance().writeText("regular", WIDTH - 100, -7, 90, 45, renderer, toDisplay, color);
+        Text::getInstance().writeText("regular", WIDTH - 100, -7, 90, 45, renderer, toDisplay, color, states->getState());
     }
     SDL_RenderPresent( renderer );
 }

@@ -26,9 +26,9 @@ void    MainMenu::update( void )
 
 void    MainMenu::render( SDL_Renderer *renderer )
 {
-    Text::getInstance().writeText("regular", WIDTH / 2 - 280, HEIGHT / 2 - 400, 600, 300, renderer, "BREAKOUT", color_title);
-    Text::getInstance().writeText("regular", WIDTH / 2 - 80, HEIGHT / 2 - 80, 140, 70, renderer, "Play", color_button1);
-    Text::getInstance().writeText("regular", WIDTH / 2 - 80, HEIGHT / 2 + 5, 140, 70, renderer, "Options", color_button2);
+    Text::getInstance().writeText("regular", WIDTH / 2 - 280, HEIGHT / 2 - 400, 600, 300, renderer, "BREAKOUT", color_title, state);
+    Text::getInstance().writeText("regular", WIDTH / 2 - 80, HEIGHT / 2 - 80, 140, 70, renderer, "Play", color_button1, state);
+    Text::getInstance().writeText("regular", WIDTH / 2 - 80, HEIGHT / 2 + 5, 140, 70, renderer, "Options", color_button2, state);
 }
 
 bool    MainMenu::onEnter( void )
