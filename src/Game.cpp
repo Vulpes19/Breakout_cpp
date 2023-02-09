@@ -8,7 +8,7 @@ Game::Game( void )
     window = nullptr;
     renderer = nullptr;
     score = 0;
-    prevScore = 0;
+    lives = 3;
     states = new StateControl();
     states->pushState( new MainMenu() ); 
 }
@@ -60,10 +60,10 @@ void    Game::render( void )
         player.draw( renderer );
         ball.draw( renderer );
         LevelManager::getInstance().render( renderer );
-        std::string tmp = std::to_string(score);
+        std::string tmp = "Score: " + std::to_string(score);
         const char *toDisplay = tmp.c_str();
         SDL_Color color = {165, 145, 50, 255};
-        Text::getInstance().writeText("regular", WIDTH / 2 + 100, 5, 50, 50, renderer, toDisplay, color);
+        Text::getInstance().writeText("regular", WIDTH - 100, -7, 90, 45, renderer, toDisplay, color);
     }
     SDL_RenderPresent( renderer );
 }
@@ -114,7 +114,6 @@ void Game::update( void )
 {
     currentFrame = int(((SDL_GetTicks() / 100) % 6));
     states->update();
-    prevScore = score;
     if ( states->getState() == "Play")
     {
         player.update();

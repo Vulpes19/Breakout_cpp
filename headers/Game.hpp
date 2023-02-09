@@ -34,6 +34,6 @@ class Game
         Ball    ball;
         StateControl   *states;
         int score;
-        int prevScore;
+        int lives;
         // PlayState       *play;
 };

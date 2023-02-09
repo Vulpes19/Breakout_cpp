@@ -55,13 +55,17 @@ void    Ball::wallCollision( Player &player )
     }
     if ( position.getY() <= 0 )
     {
-        position.setY( position.getY() );
-        velocity.setY( -velocity.getY() );
+        this->position.setX(WIDTH / 2);
+        this->position.setY(HEIGHT / 2 + 5);
+        // position.setY( position.getY() );
+        // velocity.setY( -velocity.getY() );
     }
     else if ( position.getY() + radius * 2 >= HEIGHT )
     {
-        position.setY( HEIGHT - radius * 2 );
-        velocity.setY( -velocity.getY() );
+        this->position.setX(WIDTH / 2);
+        this->position.setY(HEIGHT / 2 + 5);
+        // position.setY( HEIGHT - radius * 2 );
+        // velocity.setY( -velocity.getY() );
     }
 
     if (  position.getY() + radius * 2 >= player.getPosition().getY() && position.getX() >= player.getPosition().getX() && position.getX() + radius * 2 <= player.getPosition().getX() + 100 )
