@@ -60,13 +60,10 @@ void    Game::render( void )
         player.draw( renderer );
         ball.draw( renderer );
         LevelManager::getInstance().render( renderer );
-        if ( prevScore != score )
-        {
-            std::string tmp = std::to_string(score);
-            const char *toDisplay = tmp.c_str();
-            SDL_Color color = {165, 145, 50, 255};
-            Text::getInstance().writeText("regular", WIDTH / 2, 10, 50, 50, renderer, toDisplay, color);
-        }
+        std::string tmp = std::to_string(score);
+        const char *toDisplay = tmp.c_str();
+        SDL_Color color = {165, 145, 50, 255};
+        Text::getInstance().writeText("regular", WIDTH / 2 + 100, 5, 50, 50, renderer, toDisplay, color);
     }
     SDL_RenderPresent( renderer );
 }

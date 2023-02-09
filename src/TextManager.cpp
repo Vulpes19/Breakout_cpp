@@ -42,6 +42,7 @@ bool    Text::loadFont( const char *fontPath, std::string ID )
 
 void    Text::writeText( std::string ID, int x, int y, int width, int height, SDL_Renderer *renderer, const char *toDisplay, SDL_Color color )
 {
+    static std::map<std::pair<std::string, std::string>, SDL_Texture *> cache; 
     SDL_Surface *text = nullptr;
     SDL_Texture *textTexture = nullptr;
     SDL_Rect    pos;
@@ -50,14 +51,22 @@ void    Text::writeText( std::string ID, int x, int y, int width, int height, SD
     pos.y = y;
     pos.w = width;
     pos.h = height;
-    text = TTF_RenderText_Solid( fonts[ID], toDisplay, color);
-    if ( !text )
+    auto key = std::make_pair(ID, toDisplay);
+    auto it = cache.find(key);
+    if ( it != cache.end() )
+        textTexture = it->second;
+    else
     {
-        std::cerr << "failed render text: " << TTF_GetError() << std::endl;
-        return ;
+        text = TTF_RenderText_Solid( fonts[ID], toDisplay, color);
+        if ( !text )
+        {
+            std::cerr << "failed render text: " << TTF_GetError() << std::endl;
+            return ;
+        }
+        textTexture = SDL_CreateTextureFromSurface( renderer, text );
+        SDL_FreeSurface( text );
+        cache[key] = textTexture;
     }
-    textTexture = SDL_CreateTextureFromSurface( renderer, text );
-    SDL_FreeSurface( text );
     SDL_RenderCopy( renderer, textTexture, NULL, &pos );
-    SDL_DestroyTexture( textTexture );
+    // SDL_DestroyTexture( textTexture );
 }
