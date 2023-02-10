@@ -12,6 +12,7 @@
 #include "MainMenu.hpp"
 #include "PlayState.hpp"
 #include "PauseMenu.hpp"
+#include "GameOver.hpp"
 #include "LevelManager.hpp"
 
 class Game

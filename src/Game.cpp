@@ -42,6 +42,7 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     running = true;
     Texture::getInstance().loadImage("assets/paddle.png", "paddle", renderer );
     Texture::getInstance().loadImage("assets/ball.png", "ball", renderer );
+    Texture::getInstance().loadImage("assets/pause_icon.png", "pause", renderer );
     player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
     ball.loadTexture( WIDTH / 2, HEIGHT / 2 + 5, 20, 20, "ball" );
     LevelManager::getInstance().readFile("1");
@@ -52,11 +53,13 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
 
 void    Game::render( void )
 {
-    SDL_SetRenderDrawColor( renderer, 11, 32, 39, 0 );
+    SDL_SetRenderDrawColor( renderer, 11, 32, 39, 255 );
     SDL_RenderClear( renderer );
-    if ( states->getState() == "Main Menu")
+    if ( lives == 0 && states->getState() != "Game Over" )
+        states->pushState(new GameOver());
+    if ( states->getState() != "Play" )
         states->render( renderer );
-    else if ( states->getState() == "Play" || states->getState() == "Pause Menu" )
+    if ( states->getState() == "Play" || states->getState() == "Pause Menu" )
     {
         // states->render( renderer );
         player.draw( renderer );
@@ -66,6 +69,9 @@ void    Game::render( void )
         const char *toDisplay = tmp.c_str();
         SDL_Color color = {165, 145, 50, 255};
         Text::getInstance().writeText("regular", WIDTH - 100, -7, 90, 45, renderer, toDisplay, color, states->getState());
+        tmp = "lives: " + std::to_string(lives);
+        const char *toDisplay2 = tmp.c_str();
+        Text::getInstance().writeText("regular", 2, -7, 90, 45, renderer, toDisplay2, color, states->getState());
     }
     SDL_RenderPresent( renderer );
 }
@@ -101,7 +107,7 @@ void    Game::handleEvents( void )
             if ( event.button.button == SDL_BUTTON_MIDDLE )
                 InputHandler::getInstance().setMouseButtons(MIDDLE, false);
         }
-        if ( ESC_KEY_PRESSED )
+        if ( ESC_KEY_PRESSED && states->getState() != "Pause Menu" )
             states->pushState(new PauseMenu());
         if ( ENTER_KEY_PRESSED )
             states->popState();
@@ -123,6 +129,6 @@ void Game::update( void )
     if ( states->getState() == "Play" )
     {
         player.update();
-        ball.update(player, score);
+        ball.update(player, score, lives);
     }
 }

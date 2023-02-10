@@ -32,16 +32,16 @@ void    Ball::draw( SDL_Renderer *renderer )
     // SDL_RenderFillRect( renderer, &rect );
 }
 
-void    Ball::update( Player &player, int &score )
+void    Ball::update( Player &player, int &score, int &lives )
 {
     this->frame = int(((SDL_GetTicks() / 100) % 6));
-    wallCollision( player );
+    wallCollision( player, lives );
     bricksCollision( score );
     velocity += acceleration;
     position += velocity;
 }
 
-void    Ball::wallCollision( Player &player )
+void    Ball::wallCollision( Player &player, int &lives )
 {
     if ( position.getX() <= 0 )
     {
@@ -58,6 +58,7 @@ void    Ball::wallCollision( Player &player )
         this->position.setX(WIDTH / 2);
         this->position.setY(HEIGHT / 2 + 5);
         player.setPosition( WIDTH / 2 - 100, HEIGHT - 20);
+        lives--;
         // position.setY( position.getY() );
         // velocity.setY( -velocity.getY() );
     }
@@ -66,6 +67,7 @@ void    Ball::wallCollision( Player &player )
         this->position.setX(WIDTH / 2);
         this->position.setY(HEIGHT / 2 + 5);
         player.setPosition( WIDTH / 2 - 100, HEIGHT - 20);
+        lives--;
         // position.setY( HEIGHT - radius * 2 );
         // velocity.setY( -velocity.getY() );
     }

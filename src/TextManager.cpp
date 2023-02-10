@@ -23,6 +23,7 @@ Text::Text( void )
 
 Text::~Text( void )
 {
+    fonts.clear();
     TTF_Quit();
 }
 

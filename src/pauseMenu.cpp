@@ -1,4 +1,5 @@
 #include "PauseMenu.hpp"
+#include "TextureManager.hpp"
 
 const   std::string PauseMenu::state = "Pause Menu";
 
@@ -13,6 +14,7 @@ void    PauseMenu::update( void )
 void    PauseMenu::render( SDL_Renderer *renderer )
 {
     (void)renderer;
+    // Texture::draw( "pause", WIDTH - 90, HEIGHT - 90, 80, 80, renderer );
 }
 
 bool    PauseMenu::onEnter( void )
