@@ -14,7 +14,7 @@ class   Ball : public GameObject
         void    loadTexture( int x, int y, int width, int height, std::string ID );
         void    draw( SDL_Renderer *renderer );
         void    update( Player &player, int &score, int &lives );
-        void    wallCollision( Player &player, int &lives );
+        void    wallCollision( Player &player, int &lives, int &score );
         void    bricksCollision( int &score );
     private:
         double  radius;

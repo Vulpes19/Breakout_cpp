@@ -6,8 +6,10 @@ Ball::Ball( void ) : GameObject()
     radius = 10;
     velocity.setX(0.2f);
     velocity.setY(0.2f);
-    this->position.setX(WIDTH / 2);
-    this->position.setY(HEIGHT / 2 + 5);
+    // this->position.setX(WIDTH / 2 - 50);
+    // this->position.setY(HEIGHT / 2 + 5);
+    this->position.setX(0);
+    this->position.setY(0);
     acceleration.setX(0.0f);
     acceleration.setY(0.0f);
 }
@@ -35,13 +37,13 @@ void    Ball::draw( SDL_Renderer *renderer )
 void    Ball::update( Player &player, int &score, int &lives )
 {
     this->frame = int(((SDL_GetTicks() / 100) % 6));
-    wallCollision( player, lives );
+    wallCollision( player, lives, score );
     bricksCollision( score );
     velocity += acceleration;
     position += velocity;
 }
 
-void    Ball::wallCollision( Player &player, int &lives )
+void    Ball::wallCollision( Player &player, int &lives, int &score )
 {
     if ( position.getX() <= 0 )
     {
@@ -55,10 +57,11 @@ void    Ball::wallCollision( Player &player, int &lives )
     }
     if ( position.getY() <= 0 )
     {
-        this->position.setX(WIDTH / 2);
+        this->position.setX(WIDTH / 2 - 50);
         this->position.setY(HEIGHT / 2 + 5);
-        player.setPosition( WIDTH / 2 - 100, HEIGHT - 20);
+        player.setPosition( 40, HEIGHT - 20);
         lives--;
+        score = 0;
         // position.setY( position.getY() );
         // velocity.setY( -velocity.getY() );
     }
@@ -66,8 +69,9 @@ void    Ball::wallCollision( Player &player, int &lives )
     {
         this->position.setX(WIDTH / 2);
         this->position.setY(HEIGHT / 2 + 5);
-        player.setPosition( WIDTH / 2 - 100, HEIGHT - 20);
+        player.setPosition( 40, HEIGHT - 20);
         lives--;
+        score = 0;
         // position.setY( HEIGHT - radius * 2 );
         // velocity.setY( -velocity.getY() );
     }
@@ -90,7 +94,6 @@ void    Ball::bricksCollision( int &score )
             char i = LevelManager::getInstance().mapGrid[r][c];
             if ( i == '3' || i == '4' || i == '1' || i == '2' )
             {
-                // std::cout << "I collided !" << std::endl;
                 float brickX = c * TILE_SIZE_W;
                 float brickY = r * TILE_SIZE_H;
                 if ( position.getX() >= brickX && position.getX() + radius * 2 <= brickX + TILE_SIZE_W && position.getY() + radius * 2 >= brickY && position.getY() <= brickY + TILE_SIZE_H)

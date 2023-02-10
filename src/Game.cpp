@@ -44,7 +44,7 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     Texture::getInstance().loadImage("assets/ball.png", "ball", renderer );
     Texture::getInstance().loadImage("assets/pause_icon.png", "pause", renderer );
     player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
-    ball.loadTexture( WIDTH / 2, HEIGHT / 2 + 5, 20, 20, "ball" );
+    ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
     LevelManager::getInstance().readFile("1");
     LevelManager::getInstance().getTexture(renderer);
     Text::getInstance().loadFont("assets/regular.ttf", "regular");
@@ -66,12 +66,10 @@ void    Game::render( void )
         ball.draw( renderer );
         LevelManager::getInstance().render( renderer );
         std::string tmp = "Score: " + std::to_string(score);
-        const char *toDisplay = tmp.c_str();
         SDL_Color color = {165, 145, 50, 255};
-        Text::getInstance().writeText("regular", WIDTH - 100, -7, 90, 45, renderer, toDisplay, color, states->getState());
+        Text::getInstance().writeText("regular", WIDTH - 100, -7, 90, 45, renderer, tmp.c_str(), color, states->getState());
         tmp = "lives: " + std::to_string(lives);
-        const char *toDisplay2 = tmp.c_str();
-        Text::getInstance().writeText("regular", 2, -7, 90, 45, renderer, toDisplay2, color, states->getState());
+        Text::getInstance().writeText("regular", 2, -7, 90, 45, renderer, tmp.c_str(), color, states->getState());
     }
     SDL_RenderPresent( renderer );
 }
