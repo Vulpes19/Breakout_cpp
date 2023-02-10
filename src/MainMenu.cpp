@@ -6,22 +6,22 @@ const   std::string MainMenu::state = "Main Menu";
 
 MainMenu::MainMenu( void )
 {
-    color_title = {64, 121, 140, 0};
-    color_button1 = {165, 145, 50, 0};
-    color_button2 = {165, 145, 50, 0};
-    color_button3 = {165, 145, 50, 0};
+    color_title = {64, 121, 140, 255};
+    color_button1 = {165, 145, 50, 255};
+    color_button2 = {165, 145, 50, 255};
+    color_button3 = {165, 145, 50, 255};
 }
 void    MainMenu::update( void )
 {
     Vector cursor = InputHandler::getInstance().getCursorPosition();
     if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70)
-        color_button1 = {249, 235, 224, 0};
+        color_button1 = {249, 235, 224, 255};
     else
-        color_button1 = {165, 145, 50, 0};
+        color_button1 = {165, 145, 50, 255};
     if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 + 5 && cursor.getY() <= HEIGHT / 2 + 75)
-        color_button2 = {249, 235, 224, 0};
+        color_button2 = {249, 235, 224, 255};
     else
-        color_button2 = {165, 145, 50, 0};
+        color_button2 = {165, 145, 50, 255};
 }
 
 void    MainMenu::render( SDL_Renderer *renderer )

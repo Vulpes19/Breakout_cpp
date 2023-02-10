@@ -11,6 +11,7 @@
 #include "GameStates.hpp"
 #include "MainMenu.hpp"
 #include "PlayState.hpp"
+#include "PauseMenu.hpp"
 #include "LevelManager.hpp"
 
 class Game

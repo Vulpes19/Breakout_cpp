@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Game.hpp"
 #include "TextManager.hpp"
+#define ESC_KEY_PRESSED  InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_ESCAPE)
+#define ENTER_KEY_PRESSED  InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_RETURN)
 
 Game::Game( void )
 {
@@ -54,7 +56,7 @@ void    Game::render( void )
     SDL_RenderClear( renderer );
     if ( states->getState() == "Main Menu")
         states->render( renderer );
-    else if ( states->getState() == "Play")
+    else if ( states->getState() == "Play" || states->getState() == "Pause Menu" )
     {
         // states->render( renderer );
         player.draw( renderer );
@@ -70,7 +72,7 @@ void    Game::render( void )
 
 void    Game::handleEvents( void )
 {
-    while ( SDL_PollEvent(&event))
+    while ( SDL_PollEvent(&event) )
     {
         if ( event.type == SDL_QUIT )
             running = false;
@@ -99,6 +101,10 @@ void    Game::handleEvents( void )
             if ( event.button.button == SDL_BUTTON_MIDDLE )
                 InputHandler::getInstance().setMouseButtons(MIDDLE, false);
         }
+        if ( ESC_KEY_PRESSED )
+            states->pushState(new PauseMenu());
+        if ( ENTER_KEY_PRESSED )
+            states->popState();
         player.handleInput();
     }
 }
@@ -114,7 +120,7 @@ void Game::update( void )
 {
     currentFrame = int(((SDL_GetTicks() / 100) % 6));
     states->update();
-    if ( states->getState() == "Play")
+    if ( states->getState() == "Play" )
     {
         player.update();
         ball.update(player, score);

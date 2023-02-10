@@ -6,7 +6,7 @@
 class   MainMenu : public GameState
 {
     public:
-        MainMenu();
+        MainMenu( void );
         void    update( void );
         void    render( SDL_Renderer *renderer );
         bool    onEnter( void );
