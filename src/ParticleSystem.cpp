@@ -1,13 +1,13 @@
 #include "ParticleSystem.hpp"
 #include "TextureManager.hpp"
 
-void    Particles::init( float x, float y )
+void    Particles::init( float x, float y, int w, int h )
 {
-    position.setX(x);
-    position.setY(y);
-    velocity.setX( 0.2f );
-    velocity.setY( 0.2f );
-    life = rand() % 5;
+    position.setX(x + (rand() % w));
+    position.setY(y + (rand() % h));
+    velocity.setX( rand() % 4 - 2 );
+    velocity.setY( rand() % 4 - 2);
+    life = rand() % 3;
 }
 
 void    Particles::update( void )

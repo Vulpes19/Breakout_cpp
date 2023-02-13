@@ -7,7 +7,7 @@
 class Particles
 {
     public:
-        void    init( float x, float y );
+        void    init( float x, float y, int w, int h );
         void    update( void );
         void    render( SDL_Renderer *renderer );
         int     getLife( void ) const { return (life); };
