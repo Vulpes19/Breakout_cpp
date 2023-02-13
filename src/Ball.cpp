@@ -1,5 +1,6 @@
 #include "Ball.hpp"
 #include "Game.hpp"
+#include "ParticleSystem.hpp"
 
 Ball::Ball( void ) : GameObject()
 {
@@ -34,11 +35,11 @@ void    Ball::draw( SDL_Renderer *renderer )
     // SDL_RenderFillRect( renderer, &rect );
 }
 
-void    Ball::update( Player &player, int &score, int &lives )
+void    Ball::update( Player &player, int &score, int &lives, std::vector<Particles> &particles, bool &hit )
 {
     this->frame = int(((SDL_GetTicks() / 100) % 6));
     wallCollision( player, lives, score );
-    bricksCollision( score );
+    bricksCollision( score, particles, hit );
     velocity += acceleration;
     position += velocity;
 }
@@ -57,30 +58,30 @@ void    Ball::wallCollision( Player &player, int &lives, int &score )
     }
     if ( position.getY() <= 0 )
     {
-        this->position.setX(WIDTH / 2 - 50);
-        this->position.setY(HEIGHT / 2 + 5);
-        player.setPosition( 40, HEIGHT - 20);
-        lives--;
-        score = 0;
-        // position.setY( position.getY() );
-        // velocity.setY( -velocity.getY() );
+        // this->position.setX(WIDTH / 2 - 50);
+        // this->position.setY(HEIGHT / 2 + 5);
+        // player.setPosition( WIDTH / 2 - 100, HEIGHT - 20);
+        // lives--;
+        // score = 0;
+        position.setY( position.getY() );
+        velocity.setY( -velocity.getY() );
     }
     else if ( position.getY() + radius * 2 >= HEIGHT )
     {
         this->position.setX(WIDTH / 2);
         this->position.setY(HEIGHT / 2 + 5);
-        player.setPosition( 40, HEIGHT - 20);
+        player.setPosition( WIDTH / 2 - 100, HEIGHT - 20);
         lives--;
         score = 0;
         // position.setY( HEIGHT - radius * 2 );
         // velocity.setY( -velocity.getY() );
     }
 
-    if (  position.getY() + radius * 2 >= player.getPosition().getY() && position.getX() - 0.01 >= player.getPosition().getX() && position.getX() + radius * 2 + 0.01 <= player.getPosition().getX() + 100 )
+    if (  position.getY() + radius * 2 >= player.getPosition().getY() && position.getX() >= player.getPosition().getX() && position.getX() + radius * 2 <= player.getPosition().getX() + 100 )
         velocity.setY( -velocity.getY() );
 }
 
-void    Ball::bricksCollision( int &score )
+void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bool &hit )
 {
     int columns, rows;
 
@@ -98,10 +99,15 @@ void    Ball::bricksCollision( int &score )
                 float brickY = r * TILE_SIZE_H;
                 if ( position.getX() >= brickX && position.getX() + radius * 2 <= brickX + TILE_SIZE_W && position.getY() + radius * 2 >= brickY && position.getY() <= brickY + TILE_SIZE_H)
                 {
+                    hit = true;
                     if ( LevelManager::getInstance().mapGrid[r][c] == '1' ) score += 1;
                     else if ( LevelManager::getInstance().mapGrid[r][c] == '2' ) score += 3;
                     else if ( LevelManager::getInstance().mapGrid[r][c] == '3' ) score += 5;
                     else if ( LevelManager::getInstance().mapGrid[r][c] == '4' ) score += 7;
+                    for( int i = 0; i < 10; i++ )
+                    {
+                        particles[i].init( brickX, brickY + TILE_SIZE_H);
+                    }
                     LevelManager::getInstance().mapGrid[r][c] = '0';
                     velocity.setY( -velocity.getY() );
                 }

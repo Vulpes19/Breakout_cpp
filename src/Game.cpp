@@ -12,7 +12,9 @@ Game::Game( void )
     score = 0;
     lives = 3;
     states = new StateControl();
-    states->pushState( new MainMenu() ); 
+    states->pushState( new MainMenu() );
+    particles.reserve(10);
+    hit = false;
 }
 
 Game::~Game( void )
@@ -43,6 +45,7 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     Texture::getInstance().loadImage("assets/paddle.png", "paddle", renderer );
     Texture::getInstance().loadImage("assets/ball.png", "ball", renderer );
     Texture::getInstance().loadImage("assets/pause_icon.png", "pause", renderer );
+    Texture::getInstance().loadImage("assets/brick3.png", "effect", renderer );
     player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
     ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
     LevelManager::getInstance().readFile("1");
@@ -64,6 +67,11 @@ void    Game::render( void )
         // states->render( renderer );
         player.draw( renderer );
         ball.draw( renderer );
+        if ( hit )
+        {
+            for ( int i = 0; i < 10; i++ )
+                particles[i].render( renderer );
+        }
         LevelManager::getInstance().render( renderer );
         std::string tmp = "Score: " + std::to_string(score);
         SDL_Color color = {165, 145, 50, 255};
@@ -127,6 +135,14 @@ void Game::update( void )
     if ( states->getState() == "Play" )
     {
         player.update();
-        ball.update(player, score, lives);
+        ball.update(player, score, lives, particles, hit);
+        for ( int i = 0; i < 10; i++ )
+        {
+            particles[i].update();
+            if ( particles[i].getLife() <= 0 )
+                particles.pop_back();
+        }
+        if ( particles.size() == 0 )
+            hit = false;
     }
 }

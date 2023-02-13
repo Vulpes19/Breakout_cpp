@@ -3,6 +3,7 @@
 #define HEIGHT 704
 #define WIDTH 1088
 #include <SDL.h>
+#include <vector>
 #include "TextureManager.hpp"
 #include "Player.hpp"
 #include "Ball.hpp"
@@ -14,6 +15,7 @@
 #include "PauseMenu.hpp"
 #include "GameOver.hpp"
 #include "LevelManager.hpp"
+#include "ParticleSystem.hpp"
 
 class Game
 {
@@ -37,5 +39,7 @@ class Game
         StateControl   *states;
         int score;
         int lives;
+        std::vector<Particles> particles;
+        bool    hit;
         // PlayState       *play;
 };
