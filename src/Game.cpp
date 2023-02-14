@@ -67,6 +67,8 @@ void    Game::render( void )
         // states->render( renderer );
         player.draw( renderer );
         ball.draw( renderer );
+        if ( particles.size() == 0 )
+            hit = false;
         if ( hit )
         {
             for ( int i = 0; i < 10; i++ )
@@ -142,6 +144,7 @@ void Game::update( void )
             if ( particles[i].getLife() <= 0 )
                 particles.pop_back();
         }
+        // std::cout << particles.size() << std::endl;
         if ( particles.size() == 0 )
             hit = false;
     }

@@ -21,6 +21,7 @@ int main( int ac, char **av )
     Uint32 frameStart;
     Uint32 frameTime;
 
+    srand(time(0));
     frameStart = SDL_GetTicks();
     (void)ac;
     (void)av;

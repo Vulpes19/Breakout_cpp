@@ -100,6 +100,7 @@ void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bo
                 if ( position.getX() >= brickX && position.getX() + radius * 2 <= brickX + TILE_SIZE_W && position.getY() + radius * 2 >= brickY && position.getY() <= brickY + TILE_SIZE_H)
                 {
                     hit = true;
+                    particles.reserve(10);
                     if ( LevelManager::getInstance().mapGrid[r][c] == '1' ) score += 1;
                     else if ( LevelManager::getInstance().mapGrid[r][c] == '2' ) score += 3;
                     else if ( LevelManager::getInstance().mapGrid[r][c] == '3' ) score += 5;
