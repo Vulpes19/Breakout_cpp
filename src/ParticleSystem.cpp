@@ -10,7 +10,7 @@ void    Particles::init( float x, float y, int w, int h )
 	position.setY(y);
 	velocity.setX(((float)rand() / RAND_MAX) * (1.0f - (-1.0f)) + (-1.0f));
 	velocity.setY( 1.0f );
-	life = 2;
+	life = 1;
 }
 
 void    Particles::update( void )

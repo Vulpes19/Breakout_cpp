@@ -23,16 +23,6 @@ void    Ball::loadTexture( int x, int y, int width, int height, std::string ID )
 void    Ball::draw( SDL_Renderer *renderer )
 {
     GameObject::draw( renderer );
-    // this->position.setX(WIDTH / 2);
-    // this->position.setY(HEIGHT / 2);
-    // SDL_Rect rect;
-
-    // rect.x = this->position.getX() - radius;
-    // rect.y = this->position.getY() - radius;
-    // rect.w = radius * 2;
-    // rect.h = radius * 2;
-    // SDL_SetRenderDrawColor( renderer, 255, 0, 0, 0);
-    // SDL_RenderFillRect( renderer, &rect );
 }
 
 void    Ball::update( Player &player, int &score, int &lives, std::vector<Particles> &particles, bool &hit )
@@ -77,7 +67,7 @@ void    Ball::wallCollision( Player &player, int &lives, int &score )
         // velocity.setY( -velocity.getY() );
     }
 
-    if (  position.getY() + radius * 2 >= player.getPosition().getY() && position.getX() >= player.getPosition().getX() && position.getX() + radius * 2 <= player.getPosition().getX() + 100 )
+    if (  position.getY() + radius * 2 >= player.getPosition().getY() && position.getX() + radius >= player.getPosition().getX() && position.getX() + radius <= player.getPosition().getX() + 100 )
         velocity.setY( -velocity.getY() );
 }
 
@@ -97,7 +87,7 @@ void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bo
             {
                 float brickX = c * TILE_SIZE_W;
                 float brickY = r * TILE_SIZE_H;
-                if ( position.getX() >= brickX && position.getX() + radius * 2 <= brickX + TILE_SIZE_W && position.getY() + radius * 2 >= brickY && position.getY() <= brickY + TILE_SIZE_H)
+                if ( position.getX() + radius >= brickX && position.getX() + radius <= brickX + TILE_SIZE_W && position.getY() + radius >= brickY && position.getY() + radius <= brickY + TILE_SIZE_H)
                 {
                     hit = true;
                     particles.reserve(10);
