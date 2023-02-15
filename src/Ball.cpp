@@ -2,6 +2,12 @@
 #include "Game.hpp"
 #include "ParticleSystem.hpp"
 
+// #define BRICK_TYPE LevelManager::getInstance().mapGrid[r][c]
+#define RED '4'
+#define ORANGE '3'
+#define GREEN '2'
+#define YELLOW '1'
+
 Ball::Ball( void ) : GameObject()
 {
     radius = 10;
@@ -25,11 +31,11 @@ void    Ball::draw( SDL_Renderer *renderer )
     GameObject::draw( renderer );
 }
 
-void    Ball::update( Player &player, int &score, int &lives, std::vector<Particles> &particles, bool &hit )
+void    Ball::update( Player &player, int &score, int &lives, std::vector<Particles> &particles, bool &hit, SDL_Renderer *renderer )
 {
     this->frame = int(((SDL_GetTicks() / 100) % 6));
     wallCollision( player, lives, score );
-    bricksCollision( score, particles, hit );
+    bricksCollision( score, particles, hit, renderer );
     velocity += acceleration;
     position += velocity;
 }
@@ -71,7 +77,7 @@ void    Ball::wallCollision( Player &player, int &lives, int &score )
         velocity.setY( -velocity.getY() );
 }
 
-void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bool &hit )
+void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bool &hit, SDL_Renderer *renderer )
 {
     int columns, rows;
 
@@ -91,13 +97,37 @@ void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bo
                 {
                     hit = true;
                     particles.reserve(10);
-                    if ( LevelManager::getInstance().mapGrid[r][c] == '1' ) score += 1;
-                    else if ( LevelManager::getInstance().mapGrid[r][c] == '2' ) score += 3;
-                    else if ( LevelManager::getInstance().mapGrid[r][c] == '3' ) score += 5;
-                    else if ( LevelManager::getInstance().mapGrid[r][c] == '4' ) score += 7;
+                    // Particles test;
+                    // if ( LevelManager::getInstance().mapGrid[r][c] == '1' ) score += 1;
+                    // else if ( LevelManager::getInstance().mapGrid[r][c] == '2' ) score += 3;
+                    // else if ( LevelManager::getInstance().mapGrid[r][c] == '3' ) score += 5;
+                    // else if ( LevelManager::getInstance().mapGrid[r][c] == '4' ) score += 7;
+                    if ( LevelManager::getInstance().mapGrid[r][c] == YELLOW )
+                    {
+                        Texture::getInstance().loadImage("assets/yellow_brick.png", "effect", renderer );
+                        score += 1;
+                    }
+                    else if ( LevelManager::getInstance().mapGrid[r][c] == GREEN )
+                    {
+                        Texture::getInstance().loadImage("assets/green_brick.png", "effect", renderer );
+                        score += 3;
+                    }
+                    else if ( LevelManager::getInstance().mapGrid[r][c] == ORANGE )
+                    {
+                        Texture::getInstance().loadImage("assets/orange_brick.png", "effect", renderer );
+                        score += 5;
+                    }
+                    else if ( LevelManager::getInstance().mapGrid[r][c] == RED )
+                    {
+                        Texture::getInstance().loadImage("assets/red_brick.png", "effect", renderer );
+                        score += 7;
+                    }
+                    // exit(1);
                     for( int i = 0; i < 10; i++ )
                     {
-                        particles[i].init( brickX + TILE_SIZE_W / 2, brickY + TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H);
+                        // test.init( brickX + TILE_SIZE_W / 2, brickY + TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, LevelManager::getInstance().mapGrid[r][c] );
+                        // particles.push_back(test);
+                        particles[i].init( brickX + TILE_SIZE_W / 2, brickY + TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, LevelManager::getInstance().mapGrid[r][c] );
                     }
                     LevelManager::getInstance().mapGrid[r][c] = '0';
                     velocity.setY( -velocity.getY() );

@@ -41,5 +41,4 @@ class Game
         int lives;
         std::vector<Particles> particles;
         bool    hit;
-        // PlayState       *play;
 };
