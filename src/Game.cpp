@@ -45,7 +45,6 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     Texture::getInstance().loadImage("assets/paddle.png", "paddle", renderer );
     Texture::getInstance().loadImage("assets/ball.png", "ball", renderer );
     Texture::getInstance().loadImage("assets/pause_icon.png", "pause", renderer );
-    // Texture::getInstance().loadImage("assets/brick3.png", "effect", renderer );
     player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
     ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
     LevelManager::getInstance().readFile("1");
@@ -56,6 +55,8 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
 
 void    Game::render( void )
 {
+    bool brightness = false;
+    if ( states->getState() == "Pause Menu" ) brightness = true;
     SDL_SetRenderDrawColor( renderer, 11, 32, 39, 255 );
     SDL_RenderClear( renderer );
     if ( lives == 0 && states->getState() != "Game Over" )
@@ -65,8 +66,8 @@ void    Game::render( void )
     if ( states->getState() == "Play" || states->getState() == "Pause Menu" )
     {
         // states->render( renderer );
-        player.draw( renderer );
-        ball.draw( renderer );
+        player.draw( renderer, brightness );
+        ball.draw( renderer, brightness );
         if ( particles.size() == 0 )
             hit = false;
         if ( hit )
@@ -74,7 +75,7 @@ void    Game::render( void )
             for ( int i = 0; i < 10; i++ )
                 particles[i].render( renderer );
         }
-        LevelManager::getInstance().render( renderer );
+        LevelManager::getInstance().render( renderer, brightness );
         std::string tmp = "Score: " + std::to_string(score);
         SDL_Color color = {165, 145, 50, 255};
         Text::getInstance().writeText("regular", WIDTH - 100, -7, 90, 45, renderer, tmp.c_str(), color, states->getState());

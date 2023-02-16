@@ -11,7 +11,7 @@ class GameObject
         GameObject( void ) : w(0), h(0), row(0), frame(0), texture("") {};
         virtual ~GameObject( void ) {};
         virtual void    loadTexture( int x, int y, int width, int height, std::string ID );
-        virtual void    draw( SDL_Renderer *renderer );
+        virtual void    draw( SDL_Renderer *renderer, bool brightness );
         virtual void    update( void );
     protected:
         Vector  position;

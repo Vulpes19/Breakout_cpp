@@ -26,9 +26,9 @@ void    Ball::loadTexture( int x, int y, int width, int height, std::string ID )
     GameObject::loadTexture( x, y, width, height, ID );
 }
 
-void    Ball::draw( SDL_Renderer *renderer )
+void    Ball::draw( SDL_Renderer *renderer, bool brightness )
 {
-    GameObject::draw( renderer );
+    GameObject::draw( renderer, brightness );
 }
 
 void    Ball::update( Player &player, int &score, int &lives, std::vector<Particles> &particles, bool &hit, SDL_Renderer *renderer )

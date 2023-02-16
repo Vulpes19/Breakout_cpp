@@ -19,7 +19,7 @@ class LevelManager
         static LevelManager   &getInstance( void );
         void    readFile( std::string level );
         void    getTexture( SDL_Renderer *renderer );
-        void    render( SDL_Renderer *renderer );
+        void    render( SDL_Renderer *renderer, bool brightness );
         std::vector<std::string> mapGrid;
     private:
         LevelManager( void );

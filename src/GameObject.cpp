@@ -11,9 +11,9 @@ void    GameObject::loadTexture( int x, int y, int width, int height, std::strin
     row = 1;
 }
 
-void    GameObject::draw( SDL_Renderer *renderer )
+void    GameObject::draw( SDL_Renderer *renderer, bool brightness )
 {
-    Texture::getInstance().draw( texture, (int)position.getX(), (int)position.getY(), w, h, renderer );
+    Texture::getInstance().draw( texture, (int)position.getX(), (int)position.getY(), w, h, renderer, brightness );
 }
 
 void    GameObject::update( void )

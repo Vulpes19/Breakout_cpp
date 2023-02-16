@@ -27,6 +27,6 @@ void    Particles::update( void )
 void    Particles::render( SDL_Renderer *renderer )
 {
                     // std::cout << "hello2\n";
-	Texture::getInstance().draw("effect", position.getX(), position.getY(), 5, 5, renderer);
+	Texture::getInstance().draw("effect", position.getX(), position.getY(), 5, 5, renderer, false);
 	// SDL_RenderDrawPoint(renderer, position.getX(), position.getY());
 }

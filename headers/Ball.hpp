@@ -13,7 +13,7 @@ class   Ball : public GameObject
         Ball( void );
         virtual ~Ball( void ) {};
         void    loadTexture( int x, int y, int width, int height, std::string ID );
-        void    draw( SDL_Renderer *renderer );
+        void    draw( SDL_Renderer *renderer, bool brightness );
         void    update( Player &player, int &score, int &lives, std::vector<Particles> &particles, bool &hit, SDL_Renderer *renderer );
         void    wallCollision( Player &player, int &lives, int &score );
         void    bricksCollision( int &score, std::vector<Particles> &particles, bool &hit, SDL_Renderer *renderer );

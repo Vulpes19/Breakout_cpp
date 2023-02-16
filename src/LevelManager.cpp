@@ -48,7 +48,7 @@ void    LevelManager::getTexture( SDL_Renderer *renderer )
     Texture::getInstance().loadImage("assets/yellow_brick.png", "yellow_brick", renderer );
 }
 
-void    LevelManager::render( SDL_Renderer *renderer )
+void    LevelManager::render( SDL_Renderer *renderer, bool brightness )
 {
 	for ( auto row = 0; row < GRID_HEIGHT; row++ )
 	{
@@ -57,13 +57,13 @@ void    LevelManager::render( SDL_Renderer *renderer )
             char oneTile = mapGrid[row][col];
             int tilePos = oneTile - '0';
 			if ( tilePos == 4 )
-                Texture::getInstance().draw("red_brick", col * TILE_SIZE_W, row * TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, renderer);
+                Texture::getInstance().draw("red_brick", col * TILE_SIZE_W, row * TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, renderer, brightness);
 			else if ( tilePos == 3 )
-                Texture::getInstance().draw("orange_brick", col * TILE_SIZE_W, row * TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, renderer);
+                Texture::getInstance().draw("orange_brick", col * TILE_SIZE_W, row * TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, renderer, brightness);
 			else if ( tilePos == 2 )
-                Texture::getInstance().draw("green_brick", col * TILE_SIZE_W, row * TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, renderer);
+                Texture::getInstance().draw("green_brick", col * TILE_SIZE_W, row * TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, renderer, brightness);
 			else if ( tilePos == 1 )
-                Texture::getInstance().draw("yellow_brick", col * TILE_SIZE_W, row * TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, renderer);
+                Texture::getInstance().draw("yellow_brick", col * TILE_SIZE_W, row * TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, renderer, brightness);
 		}
 	}
 }
