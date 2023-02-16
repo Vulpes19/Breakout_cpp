@@ -42,7 +42,9 @@ void    Ball::update( Player &player, int &score, int &lives, std::vector<Partic
 
 void    Ball::wallCollision( Player &player, int &lives, int &score )
 {
-    if ( position.getX() <= 0 )
+    if (  position.getY() + radius * 2 >= player.getPosition().getY() && position.getX() + radius >= player.getPosition().getX() && position.getX() + radius <= player.getPosition().getX() + 100 )
+        velocity.setY( -velocity.getY() );
+    else if ( position.getX() <= 0 )
     {
         position.setX( position.getX() );
         velocity.setX( -velocity.getX() );
@@ -52,13 +54,8 @@ void    Ball::wallCollision( Player &player, int &lives, int &score )
         position.setX( WIDTH - radius * 2 );
         velocity.setX( -velocity.getX() );
     }
-    if ( position.getY() <= 0 )
+    else if ( position.getY() <= 0 )
     {
-        // this->position.setX(WIDTH / 2 - 50);
-        // this->position.setY(HEIGHT / 2 + 5);
-        // player.setPosition( WIDTH / 2 - 100, HEIGHT - 20);
-        // lives--;
-        // score = 0;
         position.setY( position.getY() );
         velocity.setY( -velocity.getY() );
     }
@@ -66,15 +63,11 @@ void    Ball::wallCollision( Player &player, int &lives, int &score )
     {
         this->position.setX(WIDTH / 2);
         this->position.setY(HEIGHT / 2 + 5);
-        player.setPosition( WIDTH / 2 - 100, HEIGHT - 20);
+        player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
         lives--;
         score = 0;
-        // position.setY( HEIGHT - radius * 2 );
-        // velocity.setY( -velocity.getY() );
     }
 
-    if (  position.getY() + radius * 2 >= player.getPosition().getY() && position.getX() + radius >= player.getPosition().getX() && position.getX() + radius <= player.getPosition().getX() + 100 )
-        velocity.setY( -velocity.getY() );
 }
 
 void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bool &hit, SDL_Renderer *renderer )
