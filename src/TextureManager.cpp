@@ -43,35 +43,38 @@ bool Texture::loadImage( std::string fileName, std::string ID, SDL_Renderer *ren
     return (true);
 }
 
+void    Texture::getDarkTextures( SDL_Texture *texture, int width, int height, SDL_Renderer *renderer )
+{
+    SDL_Surface *surface = SDL_CreateRGBSurface( 0, width, height, 32, 0, 0, 0, 0 );
+    SDL_LockTexture( texture, NULL, &surface->pixels, &surface->pitch );
+    for ( int y = 0; y < height; y++ )
+    {
+        for ( int x = 0; x < width; x++ )
+        {
+            Uint32 pixel = ((Uint32*)surface->pixels)[y * width + x];
+            Uint8 red, green, blue, alpha;
+            SDL_GetRGBA( pixel, surface->format, &red, &green, &blue, &alpha );
+
+            red *= 0.2;
+            green *= 0.2;
+            blue *= 0.2;
+
+            pixel = SDL_MapRGBA( surface->format, red, green, blue, alpha );
+            ((Uint32*)surface->pixels)[y * width + x] = pixel;
+        }
+    }
+    SDL_UnlockTexture(texture);
+    darkTexture = SDL_CreateTextureFromSurface( renderer, surface );
+    SDL_FreeSurface(surface);
+}
+
 void    Texture::draw( std::string ID, int x, int y, int width, int height, SDL_Renderer *renderer, bool brightness )
 {
     SDL_Rect    src;
     SDL_Rect    dest;
 
     if ( brightness )
-    {
-        SDL_Surface *surface = SDL_CreateRGBSurface( 0, width, height, 32, 0, 0, 0, 0 );
-        SDL_LockTexture( textures[ID], NULL, &surface->pixels, &surface->pitch );
-        for ( int y = 0; y < height; y++ )
-        {
-            for ( int x = 0; x < width; x++ )
-            {
-                Uint32 pixel = ((Uint32*)surface->pixels)[y * width + x];
-                Uint8 red, green, blue, alpha;
-                SDL_GetRGBA( pixel, surface->format, &red, &green, &blue, &alpha );
-
-                red *= 0.2;
-                green *= 0.2;
-                blue *= 0.2;
-
-                pixel = SDL_MapRGBA( surface->format, red, green, blue, alpha );
-                ((Uint32*)surface->pixels)[y * width + x] = pixel;
-            }
-        }
-        SDL_UnlockTexture(textures[ID]);
-        darkTexture = SDL_CreateTextureFromSurface( renderer, surface );
-        SDL_FreeSurface(surface);
-    }
+        getDarkTextures( textures[ID], width, height, renderer );
     else if ( darkTexture )
     {
         SDL_DestroyTexture( darkTexture );
