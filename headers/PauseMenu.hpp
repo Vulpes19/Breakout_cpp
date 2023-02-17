@@ -14,4 +14,5 @@ class PauseMenu : public GameState
         std::string getState( void ) const;
     private:
         static  const   std::string state;
+        SDL_Color       textColor;
 };

@@ -42,8 +42,10 @@ void    Ball::update( Player &player, int &score, int &lives, std::vector<Partic
 
 void    Ball::wallCollision( Player &player, int &lives, int &score )
 {
-    if (  position.getY() + radius * 2 >= player.getPosition().getY() && position.getX() + radius >= player.getPosition().getX() && position.getX() + radius <= player.getPosition().getX() + 100 )
-        velocity.setY( -velocity.getY() );
+    if ( position.getY() + radius * 2 >= player.getPosition().getY() &&
+        position.getX() + radius >= player.getPosition().getX() &&
+        position.getX() <= player.getPosition().getX() + 100)
+        velocity.setY(-velocity.getY() );
     else if ( position.getX() <= 0 )
     {
         position.setX( position.getX() );
@@ -74,7 +76,6 @@ void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bo
 {
     int columns, rows;
 
-    (void)score;
     columns = LevelManager::getInstance().mapGrid[0].size();
     rows = LevelManager::getInstance().mapGrid.size();
     for (int r = 0; r < rows; r++)
@@ -86,15 +87,13 @@ void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bo
             {
                 float brickX = c * TILE_SIZE_W;
                 float brickY = r * TILE_SIZE_H;
-                if ( position.getX() + radius >= brickX && position.getX() + radius <= brickX + TILE_SIZE_W && position.getY() + radius >= brickY && position.getY() + radius <= brickY + TILE_SIZE_H)
+                if ( position.getX() + radius >= brickX &&
+                    position.getX() + radius <= brickX + TILE_SIZE_W && 
+                    position.getY() + radius >= brickY && 
+                    position.getY() + radius <= brickY + TILE_SIZE_H)
                 {
                     hit = true;
                     particles.reserve(10);
-                    // Particles test;
-                    // if ( LevelManager::getInstance().mapGrid[r][c] == '1' ) score += 1;
-                    // else if ( LevelManager::getInstance().mapGrid[r][c] == '2' ) score += 3;
-                    // else if ( LevelManager::getInstance().mapGrid[r][c] == '3' ) score += 5;
-                    // else if ( LevelManager::getInstance().mapGrid[r][c] == '4' ) score += 7;
                     if ( LevelManager::getInstance().mapGrid[r][c] == YELLOW )
                     {
                         Texture::getInstance().loadImage("assets/yellow_brick.png", "effect", renderer );
@@ -117,11 +116,7 @@ void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bo
                     }
                     // exit(1);
                     for( int i = 0; i < 10; i++ )
-                    {
-                        // test.init( brickX + TILE_SIZE_W / 2, brickY + TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, LevelManager::getInstance().mapGrid[r][c] );
-                        // particles.push_back(test);
                         particles[i].init( brickX + TILE_SIZE_W / 2, brickY + TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, LevelManager::getInstance().mapGrid[r][c] );
-                    }
                     LevelManager::getInstance().mapGrid[r][c] = '0';
                     velocity.setY( -velocity.getY() );
                 }
