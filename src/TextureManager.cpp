@@ -47,9 +47,7 @@ void    Texture::draw( std::string ID, int x, int y, int width, int height, SDL_
 {
     SDL_Rect    src;
     SDL_Rect    dest;
-    SDL_Texture *copy = nullptr;
 
-        copy = textures[ID];
     if ( brightness )
     {
         SDL_Surface *surface = SDL_CreateRGBSurface( 0, width, height, 32, 0, 0, 0, 0 );
@@ -62,16 +60,16 @@ void    Texture::draw( std::string ID, int x, int y, int width, int height, SDL_
                 Uint8 red, green, blue, alpha;
                 SDL_GetRGBA( pixel, surface->format, &red, &green, &blue, &alpha );
 
-                red *= 0.5;
-                green *= 0.5;
-                blue *= 0.5;
+                red *= 0.2;
+                green *= 0.2;
+                blue *= 0.2;
 
                 pixel = SDL_MapRGBA( surface->format, red, green, blue, alpha );
                 ((Uint32*)surface->pixels)[y * width + x] = pixel;
             }
         }
         SDL_UnlockTexture(textures[ID]);
-        textures[ID] = SDL_CreateTextureFromSurface( renderer, surface );
+        darkTexture = SDL_CreateTextureFromSurface( renderer, surface );
         SDL_FreeSurface(surface);
     }
     else if ( darkTexture )
@@ -87,10 +85,16 @@ void    Texture::draw( std::string ID, int x, int y, int width, int height, SDL_
     dest.y = y;
 
     if ( brightness )
+    {
         SDL_RenderCopyEx( renderer, darkTexture, &src, &dest, 0, 0, SDL_FLIP_NONE );
+        SDL_DestroyTexture( darkTexture );
+        darkTexture = nullptr;
+    }
     else
-        SDL_RenderCopyEx( renderer, copy, &src, &dest, 0, 0, SDL_FLIP_NONE );
-
+    {
+        // std::cout << "textures are drawn normally\n";
+        SDL_RenderCopyEx( renderer, textures[ID], &src, &dest, 0, 0, SDL_FLIP_NONE );
+    }
 }
 
 // void    Texture::drawFrame( std::string ID, int x, int y, int width, int height, int row, int frame, SDL_Renderer *renderer )

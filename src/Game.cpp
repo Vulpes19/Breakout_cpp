@@ -66,6 +66,7 @@ void    Game::render( void )
     if ( states->getState() == "Play" || states->getState() == "Pause Menu" )
     {
         // states->render( renderer );
+        // std::cout << brightness << std::endl;
         player.draw( renderer, brightness );
         ball.draw( renderer, brightness );
         if ( particles.size() == 0 )
