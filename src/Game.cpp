@@ -44,7 +44,8 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     running = true;
     Texture::getInstance().loadImage("assets/paddle.png", "paddle", renderer );
     Texture::getInstance().loadImage("assets/ball.png", "ball", renderer );
-    Texture::getInstance().loadImage("assets/pause_icon.png", "pause", renderer );
+    Texture::getInstance().loadImage("assets/restart_icon.png", "restart_icon", renderer );
+    Texture::getInstance().loadImage("assets/quit_icon.png", "quit_icon", renderer );
     player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
     ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
     LevelManager::getInstance().readFile("1");
@@ -65,8 +66,6 @@ void    Game::render( void )
         states->render( renderer );
     if ( states->getState() == "Play" || states->getState() == "Pause Menu" )
     {
-        // states->render( renderer );
-        // std::cout << brightness << std::endl;
         player.draw( renderer, brightness );
         ball.draw( renderer, brightness );
         if ( particles.size() == 0 )
@@ -135,7 +134,6 @@ void    Game::clean()
 void Game::update( void )
 {
     currentFrame = int(((SDL_GetTicks() / 100) % 6));
-    states->update();
     if ( states->getState() == "Play" )
     {
         player.update();
@@ -148,5 +146,11 @@ void Game::update( void )
         if ( particles.size() == 0 )
             hit = false;
         ball.update(player, score, lives, particles, hit, renderer);
+    }
+    if ( states->update() )
+    {
+        states->popState();
+        states->popState();
+        states->pushState( new PlayState() );
     }
 }

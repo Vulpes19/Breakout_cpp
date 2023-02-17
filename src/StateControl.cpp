@@ -1,6 +1,6 @@
 #include "StateControl.hpp"
 
-void    StateControl::update( void )
+bool    StateControl::update( void )
 {
     if ( !gameStates.empty() )
     {

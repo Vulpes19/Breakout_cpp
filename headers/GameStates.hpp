@@ -16,7 +16,7 @@ class GameState
 {
     public:
         virtual ~GameState( void ) {};
-        virtual void    update( void ) = 0;
+        virtual bool    update( void ) = 0;
         virtual void    render( SDL_Renderer *renderer ) = 0;
         virtual bool    onEnter( void ) = 0;
         virtual bool    onExit( void ) = 0;

@@ -7,7 +7,7 @@ class   MainMenu : public GameState
 {
     public:
         MainMenu( void );
-        void    update( void );
+        bool    update( void );
         void    render( SDL_Renderer *renderer );
         bool    onEnter( void );
         bool    onExit( void );

@@ -8,7 +8,7 @@
 class   StateControl
 {
     public:
-        void    update( void );
+        bool    update( void );
         void    render( SDL_Renderer *renderer );
         void    pushState( GameState *state );
         void    changeState( GameState *state );

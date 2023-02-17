@@ -11,7 +11,7 @@ MainMenu::MainMenu( void )
     color_button2 = {165, 145, 50, 255};
     color_button3 = {165, 145, 50, 255};
 }
-void    MainMenu::update( void )
+bool    MainMenu::update( void )
 {
     Vector cursor = InputHandler::getInstance().getCursorPosition();
     if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70)
