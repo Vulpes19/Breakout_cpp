@@ -39,8 +39,6 @@ void	LevelManager::readFile( std::string level )
 		index++;
 	}
 	levelFile.close();
-	for ( auto o : mapGrid )
-		std::cout << o << std::endl;
 }
 
 void    LevelManager::getTexture( SDL_Renderer *renderer )
