@@ -9,39 +9,22 @@ PauseMenu::PauseMenu( void )
     textColor = { 165, 145, 50, 255 };
 }
 
-bool    PauseMenu::update( void )
+int    PauseMenu::update( void )
 {
     Vector cursor = InputHandler::getInstance().getCursorPosition();
     if ( InputHandler::getInstance().getMouseButton( LEFT ) )
     {
         if ( cursor.getX() >= WIDTH - 50 && cursor.getX() <= WIDTH - 10 &&
                 cursor.getY() >= HEIGHT - 50 && cursor.getY() <= HEIGHT - 10 )
-        {
-            running = false;
-            return (false);
-        }
+            return (QUIT_BUTTON);
         if ( cursor.getX() >= WIDTH - 100 && cursor.getX() <= WIDTH - 60 &&
                 cursor.getY() >= HEIGHT - 50 && cursor.getY() <= HEIGHT - 10 )
         {
-             LevelManager::getInstance().readFile("1");
-            return (true);
+            //  LevelManager::getInstance().readFile("1");
+            return (REPLAY_BUTTON);
         }
     }
-    return (false);
-}
-
-bool    PauseMenu::handleInput( bool &running )
-{
-    Vector cursor = InputHandler::getInstance().getCursorPosition();
-    if ( cursor.getX() >= WIDTH - 50 && cursor.getX() <= WIDTH - 10 &&
-            cursor.getY() >= HEIGHT - 50 && cursor.getY() <= HEIGHT - 10 )
-    {
-        running = false;
-        return (false);
-    }
-    if ( cursor.getX() >= WIDTH - 100 && cursor.getX() <= WIDTH - 60 &&
-            cursor.getY() >= HEIGHT - 50 && cursor.getY() <= HEIGHT - 10 )
-        return (true);
+    return (NO_BUTTON);
 }
 
 void    PauseMenu::render( SDL_Renderer *renderer )

@@ -48,7 +48,6 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     Texture::getInstance().loadImage("assets/quit_icon.png", "quit_icon", renderer );
     player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
     ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
-    LevelManager::getInstance().readFile("1");
     LevelManager::getInstance().getTexture(renderer);
     Text::getInstance().loadFont("assets/regular.ttf", "regular");
     return (true);
@@ -133,7 +132,7 @@ void    Game::clean()
 
 void Game::update( void )
 {
-    currentFrame = int(((SDL_GetTicks() / 100) % 6));
+    // currentFrame = int(((SDL_GetTicks() / 100) % 6));
     if ( states->getState() == "Play" )
     {
         player.update();
@@ -147,10 +146,14 @@ void Game::update( void )
             hit = false;
         ball.update(player, score, lives, particles, hit, renderer);
     }
-    if ( states->update() )
+    if ( states->update() == REPLAY_BUTTON )
     {
+        score = 0;
+        lives = 3;
         states->popState();
         states->popState();
         states->pushState( new PlayState() );
     }
+    else if ( states->update() == QUIT_BUTTON )
+        running = false;
 }

@@ -1,12 +1,17 @@
 #include "PlayState.hpp"
 #include "TextManager.hpp"
+#include "LevelManager.hpp"
 #include <string>
 
 const   std::string PlayState::state = "Play";
 
-bool    PlayState::update( void )
+PlayState::PlayState( void )
 {
-    return (false);
+    LevelManager::getInstance().readFile("1");
+}
+int    PlayState::update( void )
+{
+    return (NO_BUTTON);
 }
 
 void    PlayState::render( SDL_Renderer *renderer )

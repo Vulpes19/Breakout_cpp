@@ -48,3 +48,8 @@ void    InputHandler::setMouseButtons( int button, bool state )
 {
     mouseButtonStates[button] = state;
 }
+
+bool    InputHandler::getMouseButton( int button )
+{
+    return ( mouseButtonStates[button] );
+}

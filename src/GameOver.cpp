@@ -8,10 +8,11 @@ GameOver::GameOver( void )
 	color = {165, 145, 50, 255};
 }
 
-void    GameOver::update( void )
+int    GameOver::update( void )
 {
 	// SDL_Delay(3);
 	color = {249, 235, 224, 255};
+	return (NO_BUTTON);
 }
 
 void    GameOver::render( SDL_Renderer *renderer )

@@ -22,6 +22,7 @@ void	LevelManager::readFile( std::string level )
 	std::string fileContent;
 	int	index = 0;
 
+	mapGrid.clear();
 	levelName.append(level.c_str());
 	levelName.append(".txt");
 	levelFile.open(levelName);
@@ -38,6 +39,8 @@ void	LevelManager::readFile( std::string level )
 		index++;
 	}
 	levelFile.close();
+	for ( auto o : mapGrid )
+		std::cout << o << std::endl;
 }
 
 void    LevelManager::getTexture( SDL_Renderer *renderer )

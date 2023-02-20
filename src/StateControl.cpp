@@ -1,12 +1,12 @@
 #include "StateControl.hpp"
 
-bool    StateControl::update( void )
+int    StateControl::update( void )
 {
     if ( !gameStates.empty() )
     {
         return (gameStates.back()->update());
     }
-    return (false);
+    return (NO_BUTTON);
 }
 
 void    StateControl::render( SDL_Renderer *renderer )

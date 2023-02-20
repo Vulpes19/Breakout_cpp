@@ -11,7 +11,7 @@ MainMenu::MainMenu( void )
     color_button2 = {165, 145, 50, 255};
     color_button3 = {165, 145, 50, 255};
 }
-bool    MainMenu::update( void )
+int    MainMenu::update( void )
 {
     Vector cursor = InputHandler::getInstance().getCursorPosition();
     if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70)
@@ -22,7 +22,7 @@ bool    MainMenu::update( void )
         color_button2 = {249, 235, 224, 255};
     else
         color_button2 = {165, 145, 50, 255};
-    return (false);
+    return (NO_BUTTON);
 }
 
 void    MainMenu::render( SDL_Renderer *renderer )

@@ -7,7 +7,7 @@ class GameOver : public GameState
 {
 	public:
 		GameOver( void );
-		bool    update( void );
+		int    	update( void );
 		void    render( SDL_Renderer *renderer );
 		bool    onEnter( void );
 		bool    onExit( void );
