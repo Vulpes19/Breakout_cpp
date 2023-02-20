@@ -6,6 +6,7 @@ bool    StateControl::update( void )
     {
         return (gameStates.back()->update());
     }
+    return (false);
 }
 
 void    StateControl::render( SDL_Renderer *renderer )

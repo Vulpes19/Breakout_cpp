@@ -4,9 +4,9 @@
 
 const   std::string PlayState::state = "Play";
 
-void    PlayState::update( void )
+bool    PlayState::update( void )
 {
-
+    return (false);
 }
 
 void    PlayState::render( SDL_Renderer *renderer )

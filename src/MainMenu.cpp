@@ -22,6 +22,7 @@ bool    MainMenu::update( void )
         color_button2 = {249, 235, 224, 255};
     else
         color_button2 = {165, 145, 50, 255};
+    return (false);
 }
 
 void    MainMenu::render( SDL_Renderer *renderer )

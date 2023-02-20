@@ -12,12 +12,22 @@ PauseMenu::PauseMenu( void )
 bool    PauseMenu::update( void )
 {
     Vector cursor = InputHandler::getInstance().getCursorPosition();
-    if ( cursor.getX() >= WIDTH - 50 && cursor.getX() <= WIDTH - 10 &&
-            cursor.getY() >= HEIGHT - 50 && cursor.getY() <= HEIGHT - 10 )
+    if ( InputHandler::getInstance().getMouseButton( LEFT ) )
     {
-        running = false;
-        return (false);
+        if ( cursor.getX() >= WIDTH - 50 && cursor.getX() <= WIDTH - 10 &&
+                cursor.getY() >= HEIGHT - 50 && cursor.getY() <= HEIGHT - 10 )
+        {
+            running = false;
+            return (false);
+        }
+        if ( cursor.getX() >= WIDTH - 100 && cursor.getX() <= WIDTH - 60 &&
+                cursor.getY() >= HEIGHT - 50 && cursor.getY() <= HEIGHT - 10 )
+        {
+             LevelManager::getInstance().readFile("1");
+            return (true);
+        }
     }
+    return (false);
 }
 
 bool    PauseMenu::handleInput( bool &running )

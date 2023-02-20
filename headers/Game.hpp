@@ -2,6 +2,9 @@
 
 #define HEIGHT 704
 #define WIDTH 1088
+#define REPLAY_BUTTON 3
+#define QUIT_BUTTON 4
+#define NO_BUTTON 5
 #include <SDL.h>
 #include <vector>
 #include "TextureManager.hpp"
@@ -16,6 +19,7 @@
 #include "GameOver.hpp"
 #include "LevelManager.hpp"
 #include "ParticleSystem.hpp"
+
 
 class Game
 {

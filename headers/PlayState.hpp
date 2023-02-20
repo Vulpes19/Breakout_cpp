@@ -6,7 +6,7 @@
 class   PlayState : public GameState
 {
    public:
-        void    update( void );
+        bool    update( void );
         void    render( SDL_Renderer *renderer );
         bool    onEnter( void );
         bool    onExit( void );
