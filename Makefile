@@ -5,7 +5,7 @@ TARGET = breakout
 FILES = main.cpp Game.cpp TextureManager.cpp Player.cpp \
 	GameObject.cpp InputHandling.cpp MainMenu.cpp PlayState.cpp \
 	StateControl.cpp Ball.cpp LevelManager.cpp TextManager.cpp\
-	PauseMenu.cpp GameOver.cpp ParticleSystem.cpp
+	PauseMenu.cpp GameOver.cpp ParticleSystem.cpp AudioManager.cpp
 		
 SRC = $(addprefix src/, $(FILES))
 

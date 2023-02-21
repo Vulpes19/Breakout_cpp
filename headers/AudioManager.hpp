@@ -12,7 +12,7 @@ class AudioManager
 		void	playSound( std::string key );
 	private:
 		AudioManager( void );
-		~AudioManager( void ) {};
+		~AudioManager( void );
 		static AudioManager *instancePtr;
 		std::map<std::string, std::pair<SDL_AudioSpec, Uint8 *>> sounds;
 		SDL_AudioSpec audioSpec;
