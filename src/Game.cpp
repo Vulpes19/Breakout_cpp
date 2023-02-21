@@ -50,6 +50,8 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
     LevelManager::getInstance().getTexture(renderer);
     Text::getInstance().loadFont("assets/regular.ttf", "regular");
+    Text::getInstance().loadFont("assets/slkscr.ttf", "pixelated");
+    Text::getInstance().loadFont("assets/slkscrb.ttf", "pixelated_bold");
     return (true);
 }
 

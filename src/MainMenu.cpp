@@ -14,6 +14,12 @@ MainMenu::MainMenu( void )
 int    MainMenu::update( void )
 {
     Vector cursor = InputHandler::getInstance().getCursorPosition();
+    if ( InputHandler::getInstance().getMouseButton( LEFT ) )
+    {
+        if ( cursor.getX() >= WIDTH - 50 && cursor.getX() <= WIDTH - 10 &&
+                cursor.getY() >= HEIGHT - 50 && cursor.getY() <= HEIGHT - 10 )
+            return (QUIT_BUTTON);
+    }
     if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70)
         color_button1 = {249, 235, 224, 255};
     else
@@ -28,8 +34,9 @@ int    MainMenu::update( void )
 void    MainMenu::render( SDL_Renderer *renderer )
 {
     Text::getInstance().writeText("regular", WIDTH / 2 - 280, HEIGHT / 2 - 400, 600, 300, renderer, "BREAKOUT", color_title, state);
-    Text::getInstance().writeText("regular", WIDTH / 2 - 80, HEIGHT / 2 - 80, 140, 70, renderer, "Play", color_button1, state);
-    Text::getInstance().writeText("regular", WIDTH / 2 - 80, HEIGHT / 2 + 5, 140, 70, renderer, "Options", color_button2, state);
+    Text::getInstance().writeText("pixelated", WIDTH / 2 - 80, HEIGHT / 2 - 80, 140, 70, renderer, "Play", color_button1, state);
+    Text::getInstance().writeText("pixelated", WIDTH / 2 - 80, HEIGHT / 2 + 5, 140, 70, renderer, "Options", color_button2, state);
+    Texture::getInstance().draw( "quit_icon", WIDTH - 50, HEIGHT - 50, 40, 40, renderer, false );
 }
 
 bool    MainMenu::onEnter( void )
