@@ -16,7 +16,7 @@ Text::Text( void )
 {
     if ( TTF_Init() < 0 )
     {
-        std::cerr << "Unable to initialize SDL TTF" << TTF_GetError() << std::endl;
+        std::cerr << "Unable to initialize SDL TTF: " << TTF_GetError() << std::endl;
         return ;
     }
 }
