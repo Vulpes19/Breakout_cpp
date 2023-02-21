@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL.h>
+#include <SDL_mixer.h>
 #include <iostream>
 #include <map>
 
@@ -14,8 +15,5 @@ class AudioManager
 		AudioManager( void );
 		~AudioManager( void );
 		static AudioManager *instancePtr;
-		std::map<std::string, std::pair<SDL_AudioSpec, Uint8 *>> sounds;
-		SDL_AudioSpec audioSpec;
-		Uint32 audioLength;
-		Uint8* audioBuffer;
+		std::map<std::string, Mix_Chunk *> sounds;
 };

@@ -73,6 +73,11 @@ void    Texture::draw( std::string ID, int x, int y, int width, int height, SDL_
     SDL_Rect    src;
     SDL_Rect    dest;
 
+    if ( textures.count(ID) == 0 )
+    {
+        std::cerr << "texture isn't available\n";
+        return ;
+    }
     if ( brightness )
         getDarkTextures( textures[ID], width, height, renderer );
     else if ( darkTexture )

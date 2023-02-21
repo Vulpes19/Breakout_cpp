@@ -48,6 +48,11 @@ void    Text::writeText( std::string ID, int x, int y, int width, int height, SD
     SDL_Texture *textTexture = nullptr;
     SDL_Rect    pos;
 
+    if ( fonts.count(ID) == 0 )
+    {
+        std::cerr << "font isn't available\n";
+        return ;
+    }
     pos.x = x;
     pos.y = y;
     pos.w = width;

@@ -5,16 +5,13 @@ AudioManager *AudioManager::instancePtr = nullptr;
 
 AudioManager::AudioManager( void )
 {
-     SDL_AudioSpec desiredSpec;
-    SDL_AudioSpec obtainedSpec;
-    desiredSpec.freq = 44100;
-    desiredSpec.format = AUDIO_S16SYS;
-    desiredSpec.channels = 2;
-    desiredSpec.samples = 2048;
-    desiredSpec.callback = nullptr;
-    desiredSpec.userdata = nullptr;
+    if ( Mix_Init( MIX_INIT_MP3 ) != 0 )
+    {
+        std::cerr << "failed to initialize SDL Mixer: " << Mix_GetError() << std::endl;
+        exit(EXIT_FAILURE);
+    }
 
-    if ( SDL_OpenAudio( &desiredSpec, &obtainedSpec ) != 0 )
+    if ( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) != 0 )
     {
         std::cerr << "Failed to open audio device: " << SDL_GetError() << std::endl;
         exit( EXIT_FAILURE );
@@ -23,7 +20,8 @@ AudioManager::AudioManager( void )
 
 AudioManager::~AudioManager( void )
 {
-    SDL_CloseAudio();
+    sounds.clear();
+    Mix_CloseAudio();
 }
 
 AudioManager    &AudioManager::getInstance( void )
@@ -38,21 +36,16 @@ AudioManager    &AudioManager::getInstance( void )
 
 void    AudioManager::loadSound( std::string ID, std::string fileName )
 {
-    SDL_AudioSpec audioSpec;
-    Uint32 audioLength;
-    Uint8 *audioBuffer;
-
-    if ( SDL_LoadWAV( fileName.c_str(), &audioSpec, &audioBuffer, &audioLength) == nullptr )
+    Mix_Chunk *sound = Mix_LoadWAV(fileName.c_str());
+    if ( sound == nullptr )
         std::cerr << "failed to load sound file: " << SDL_GetError() << std::endl;
-    sounds[ID] = std::make_pair(audioSpec, audioBuffer);
+    sounds[ID] = sound;
 }
 
 void    AudioManager::playSound( std::string ID )
 {
     if ( sounds.count( ID ) > 0 )
     {
-        std::pair< SDL_AudioSpec, Uint8 * > data = sounds[ID];
-        SDL_QueueAudio(1, data.second, data.first.size );
-        SDL_PauseAudio(0);
+        Mix_PlayChannel(-1, sounds[ID], 0); 
     }
 }

@@ -20,6 +20,7 @@ FLAGS = -Wall -Wextra -Werror
 SDL = -lmingw32 -lSDL2main -lSDL2 
 TTF = -lSDL2_ttf 
 IMG = -lSDL2_image
+MIXER = -lSDL2_mixer
 
 #* HEADER FILES *#
 SDL_INCLUDE = include/
@@ -33,10 +34,10 @@ DEL = rm -f
 all: $(TARGET)
 
 $(OBJ_DIR)/%.o: src/%.cpp
-	g++ $(FLAGS) -c -I $(INCLUDE) -I $(SDL_INCLUDE) -L $(LIB) $(IMG) $(TTF) $(SDL) $< -o $@
+	g++ $(FLAGS) -c -I $(INCLUDE) -I $(SDL_INCLUDE) -L $(LIB) $(IMG) $(TTF) $(MIXER) $(SDL) $< -o $@
 
 $(TARGET): $(OBJS) $(INCLUDE)
-	g++ $(FLAGS) -I $(INCLUDE) -I $(SDL_INCLUDE) -L $(LIB) $(OBJS) $(IMG) $(TTF) $(SDL) -o $(TARGET)
+	g++ $(FLAGS) -I $(INCLUDE) -I $(SDL_INCLUDE) -L $(LIB) $(OBJS) $(IMG) $(TTF) $(MIXER) $(SDL) -o $(TARGET)
 
 re: fclean all
 
