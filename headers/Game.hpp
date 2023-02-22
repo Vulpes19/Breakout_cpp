@@ -19,6 +19,7 @@
 #include "GameOver.hpp"
 #include "LevelManager.hpp"
 #include "ParticleSystem.hpp"
+#include "AudioManager.hpp"
 
 
 class Game

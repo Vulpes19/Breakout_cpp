@@ -52,6 +52,7 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     Text::getInstance().loadFont("assets/regular.ttf", "regular");
     Text::getInstance().loadFont("assets/slkscr.ttf", "pixelated");
     Text::getInstance().loadFont("assets/slkscrb.ttf", "pixelated_bold");
+    AudioManager::getInstance().loadSound( "hit", "assets/hit.wav" );
     return (true);
 }
 

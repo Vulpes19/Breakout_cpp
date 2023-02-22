@@ -93,6 +93,7 @@ void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bo
 					position.getY() + radius <= brickY + TILE_SIZE_H)
 				{
 					hit = true;
+					AudioManager::getInstance().playSound("hit");
 					particles.reserve(10);
 					if ( LevelManager::getInstance().mapGrid[r][c] == YELLOW )
 					{
