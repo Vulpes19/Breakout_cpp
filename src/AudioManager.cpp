@@ -5,7 +5,7 @@ AudioManager *AudioManager::instancePtr = nullptr;
 
 AudioManager::AudioManager( void )
 {
-    if ( Mix_Init( MIX_INIT_MP3 ) != 0 )
+    if ( Mix_Init( MIX_INIT_MP3 ) < 0 )
     {
         std::cerr << "failed to initialize SDL Mixer: " << Mix_GetError() << std::endl;
         exit(EXIT_FAILURE);
