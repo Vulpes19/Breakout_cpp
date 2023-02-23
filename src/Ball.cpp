@@ -65,6 +65,8 @@ void    Ball::wallCollision( Player &player, int &lives, int &score )
 	{
 		this->position.setX(WIDTH / 2);
 		this->position.setY(HEIGHT / 2 + 5);
+		velocity.setX(0.2f);
+		velocity.setY(0.2f);
 		player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
 		lives--;
 		score = 0;
@@ -107,8 +109,8 @@ void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bo
 					}
 					else if ( LevelManager::getInstance().mapGrid[r][c] == ORANGE )
 					{
-						velocity.setX(0.4f);
-						velocity.setY(0.4f);
+						velocity.setX(0.3f);
+						velocity.setY(0.3f);
 						Texture::getInstance().loadImage("assets/orange_brick.png", "effect", renderer );
 						score += 5;
 					}

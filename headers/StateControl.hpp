@@ -13,6 +13,7 @@ class   StateControl
         void    pushState( GameState *state );
         void    changeState( GameState *state );
         void    popState( void );
+        void    clear( void );
         std::string getState( void ) const;
     private:
         std::vector<GameState *> gameStates;

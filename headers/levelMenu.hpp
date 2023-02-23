@@ -3,10 +3,10 @@
 #include "Game.hpp"
 #include "GameStates.hpp"
 
-class   levelMenu : public GameState
+class   LevelMenu : public GameState
 {
     public:
-        levelMenu( void );
+        LevelMenu( void );
         int     update( void );
         void    render( SDL_Renderer *renderer );
         bool    onEnter( void );

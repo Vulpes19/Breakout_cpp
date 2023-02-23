@@ -18,7 +18,7 @@ LevelManager::LevelManager( void )
 
 void	LevelManager::readFile( std::string level )
 {
-	std::string levelName = "./assets/levels/lvl";
+	std::string levelName = "./assets/modes/";
 	std::string fileContent;
 	int	index = 0;
 

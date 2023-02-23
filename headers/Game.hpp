@@ -5,6 +5,8 @@
 #define REPLAY_BUTTON 3
 #define QUIT_BUTTON 4
 #define NO_BUTTON 5
+#define MODE_BUTTON 6
+#define PLAY_BUTTON 7
 #include <SDL.h>
 #include <vector>
 #include "TextureManager.hpp"
@@ -20,6 +22,7 @@
 #include "LevelManager.hpp"
 #include "ParticleSystem.hpp"
 #include "AudioManager.hpp"
+#include "LevelMenu.hpp"
 
 
 class Game

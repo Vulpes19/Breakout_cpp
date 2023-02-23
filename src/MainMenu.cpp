@@ -14,11 +14,14 @@ MainMenu::MainMenu( void )
 int    MainMenu::update( void )
 {
     Vector cursor = InputHandler::getInstance().getCursorPosition();
+    //   Vector cursor = InputHandler::getInstance().getCursorPosition();
     if ( InputHandler::getInstance().getMouseButton( LEFT ) )
     {
         if ( cursor.getX() >= WIDTH - 50 && cursor.getX() <= WIDTH - 10 &&
                 cursor.getY() >= HEIGHT - 50 && cursor.getY() <= HEIGHT - 10 )
             return (QUIT_BUTTON);
+        if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70 )
+            return (MODE_BUTTON);
     }
     if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70)
         color_button1 = {249, 235, 224, 255};

@@ -100,9 +100,9 @@ void    Game::handleEvents( void )
             if ( event.button.button == SDL_BUTTON_LEFT )
             {
                 InputHandler::getInstance().setMouseButtons(LEFT, true);
-                   Vector cursor = InputHandler::getInstance().getCursorPosition();
-                if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70 && states->getState() == "Main Menu" )
-                    states->changeState(new PlayState());
+                //    Vector cursor = InputHandler::getInstance().getCursorPosition();
+                // if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70 && states->getState() == "Main Menu" )
+                //     states->changeState(new PlayState());
             }
             if ( event.button.button == SDL_BUTTON_RIGHT )
                 InputHandler::getInstance().setMouseButtons(RIGHT, true);
@@ -158,5 +158,12 @@ void Game::update( void )
         states->pushState( new PlayState() );
     }
     else if ( states->update() == QUIT_BUTTON )
+    {
+        states->clear();
         running = false;
+    }
+    else if ( states->update() == MODE_BUTTON )
+        states->pushState( new LevelMenu() );
+    else if ( states->update() == PLAY_BUTTON )
+        states->pushState( new PlayState() );
 }
