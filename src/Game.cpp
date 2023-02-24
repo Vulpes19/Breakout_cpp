@@ -164,6 +164,24 @@ void Game::update( void )
     }
     else if ( states->update() == MODE_BUTTON )
         states->pushState( new LevelMenu() );
-    else if ( states->update() == PLAY_BUTTON )
+    else if ( states->update() == STANDARD )
+    {
+        LevelManager::getInstance().readFile("standard");
         states->pushState( new PlayState() );
+    }
+    else if ( states->update() == PYRAMID )
+    {
+        LevelManager::getInstance().readFile("pyramid");
+        states->pushState( new PlayState() );
+    }
+    else if ( states->update() == LEET )
+    {
+        LevelManager::getInstance().readFile("1337");
+        states->pushState( new PlayState() );
+    }
+    else if ( states->update() == CRAZY )
+    {
+        LevelManager::getInstance().readFile("crazy");
+        states->pushState( new PlayState() );
+    }
 }

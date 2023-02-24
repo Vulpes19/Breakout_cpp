@@ -7,7 +7,7 @@ const   std::string PlayState::state = "Play";
 
 PlayState::PlayState( void )
 {
-    LevelManager::getInstance().readFile("pyramid");
+    // LevelManager::getInstance().readFile("pyramid");
 }
 int    PlayState::update( void )
 {

@@ -28,16 +28,16 @@ int	LevelMenu::update( void )
     {
         if ( cursor.getX() >= 20 && cursor.getX() <= 160 &&
                 cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70 )
-            return (PLAY_BUTTON);
+            return (STANDARD);
         if ( cursor.getX() >= WIDTH - 160 && cursor.getX() <= WIDTH - 20 &&
 				cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70 )
-            return (PLAY_BUTTON);
+            return (LEET);
 		if ( cursor.getX() >= 20 && cursor.getX() <= 160 &&
                 cursor.getY() >= HEIGHT / 2 + 20 && cursor.getY() <= HEIGHT / 2 + 20 + 70 )
-            return (PLAY_BUTTON);
+            return (PYRAMID);
         if ( cursor.getX() >= WIDTH - 160 && cursor.getX() <= WIDTH - 20 &&
 				cursor.getY() >= HEIGHT / 2 + 20 && cursor.getY() <= HEIGHT / 2 - 20 + 70 )
-            return (PLAY_BUTTON);
+            return (CRAZY);
     }
 	if ( ON_BUTTON_ONE )
     {

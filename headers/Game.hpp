@@ -6,7 +6,10 @@
 #define QUIT_BUTTON 4
 #define NO_BUTTON 5
 #define MODE_BUTTON 6
-#define PLAY_BUTTON 7
+#define STANDARD 7
+#define LEET 8
+#define PYRAMID 9
+#define CRAZY 10
 #include <SDL.h>
 #include <vector>
 #include "TextureManager.hpp"
@@ -27,26 +30,26 @@
 
 class Game
 {
-    public:
-        Game( void );
-        ~Game( void );
-        bool    init( const char *, int, int, int, int );
-        void    render( void );
-        void    handleEvents( void );
-        void    clean( void );
-        bool    getRunning( void ) { return (running); };
-        void    update( void );
-    private:
-        bool running;
-        SDL_Event   event;
-        SDL_Window  *window;
-        SDL_Renderer    *renderer;
-        int         currentFrame;
-        Player  player;
-        Ball    ball;
-        StateControl   *states;
-        int score;
-        int lives;
-        std::vector<Particles> particles;
-        bool    hit;
+	public:
+		Game( void );
+		~Game( void );
+		bool    init( const char *, int, int, int, int );
+		void    render( void );
+		void    handleEvents( void );
+		void    clean( void );
+		bool    getRunning( void ) { return (running); };
+		void    update( void );
+	private:
+		bool running;
+		SDL_Event   event;
+		SDL_Window  *window;
+		SDL_Renderer    *renderer;
+		int         currentFrame;
+		Player  player;
+		Ball    ball;
+		StateControl   *states;
+		int score;
+		int lives;
+		std::vector<Particles> particles;
+		bool    hit;
 };
