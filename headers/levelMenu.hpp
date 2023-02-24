@@ -17,4 +17,6 @@ class   LevelMenu : public GameState
         SDL_Color   color_title;
         SDL_Color   color_button1;
         SDL_Color   color_button2;
+        SDL_Color   color_button3;
+        SDL_Color   color_button4;
 };
