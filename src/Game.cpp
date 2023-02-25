@@ -115,14 +115,14 @@ void    Game::handleEvents( void )
         }
         if ( ESC_KEY_PRESSED )
         {
-            if ( states->getState() == "Pause Menu" )
+            if ( states->getState() == "Play" )
+                states->pushState(new PauseMenu());   
+            else if ( states->getState() == "Pause Menu" )
             {
                 states->popState();
                 states->popState();
                 states->popState();
             }
-            else if ( states->getState() == "Play" )
-                states->pushState(new PauseMenu());   
         }
         if ( ENTER_KEY_PRESSED && states->getState() == "Pause Menu" )
             states->popState();
@@ -176,21 +176,29 @@ void Game::update( void )
         states->pushState( new LevelMenu() );
     else if ( states->update() == STANDARD )
     {
+        player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
+        ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
         LevelManager::getInstance().readFile("standard");
         states->pushState( new PlayState() );
     }
     else if ( states->update() == PYRAMID )
     {
+        player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
+        ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
         LevelManager::getInstance().readFile("pyramid");
         states->pushState( new PlayState() );
     }
     else if ( states->update() == LEET )
     {
+        player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
+        ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
         LevelManager::getInstance().readFile("1337");
         states->pushState( new PlayState() );
     }
     else if ( states->update() == CRAZY )
     {
+        player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
+        ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
         LevelManager::getInstance().readFile("crazy");
         states->pushState( new PlayState() );
     }
