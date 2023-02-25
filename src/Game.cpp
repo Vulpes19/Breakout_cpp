@@ -98,12 +98,7 @@ void    Game::handleEvents( void )
         if ( event.type == SDL_MOUSEBUTTONDOWN )
         {
             if ( event.button.button == SDL_BUTTON_LEFT )
-            {
                 InputHandler::getInstance().setMouseButtons(LEFT, true);
-                //    Vector cursor = InputHandler::getInstance().getCursorPosition();
-                // if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70 && states->getState() == "Main Menu" )
-                //     states->changeState(new PlayState());
-            }
             if ( event.button.button == SDL_BUTTON_RIGHT )
                 InputHandler::getInstance().setMouseButtons(RIGHT, true);
             if ( event.button.button == SDL_BUTTON_MIDDLE )
@@ -118,9 +113,18 @@ void    Game::handleEvents( void )
             if ( event.button.button == SDL_BUTTON_MIDDLE )
                 InputHandler::getInstance().setMouseButtons(MIDDLE, false);
         }
-        if ( ESC_KEY_PRESSED && states->getState() != "Pause Menu" )
-            states->pushState(new PauseMenu());
-        if ( ENTER_KEY_PRESSED && states->getState() == "Pause Menu")
+        if ( ESC_KEY_PRESSED )
+        {
+            if ( states->getState() == "Pause Menu" )
+            {
+                states->popState();
+                states->popState();
+                states->popState();
+            }
+            else if ( states->getState() == "Play" )
+                states->pushState(new PauseMenu());   
+        }
+        if ( ENTER_KEY_PRESSED && states->getState() == "Pause Menu" )
             states->popState();
         player.handleInput();
     }
@@ -155,6 +159,12 @@ void Game::update( void )
         lives = 3;
         states->popState();
         states->popState();
+        if ( states->getMode() == "standard" ) LevelManager::getInstance().readFile("standard");
+        else if ( states->getMode() == "pyramid" ) LevelManager::getInstance().readFile("pyramid");
+        else if ( states->getMode() == "1337" ) LevelManager::getInstance().readFile("1337");
+        else if ( states->getMode() == "crazy" ) LevelManager::getInstance().readFile("crazy");
+        player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
+        ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
         states->pushState( new PlayState() );
     }
     else if ( states->update() == QUIT_BUTTON )

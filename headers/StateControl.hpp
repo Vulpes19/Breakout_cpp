@@ -15,6 +15,7 @@ class   StateControl
         void    popState( void );
         void    clear( void );
         std::string getState( void ) const;
+        std::string getMode( void ) const;
     private:
         std::vector<GameState *> gameStates;
 };

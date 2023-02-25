@@ -56,6 +56,11 @@ std::string StateControl::getState( void ) const
     return (gameStates.back()->getState());
 }
 
+std::string StateControl::getMode( void ) const
+{
+    return (gameStates.back()->getMode());
+}
+
 void    StateControl::clear( void )
 {
     gameStates.clear();

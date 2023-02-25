@@ -8,13 +8,6 @@
 #include <SDL.h>
 #include <iostream>
 
-enum states
-{
-	MAIN = 0,
-	PLAY = 1,
-	PAUSE = 2,
-	OVER = 3
-};
 class GameState
 {
 	public:
@@ -24,4 +17,7 @@ class GameState
 		virtual bool    onEnter( void ) = 0;
 		virtual bool    onExit( void ) = 0;
 		virtual std::string getState( void ) const = 0;
+		virtual	std::string getMode( void ) const { return (currentMode); };
+	protected:
+		std::string currentMode;
 };
