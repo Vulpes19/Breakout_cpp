@@ -5,11 +5,7 @@ Texture *Texture::instancePtr = nullptr;
 Texture  &Texture::getInstance( void )
 {
     if ( instancePtr == nullptr )
-    {
         instancePtr = new Texture();
-        return (*instancePtr);
-    }
-    
     return (*instancePtr);
 }
 
@@ -25,6 +21,8 @@ Texture::Texture( void )
 
 bool Texture::loadImage( std::string fileName, std::string ID, SDL_Renderer *renderer )
 {
+    if ( textures.find(ID) != textures.end() )
+        return (true);
     SDL_Surface *tmp = IMG_Load(fileName.c_str());
     if ( !tmp )
     {

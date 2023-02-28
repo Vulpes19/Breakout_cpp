@@ -2,9 +2,11 @@
 
 #include <iostream>
 #include <map>
+#include <deque>
 #include <SDL.h>
 #include <SDL_ttf.h>
 
+#define MAX_TEXTURES 20
 class Text
 {
     public:

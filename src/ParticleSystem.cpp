@@ -6,10 +6,6 @@ void    Particles::init( float x, float y, int w, int h, char brick )
 	(void)w;
 	(void)h;
 	(void)brick;	
-	// if ( brick == '4') ID = "red_brick";
-	// if ( brick == '3') ID = "orange_brick";
-	// if ( brick == '2') ID = "green_brick";
-	// if ( brick == '1') ID = "yellow_brick";
 	position.setX(x);
 	position.setY(y);
 	velocity.setX(((float)rand() / RAND_MAX) * (1.0f - (-1.0f)) + (-1.0f));
