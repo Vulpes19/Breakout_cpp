@@ -1,3 +1,7 @@
+import os
+import datetime
+
+header_text = '''
 /*
  * =========================================================
  *____   ____     ___   ____  __  _   ___   __ __  ______  
@@ -8,29 +12,20 @@
  *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
  *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
  * 
- * StateControl.hpp: 
+ * [filename]: [description]
  * 
  * =========================================================
  */
+'''
 
-#pragma once
-
-#include "GameStates.hpp"
-#include <iostream>
-#include <vector>
-
-
-class   StateControl
-{
-    public:
-        int     update( void );
-        void    render( SDL_Renderer *renderer );
-        void    pushState( GameState *state );
-        void    changeState( GameState *state );
-        void    popState( void );
-        void    clear( void );
-        std::string getState( void ) const;
-        std::string getMode( void ) const;
-    private:
-        std::vector<GameState *> gameStates;
-};
+for root, dirs, files in os.walk('.'):
+    for file in files:
+        if file.endswith('.cpp') or file.endswith('.hpp'):
+            file_path = os.path.join(root, file)
+            with open(file_path, 'r+') as f:
+                content = f.read()
+                f.seek(0, 0)
+                f.write(header_text.strip().replace('[filename]', file).replace('[description]', ''))
+                f.write('\n')
+                f.write(content)
+                f.truncate()

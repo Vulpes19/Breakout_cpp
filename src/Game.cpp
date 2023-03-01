@@ -1,3 +1,18 @@
+/*
+ * =========================================================
+ *____   ____     ___   ____  __  _   ___   __ __  ______  
+ *|    \ |    \   /  _] /    ||  |/ ] /   \ |  |  ||      |
+ *|  o  )|  D  ) /  [_ |  o  ||  ' / |     ||  |  ||      |
+ *|     ||    / |    _]|     ||    \ |  O  ||  |  ||_|  |_|
+ *|  O  ||    \ |   [_ |  _  ||     \|     ||  :  |  |  |  
+ *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
+ *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
+ * 
+ * Game.cpp: 
+ * 
+ * =========================================================
+ */
+
 #include <iostream>
 #include "Game.hpp"
 #include "TextManager.hpp"
@@ -53,6 +68,8 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     Text::getInstance().loadFont("assets/slkscr.ttf", "pixelated");
     Text::getInstance().loadFont("assets/slkscrb.ttf", "pixelated_bold");
     AudioManager::getInstance().loadSound( "hit", "assets/hit.wav" );
+    highScore.openFile();
+    highScore.checkScore(420);
     return (true);
 }
 

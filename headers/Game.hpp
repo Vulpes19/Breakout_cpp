@@ -1,3 +1,18 @@
+/*
+ * =========================================================
+ *____   ____     ___   ____  __  _   ___   __ __  ______  
+ *|    \ |    \   /  _] /    ||  |/ ] /   \ |  |  ||      |
+ *|  o  )|  D  ) /  [_ |  o  ||  ' / |     ||  |  ||      |
+ *|     ||    / |    _]|     ||    \ |  O  ||  |  ||_|  |_|
+ *|  O  ||    \ |   [_ |  _  ||     \|     ||  :  |  |  |  
+ *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
+ *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
+ * 
+ * Game.hpp: 
+ * 
+ * =========================================================
+ */
+
 #pragma once
 
 #define HEIGHT 704
@@ -26,6 +41,7 @@
 #include "ParticleSystem.hpp"
 #include "AudioManager.hpp"
 #include "LevelMenu.hpp"
+#include "HighScore.hpp"
 
 
 class Game
@@ -45,11 +61,12 @@ class Game
 		SDL_Window  *window;
 		SDL_Renderer    *renderer;
 		int         currentFrame;
-		Player  player;
-		Ball    ball;
-		StateControl   *states;
 		int score;
 		int lives;
-		std::vector<Particles> particles;
 		bool    hit;
+		Player  player;
+		Ball    ball;
+		HighScore highScore;
+		StateControl   *states;
+		std::vector<Particles> particles;
 };
