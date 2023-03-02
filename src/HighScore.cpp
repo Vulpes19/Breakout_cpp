@@ -20,11 +20,12 @@ HighScore::HighScore( void )
 
 HighScore::~HighScore( void )
 {
+    file.close();
 }
 
 void    HighScore::openFile( void )
 {
-    file.open("assets/save.txt", std::ios::out | std::ios::in | std::ios::binary );
+    file.open("assets/save.txt", std::ios::out | std::ios::in );
     if ( !file )
     {
         std::cerr << "can't open save file\n";
@@ -46,10 +47,8 @@ void    HighScore::checkScore( int score )
     int intHighestScore = std::stoi(highestScore);
     if ( score > intHighestScore)
     {
-        file.seekp(0); 
+        file.seekg(std::ios::beg); 
         file << score;
-        file.flush();
     }
     file.close();
-    exit(1);
 }

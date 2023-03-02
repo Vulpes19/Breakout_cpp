@@ -68,8 +68,7 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     Text::getInstance().loadFont("assets/slkscr.ttf", "pixelated");
     Text::getInstance().loadFont("assets/slkscrb.ttf", "pixelated_bold");
     AudioManager::getInstance().loadSound( "hit", "assets/hit.wav" );
-    highScore.openFile();
-    highScore.checkScore(420);
+    // highScore.openFile();
     return (true);
 }
 
@@ -157,6 +156,8 @@ void    Game::clean()
 void Game::update( void )
 {
     // currentFrame = int(((SDL_GetTicks() / 100) % 6));
+    highScore.openFile();
+    highScore.checkScore(score);
     if ( states->getState() == "Play" )
     {
         player.update();
