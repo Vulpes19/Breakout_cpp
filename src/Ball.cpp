@@ -57,6 +57,7 @@ void    Ball::update( Player &player, int &score, int &lives, std::vector<Partic
 
 void    Ball::wallCollision( Player &player, int &lives, int &score )
 {
+	(void)score;
 	if ( position.getY() + radius * 2 >= player.getPosition().getY() &&
 		position.getX() + radius >= player.getPosition().getX() &&
 		position.getX() <= player.getPosition().getX() + 100)
@@ -73,8 +74,10 @@ void    Ball::wallCollision( Player &player, int &lives, int &score )
 	}
 	else if ( position.getY() <= 22 )
 	{
+		player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 50, 20, "paddle" );
 		position.setY( position.getY() );
-		velocity.setY( -velocity.getY() );
+		velocity.setX( velocity.getX() + 0.2 );
+		velocity.setY( -velocity.getY() + 0.2 );
 	}
 	else if ( position.getY() + radius * 2 >= HEIGHT )
 	{
@@ -84,7 +87,6 @@ void    Ball::wallCollision( Player &player, int &lives, int &score )
 		velocity.setY(0.5f);
 		player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
 		lives--;
-		score = 0;
 	}
 
 }
@@ -131,6 +133,8 @@ void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bo
 					}
 					else if ( LevelManager::getInstance().mapGrid[r][c] == RED )
 					{
+						velocity.setX(0.7f);
+						velocity.setY(0.7f);
 						Texture::getInstance().loadImage("assets/red_brick.png", "effect", renderer );
 						score += 7;
 					}

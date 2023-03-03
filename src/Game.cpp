@@ -141,6 +141,8 @@ void    Game::handleEvents( void )
                 states->popState();
                 states->popState();
             }
+            else if ( states->getState() == "Settings Menu" )
+                states->popState();
         }
         if ( ENTER_KEY_PRESSED && states->getState() == "Pause Menu" )
             states->popState();
@@ -157,7 +159,6 @@ void    Game::clean()
 
 void Game::update( void )
 {
-    // currentFrame = int(((SDL_GetTicks() / 100) % 6));
     highScore.openFile();
     highScore.checkScore(score);
     if ( states->getState() == "Play" )
