@@ -45,10 +45,17 @@ void    HighScore::checkScore( int score )
     if ( !std::getline( file, highestScore ) )
         return ;
     int intHighestScore = std::stoi(highestScore);
+    highScore = intHighestScore;
     if ( score > intHighestScore)
     {
         file.seekg(std::ios::beg); 
         file << score;
+        highScore = score;
     }
     file.close();
+}
+
+int HighScore::getHighScore( void ) const
+{
+    return (highScore);
 }

@@ -21,11 +21,13 @@
 
 class HighScore
 {
-    public:
-        HighScore( void );
-        ~HighScore( void );
-        void    openFile( void );
-        void    checkScore( int score );
-    private:
-        std::fstream file;
+	public:
+		HighScore( void );
+		~HighScore( void );
+		void    openFile( void );
+		void    checkScore( int score );
+		int		getHighScore( void ) const;
+	private:
+		std::fstream file;
+		int highScore;
 };

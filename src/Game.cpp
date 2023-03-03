@@ -62,7 +62,7 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     Texture::getInstance().loadImage( "assets/ball.png", "ball", renderer );
     Texture::getInstance().loadImage( "assets/restart_icon.png", "restart_icon", renderer );
     Texture::getInstance().loadImage( "assets/quit_icon.png", "quit_icon", renderer );
-    player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
+    player.loadTexture( WIDTH / 2 - 50, HEIGHT - 20, 100, 20, "paddle" );
     ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
     LevelManager::getInstance().getTexture( renderer );
     Text::getInstance().loadFont( "assets/regular.ttf", "regular" );
@@ -101,6 +101,8 @@ void    Game::render( void )
         Text::getInstance().writeText("regular", WIDTH - 100, -7, 90, 45, renderer, tmp.c_str(), color, states->getState());
         tmp = "lives: " + std::to_string(lives);
         Text::getInstance().writeText("regular", 2, -7, 90, 45, renderer, tmp.c_str(), color, states->getState());
+        tmp = "Highest score: " + std::to_string( highScore.getHighScore() );
+        Text::getInstance().writeText("regular", WIDTH / 2 - 60, -7, 120, 45, renderer, tmp.c_str(), color, states->getState());
     }
     SDL_RenderPresent( renderer );
 }
@@ -141,8 +143,14 @@ void    Game::handleEvents( void )
                 states->popState();
                 states->popState();
             }
-            else if ( states->getState() == "Settings Menu" )
+            else if ( states->getState() == "Settings Menu" || states->getState() == "Game Over" )
                 states->popState();
+            // else if ( states->getState() == "Game Over")
+            // {
+            //     states->popState();
+            //     states->popState();
+            //     states->popState();
+            // }
         }
         if ( ENTER_KEY_PRESSED && states->getState() == "Pause Menu" )
             states->popState();
