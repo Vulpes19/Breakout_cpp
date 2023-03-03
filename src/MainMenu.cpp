@@ -15,6 +15,7 @@
 
 #include "MainMenu.hpp"
 #include "TextManager.hpp"
+#include "TextureManager.hpp"
 #include "InputHandling.hpp"
 
 const   std::string MainMenu::state = "Main Menu";
@@ -35,6 +36,8 @@ int    MainMenu::update( void )
         if ( cursor.getX() >= WIDTH - 50 && cursor.getX() <= WIDTH - 10 &&
                 cursor.getY() >= HEIGHT - 50 && cursor.getY() <= HEIGHT - 10 )
             return (QUIT_BUTTON);
+        if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 + 5 && cursor.getY() <= HEIGHT / 2 + 75 )
+            return (SETTINGS_BUTTON);
         if ( cursor.getX() >= WIDTH / 2 - 80 && cursor.getX() <= WIDTH / 2 - 80 + 140 && cursor.getY() >= HEIGHT / 2 - 80 && cursor.getY() <= HEIGHT / 2 - 80 + 70 )
             return (MODE_BUTTON);
     }
@@ -53,7 +56,7 @@ void    MainMenu::render( SDL_Renderer *renderer )
 {
     Text::getInstance().writeText("regular", WIDTH / 2 - 280, HEIGHT / 2 - 400, 600, 300, renderer, "BREAKOUT", color_title, state);
     Text::getInstance().writeText("pixelated", WIDTH / 2 - 80, HEIGHT / 2 - 80, 140, 70, renderer, "Play", color_button1, state);
-    Text::getInstance().writeText("pixelated", WIDTH / 2 - 80, HEIGHT / 2 + 5, 140, 70, renderer, "Options", color_button2, state);
+    Text::getInstance().writeText("pixelated", WIDTH / 2 - 80, HEIGHT / 2 + 5, 140, 70, renderer, "Settings", color_button2, state);
     Texture::getInstance().draw( "quit_icon", WIDTH - 50, HEIGHT - 50, 40, 40, renderer, false );
 }
 

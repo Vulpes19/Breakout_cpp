@@ -17,10 +17,6 @@
 
 #define HEIGHT 704
 #define WIDTH 1088
-#define REPLAY_BUTTON 3
-#define QUIT_BUTTON 4
-#define NO_BUTTON 5
-#define MODE_BUTTON 6
 #define STANDARD 7
 #define LEET 8
 #define PYRAMID 9
@@ -42,8 +38,18 @@
 #include "AudioManager.hpp"
 #include "LevelMenu.hpp"
 #include "HighScore.hpp"
+#include "SettingsMenu.hpp"
 
 
+// enum MODES
+// {
+// 	REPLAY_BUTTON = 0,
+// 	QUIT_BUTTON = 1,
+// 	NO_BUTTON = 2,
+// 	MODE_BUTTON = 3,
+// 	SETTINGS_BUTTON = 4,
+// 	SOUND = 5
+// };
 class Game
 {
 	public:
@@ -64,6 +70,7 @@ class Game
 		int score;
 		int lives;
 		bool    hit;
+		bool	sound;
 		Player  player;
 		Ball    ball;
 		HighScore highScore;

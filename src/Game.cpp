@@ -30,6 +30,7 @@ Game::Game( void )
     states->pushState( new MainMenu() );
     particles.reserve(10);
     hit = false;
+    sound = true;
 }
 
 Game::~Game( void )
@@ -57,17 +58,18 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
         return (false);
     }
     running = true;
-    Texture::getInstance().loadImage("assets/paddle.png", "paddle", renderer );
-    Texture::getInstance().loadImage("assets/ball.png", "ball", renderer );
-    Texture::getInstance().loadImage("assets/restart_icon.png", "restart_icon", renderer );
-    Texture::getInstance().loadImage("assets/quit_icon.png", "quit_icon", renderer );
+    Texture::getInstance().loadImage( "assets/paddle.png", "paddle", renderer );
+    Texture::getInstance().loadImage( "assets/ball.png", "ball", renderer );
+    Texture::getInstance().loadImage( "assets/restart_icon.png", "restart_icon", renderer );
+    Texture::getInstance().loadImage( "assets/quit_icon.png", "quit_icon", renderer );
     player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
     ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
-    LevelManager::getInstance().getTexture(renderer);
-    Text::getInstance().loadFont("assets/regular.ttf", "regular");
-    Text::getInstance().loadFont("assets/slkscr.ttf", "pixelated");
-    Text::getInstance().loadFont("assets/slkscrb.ttf", "pixelated_bold");
+    LevelManager::getInstance().getTexture( renderer );
+    Text::getInstance().loadFont( "assets/regular.ttf", "regular" );
+    Text::getInstance().loadFont( "assets/slkscr.ttf", "pixelated" );
+    Text::getInstance().loadFont( "assets/slkscrb.ttf", "pixelated_bold" );
     AudioManager::getInstance().loadSound( "hit", "assets/hit.wav" );
+    AudioManager::getInstance().setSound( sound );
     // highScore.openFile();
     return (true);
 }
@@ -192,6 +194,18 @@ void Game::update( void )
     }
     else if ( states->update() == MODE_BUTTON )
         states->pushState( new LevelMenu() );
+    else if ( states->update() == SETTINGS_BUTTON )
+    {
+        states->pushState( new SettingsMenu() );
+        states->setSound(sound);
+    }
+    else if ( states->update() == SOUND )
+    {
+        if ( sound ) sound = false;
+        else sound = true;
+        states->setSound(sound);
+        AudioManager::getInstance().setSound(sound);
+    }
     else if ( states->update() == STANDARD )
     {
         player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );

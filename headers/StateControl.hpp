@@ -19,7 +19,6 @@
 #include <iostream>
 #include <vector>
 
-
 class   StateControl
 {
     public:
@@ -31,6 +30,7 @@ class   StateControl
         void    clear( void );
         std::string getState( void ) const;
         std::string getMode( void ) const;
+        void    setSound( bool );
     private:
         std::vector<GameState *> gameStates;
 };

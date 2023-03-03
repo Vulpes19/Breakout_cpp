@@ -26,9 +26,11 @@ class AudioManager
 		static AudioManager    &getInstance( void );
 		void	loadSound( std::string ID, std::string fileName );
 		void	playSound( std::string key );
+		void	setSound( bool s ) { sound = s; };
 	private:
 		AudioManager( void );
 		~AudioManager( void );
 		static AudioManager *instancePtr;
+		bool sound;
 		std::map<std::string, Mix_Chunk *> sounds;
 };

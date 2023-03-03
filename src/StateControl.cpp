@@ -17,66 +17,71 @@
 
 int    StateControl::update( void )
 {
-    if ( !gameStates.empty() )
-    {
-        return (gameStates.back()->update());
-    }
-    return (NO_BUTTON);
+	if ( !gameStates.empty() )
+	{
+		return (gameStates.back()->update());
+	}
+	return (NO_BUTTON);
 }
 
 void    StateControl::render( SDL_Renderer *renderer )
 {
-    if ( !gameStates.empty() )
-    {
-        gameStates.back()->render(renderer);
-    }
+	if ( !gameStates.empty() )
+	{
+		gameStates.back()->render(renderer);
+	}
 }
 
 void    StateControl::pushState( GameState *state )
 {
-    gameStates.push_back(state);
-    gameStates.back()->onEnter();
+	gameStates.push_back(state);
+	gameStates.back()->onEnter();
 }
 
 void    StateControl::popState( void )
 {
-    if ( !gameStates.empty() )
-    {
-        if ( gameStates.back()->onExit() )
-        {
-            delete gameStates.back();
-            gameStates.pop_back();
-        }
-    }
+	if ( !gameStates.empty() )
+	{
+		if ( gameStates.back()->onExit() )
+		{
+			delete gameStates.back();
+			gameStates.pop_back();
+		}
+	}
 }
 
 void    StateControl::changeState( GameState *state )
 {
-    if ( !gameStates.empty() )
-    {
-        if ( gameStates.back()->getState() == state->getState() )
-            return ;
-        if ( gameStates.back()->onExit() )
-        {
-            delete gameStates.back();
-            gameStates.pop_back();
-        }
-    }
-    gameStates.push_back(state);
-    gameStates.back()->onEnter();
+	if ( !gameStates.empty() )
+	{
+		if ( gameStates.back()->getState() == state->getState() )
+			return ;
+		if ( gameStates.back()->onExit() )
+		{
+			delete gameStates.back();
+			gameStates.pop_back();
+		}
+	}
+	gameStates.push_back(state);
+	gameStates.back()->onEnter();
 }
 
 std::string StateControl::getState( void ) const
 {
-    return (gameStates.back()->getState());
+	return (gameStates.back()->getState());
 }
 
 std::string StateControl::getMode( void ) const
 {
-    return (gameStates.back()->getMode());
+	return (gameStates.back()->getMode());
 }
 
 void    StateControl::clear( void )
 {
-    gameStates.clear();
+	gameStates.clear();
+}
+
+void    StateControl::setSound( bool sound )
+{
+	gameStates.back()->setSound(sound);
 }

@@ -59,7 +59,7 @@ void    AudioManager::loadSound( std::string ID, std::string fileName )
 
 void    AudioManager::playSound( std::string ID )
 {
-    if ( sounds.count( ID ) > 0 )
+    if ( sounds.count( ID ) > 0 && sound )
     {
         Mix_PlayChannel(-1, sounds[ID], 0); 
     }
