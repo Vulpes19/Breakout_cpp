@@ -85,3 +85,8 @@ void    StateControl::setSound( bool sound )
 {
 	gameStates.back()->setSound(sound);
 }
+
+void	StateControl::setMode( std::string s )
+{
+	gameStates.back()->setMode(s);
+}

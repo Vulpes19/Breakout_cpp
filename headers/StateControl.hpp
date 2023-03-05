@@ -30,6 +30,7 @@ class   StateControl
         void    clear( void );
         std::string getState( void ) const;
         std::string getMode( void ) const;
+        void    setMode( std::string s );
         void    setSound( bool );
     private:
         std::vector<GameState *> gameStates;

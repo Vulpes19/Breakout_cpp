@@ -25,7 +25,6 @@ GameOver::GameOver( void )
 
 int    GameOver::update( void )
 {
-	// SDL_Delay(3);
 	color = {249, 235, 224, 255};
 	return (NO_BUTTON);
 }
@@ -33,7 +32,6 @@ int    GameOver::update( void )
 void    GameOver::render( SDL_Renderer *renderer )
 {
 	Text::getInstance().writeText("regular", 250, 50, 600, 300, renderer, "Game Over", color, state);
-	// SDL_Delay(3);
 	color = {165, 145, 50, 255};
 }
 

@@ -39,6 +39,7 @@
 #include "LevelMenu.hpp"
 #include "HighScore.hpp"
 #include "SettingsMenu.hpp"
+#include "GameWon.hpp"
 
 class Game
 {
