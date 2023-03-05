@@ -31,6 +31,7 @@ Game::Game( void )
     particles.reserve(10);
     hit = false;
     sound = true;
+    gameOver = false;
 }
 
 Game::~Game( void )
@@ -70,7 +71,6 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
     Text::getInstance().loadFont( "assets/slkscrb.ttf", "pixelated_bold" );
     AudioManager::getInstance().loadSound( "hit", "assets/hit.wav" );
     AudioManager::getInstance().setSound( sound );
-    // highScore.openFile();
     return (true);
 }
 
@@ -80,8 +80,6 @@ void    Game::render( void )
     if ( states->getState() == "Pause Menu" ) brightness = true;
     SDL_SetRenderDrawColor( renderer, 11, 32, 39, 255 );
     SDL_RenderClear( renderer );
-    if ( lives == 0 && states->getState() != "Game Over" )
-        states->pushState(new GameOver());
     if ( states->getState() != "Play" )
         states->render( renderer );
     if ( states->getState() == "Play" || states->getState() == "Pause Menu" )
@@ -143,14 +141,15 @@ void    Game::handleEvents( void )
                 states->popState();
                 states->popState();
             }
-            else if ( states->getState() == "Settings Menu" || states->getState() == "Game Over" )
+            else if ( states->getState() == "Settings Menu" )
                 states->popState();
-            // else if ( states->getState() == "Game Over")
-            // {
-            //     states->popState();
-            //     states->popState();
-            //     states->popState();
-            // }
+            else if ( states->getState() == "Game Over" )
+            {
+                gameOver = true;
+                states->popState();
+                states->popState();
+                states->popState();
+            }
         }
         if ( ENTER_KEY_PRESSED && states->getState() == "Pause Menu" )
             states->popState();
@@ -244,4 +243,6 @@ void Game::update( void )
         LevelManager::getInstance().readFile("crazy");
         states->pushState( new PlayState() );
     }
+     if ( lives == 0 && gameOver == false && states->getState() != "Game Over" )
+        states->pushState(new GameOver());
 }

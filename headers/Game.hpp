@@ -40,16 +40,6 @@
 #include "HighScore.hpp"
 #include "SettingsMenu.hpp"
 
-
-// enum MODES
-// {
-// 	REPLAY_BUTTON = 0,
-// 	QUIT_BUTTON = 1,
-// 	NO_BUTTON = 2,
-// 	MODE_BUTTON = 3,
-// 	SETTINGS_BUTTON = 4,
-// 	SOUND = 5
-// };
 class Game
 {
 	public:
@@ -71,6 +61,7 @@ class Game
 		int lives;
 		bool    hit;
 		bool	sound;
+		bool	gameOver;
 		Player  player;
 		Ball    ball;
 		HighScore highScore;
