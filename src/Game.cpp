@@ -194,6 +194,7 @@ void Game::update( void )
         else if ( states->getMode() == "crazy" ) LevelManager::getInstance().readFile("crazy");
         player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
         ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
+        ball.setVelocity();
         states->pushState( new PlayState() );
     }
     else if ( states->update() == QUIT_BUTTON )

@@ -32,6 +32,7 @@ class   Ball : public GameObject
         void    update( Player &player, int &score, int &lives, std::vector<Particles> &particles, bool &hit, SDL_Renderer *renderer );
         void    wallCollision( Player &player, int &lives, int &score );
         void    bricksCollision( int &score, std::vector<Particles> &particles, bool &hit, SDL_Renderer *renderer );
+        void    setVelocity( void );
     private:
         double  radius;
 };
