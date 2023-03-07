@@ -6,7 +6,8 @@ FILES = main.cpp Game.cpp TextureManager.cpp Player.cpp \
 	GameObject.cpp InputHandling.cpp MainMenu.cpp PlayState.cpp \
 	StateControl.cpp Ball.cpp LevelManager.cpp TextManager.cpp\
 	PauseMenu.cpp GameOver.cpp ParticleSystem.cpp AudioManager.cpp\
-	LevelMenu.cpp HighScore.cpp SettingsMenu.cpp GameWon.cpp
+	LevelMenu.cpp HighScore.cpp SettingsMenu.cpp GameWon.cpp Vector.cpp \
+	GameStates.cpp
 		
 SRC = $(addprefix src/, $(FILES))
 

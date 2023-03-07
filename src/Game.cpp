@@ -18,6 +18,10 @@
 #include "TextManager.hpp"
 #define ESC_KEY_PRESSED  InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_ESCAPE)
 #define ENTER_KEY_PRESSED  InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_RETURN)
+#define STANDARD_HIGHSCORE 544
+#define PYRAMID_HIGHSCORE 291
+#define LEET_HIGHSCORE 176
+#define CRAZY_HIGHSCORE 1139
 
 Game::Game( void )
 {
@@ -291,12 +295,14 @@ void Game::update( void )
 	}
 	if ( lives == 0 && gameOver == false && states->getState() != "Game Over" )
 		states->pushState(new GameOver());
-	if ( score == 544 && states->getMode() == "standard" )
+	if ( score == STANDARD_HIGHSCORE && states->getMode() == "standard" )
 		states->pushState( new GameWon() );
-	if ( score == 291 && states->getMode() == "1337" )
+	if ( score == LEET_HIGHSCORE && states->getMode() == "1337" )
 		states->pushState( new GameWon() );
-	if ( score == 176 && states->getMode() == "pyramid" )
+	if ( score == PYRAMID_HIGHSCORE && states->getMode() == "pyramid" )
 		states->pushState( new GameWon() );
-	if ( score == 1139 && states->getMode() == "crazy" )
+	if ( score == CRAZY_HIGHSCORE && states->getMode() == "crazy" )
 		states->pushState( new GameWon() );
 }
+
+bool    Game::getRunning( void ) const { return (running); }

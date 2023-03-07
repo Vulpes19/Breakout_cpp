@@ -39,15 +39,9 @@ class GameState
 		virtual bool    onEnter( void ) = 0;
 		virtual bool    onExit( void ) = 0;
 		virtual std::string getState( void ) const = 0;
-		virtual	std::string getMode( void ) const { return (currentMode); };
-		virtual	void		setMode( std::string s ) { currentMode = s; };
-		virtual	void	setSound( bool ifon )
-		{
-			if ( ifon )
-				sound = "on";
-			else
-				sound = "off";
-		};
+		virtual	std::string getMode( void ) const;
+		virtual	void		setMode( std::string s );
+		virtual	void	setSound( bool ifon );
 	protected:
 		std::string currentMode;
 		std::string	sound;

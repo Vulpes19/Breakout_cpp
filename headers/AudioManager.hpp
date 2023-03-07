@@ -26,7 +26,7 @@ class AudioManager
 		static AudioManager    &getInstance( void );
 		void	loadSound( std::string ID, std::string fileName );
 		void	playSound( std::string key );
-		void	setSound( bool s ) { sound = s; };
+		void	setSound( bool s );
 	private:
 		AudioManager( void );
 		~AudioManager( void );

@@ -139,7 +139,7 @@ void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bo
 						score += 7;
 					}
 					for( int i = 0; i < 10; i++ )
-						particles[i].init( brickX + TILE_SIZE_W / 2, brickY + TILE_SIZE_H, TILE_SIZE_W, TILE_SIZE_H, LevelManager::getInstance().mapGrid[r][c] );
+						particles[i].init( brickX + TILE_SIZE_W / 2, brickY + TILE_SIZE_H );
 					LevelManager::getInstance().mapGrid[r][c] = '0';
 					velocity.setY( -velocity.getY() );
 				}

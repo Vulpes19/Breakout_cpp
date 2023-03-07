@@ -50,7 +50,7 @@ class Game
 		void    render( void );
 		void    handleEvents( void );
 		void    clean( void );
-		bool    getRunning( void ) { return (running); };
+		bool    getRunning( void ) const;
 		void    update( void );
 	private:
 		bool running;

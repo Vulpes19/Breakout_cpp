@@ -15,6 +15,7 @@
 
 #include <SDL.h>
 #include <iostream>
+#include <memory>
 #include "Game.hpp"
 
 const   int FPS = 60;

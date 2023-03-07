@@ -22,10 +22,10 @@
 class Particles
 {
     public:
-        void    init( float x, float y, int w, int h, char brick );
+        void    init( float x, float y );
         void    update( void );
         void    render( SDL_Renderer *renderer );
-        int     getLife( void ) const { return (life); };
+        int     getLife( void ) const;
     private:
         // std::string ID;
         Vector position;

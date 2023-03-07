@@ -16,11 +16,8 @@
 #include "ParticleSystem.hpp"
 #include "TextureManager.hpp"
 
-void    Particles::init( float x, float y, int w, int h, char brick )
+void    Particles::init( float x, float y )
 {
-	(void)w;
-	(void)h;
-	(void)brick;	
 	position.setX(x);
 	position.setY(y);
 	velocity.setX(((float)rand() / RAND_MAX) * (1.0f - (-1.0f)) + (-1.0f));
@@ -38,5 +35,6 @@ void    Particles::update( void )
 void    Particles::render( SDL_Renderer *renderer )
 {
 	Texture::getInstance().draw("effect", position.getX(), position.getY(), 5, 5, renderer, false);
-	// SDL_RenderDrawPoint(renderer, position.getX(), position.getY());
 }
+
+int     Particles::getLife( void ) const { return (life); }

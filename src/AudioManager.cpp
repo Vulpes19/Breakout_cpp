@@ -64,3 +64,5 @@ void    AudioManager::playSound( std::string ID )
         Mix_PlayChannel(-1, sounds[ID], 0); 
     }
 }
+
+void	AudioManager::setSound( bool s ) { sound = s; }
