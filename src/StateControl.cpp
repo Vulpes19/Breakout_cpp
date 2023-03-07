@@ -73,7 +73,7 @@ std::string StateControl::getState( void ) const
 
 std::string StateControl::getMode( void ) const
 {
-	return (gameStates.back()->getMode());
+	return (mode);
 }
 
 void    StateControl::clear( void )
@@ -88,5 +88,5 @@ void    StateControl::setSound( bool sound )
 
 void	StateControl::setMode( std::string s )
 {
-	gameStates.back()->setMode(s);
+	mode = s;
 }

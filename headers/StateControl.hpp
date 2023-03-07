@@ -34,4 +34,5 @@ class   StateControl
         void    setSound( bool );
     private:
         std::vector<GameState *> gameStates;
+        std::string mode;
 };

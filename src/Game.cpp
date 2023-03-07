@@ -221,8 +221,10 @@ void Game::update( void )
 		switch(mode)
 		{
 			case 's':
+			{
 				states->setMode("standard");
 				break ;
+			}
 			case 'p':
 				states->setMode("pyramid");
 				break ;
@@ -261,6 +263,7 @@ void Game::update( void )
 		ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
 		LevelManager::getInstance().readFile("standard");
 		states->pushState( new PlayState() );
+		states->setMode("standard");
 	}
 	else if ( states->update() == PYRAMID )
 	{
@@ -268,6 +271,7 @@ void Game::update( void )
 		ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
 		LevelManager::getInstance().readFile("pyramid");
 		states->pushState( new PlayState() );
+		states->setMode("pyramid");
 	}
 	else if ( states->update() == LEET )
 	{
@@ -275,6 +279,7 @@ void Game::update( void )
 		ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
 		LevelManager::getInstance().readFile("1337");
 		states->pushState( new PlayState() );
+		states->setMode("1337");
 	}
 	else if ( states->update() == CRAZY )
 	{
@@ -282,11 +287,11 @@ void Game::update( void )
 		ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
 		LevelManager::getInstance().readFile("crazy");
 		states->pushState( new PlayState() );
+		states->setMode("crazy");
 	}
 	if ( lives == 0 && gameOver == false && states->getState() != "Game Over" )
 		states->pushState(new GameOver());
-	std::cout << states->getMode() << std::endl;
-	if ( score == 2 && states->getMode() == "standard" )
+	if ( score == 544 && states->getMode() == "standard" )
 		states->pushState( new GameWon() );
 	if ( score == 291 && states->getMode() == "1337" )
 		states->pushState( new GameWon() );
