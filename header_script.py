@@ -23,8 +23,9 @@ for root, dirs, files in os.walk('.'):
             file_path = os.path.join(root, file)
             with open(file_path, 'r+') as f:
                 content = f.read()
-                f.seek(0, 0)
-                f.write(header_text.strip().replace('[filename]', file).replace('[description]', ''))
-                f.write('\n')
-                f.write(content)
-                f.truncate()
+                if header_text.strip().replace('[filename]', file).replace('[description]', '') not in content:
+                    f.seek(0, 0)
+                    f.write(header_text.strip().replace('[filename]', file).replace('[description]', ''))
+                    f.write('\n')
+                    f.write(content)
+                    f.truncate()
