@@ -8,10 +8,11 @@
  *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
  *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
  * 
- * SettingsMenu.cpp: 
+ * SettingsMenu.cpp by Vulpes19
  * 
  * =========================================================
  */
+
 #include "SettingsMenu.hpp"
 #include "TextManager.hpp"
 
@@ -64,11 +65,3 @@ std::string SettingsMenu::getState( void ) const
 {
     return (state);
 }
-
-// void    SettingsMenu::setSound( bool ifon )
-// {
-//     if ( ifon )
-//         sound = "on";
-//     else
-//         sound = "off";
-// }

@@ -8,10 +8,11 @@
  *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
  *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
  * 
- * GameStates.cpp: 
+ * GameStates.cpp by Vulpes19
  * 
  * =========================================================
  */
+
 #include "GameStates.hpp"
 
 std::string GameState::getMode( void ) const { return (currentMode); }

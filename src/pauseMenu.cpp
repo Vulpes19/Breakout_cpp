@@ -8,10 +8,11 @@
  *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
  *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
  * 
- * PauseMenu.cpp: 
+ * PauseMenu.cpp by Vulpes19
  * 
  * =========================================================
  */
+
 
 #include "PauseMenu.hpp"
 #include "TextManager.hpp"
@@ -36,7 +37,6 @@ int    PauseMenu::update( void )
         if ( cursor.getX() >= WIDTH - 100 && cursor.getX() <= WIDTH - 60 &&
                 cursor.getY() >= HEIGHT - 50 && cursor.getY() <= HEIGHT - 10 )
         {
-            //  LevelManager::getInstance().readFile("1");
             return (REPLAY_BUTTON);
         }
     }
@@ -49,18 +49,15 @@ void    PauseMenu::render( SDL_Renderer *renderer )
     Text::getInstance().writeText( "regular", WIDTH / 2 - 200, HEIGHT - 250, 400, 100, renderer, "press enter to continue", textColor, state );
     Texture::getInstance().draw( "quit_icon", WIDTH - 50, HEIGHT - 50, 40, 40, renderer, false );
     Texture::getInstance().draw( "restart_icon", WIDTH - 100, HEIGHT - 50, 40, 40, renderer, false );
-    // Texture::draw( "pause", WIDTH - 90, HEIGHT - 90, 80, 80, renderer );
 }
 
 bool    PauseMenu::onEnter( void )
 {
-    std::cout << "entering " << state << " state" << std::endl;
     return (true);
 }
 
 bool    PauseMenu::onExit( void )
 {
-    std::cout << "exiting " << state << " state" << std::endl;
     return (true);
 }
 

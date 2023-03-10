@@ -8,10 +8,11 @@
  *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
  *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
  * 
- * MainMenu.cpp: 
+ * MainMenu.cpp by Vulpes19
  * 
  * =========================================================
  */
+
 
 #include "MainMenu.hpp"
 #include "TextManager.hpp"
@@ -62,13 +63,11 @@ void    MainMenu::render( SDL_Renderer *renderer )
 
 bool    MainMenu::onEnter( void )
 {
-    std::cout << "entering " << state << " state" << std::endl;
     return (true);
 }
 
 bool    MainMenu::onExit( void )
 {
-    std::cout << "exiting " << state << " state" << std::endl;
     return (true);
 }
 

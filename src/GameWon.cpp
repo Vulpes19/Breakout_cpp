@@ -8,10 +8,11 @@
  *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
  *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
  * 
- * GameWon.cpp: 
+ * GameWon.cpp by Vulpes19
  * 
  * =========================================================
  */
+
 #include "GameWon.hpp"
 #include "TextManager.hpp"
 
@@ -36,13 +37,11 @@ void    GameWon::render( SDL_Renderer *renderer )
 
 bool	GameWon::onEnter( void )
 {
-	std::cout << "entering " << state << " state" << std::endl;
 	return (true);
 }
 
 bool	GameWon::onExit( void )
 {
-	std::cout << "exiting " << state << " state" << std::endl;
 	return (true);
 }
 

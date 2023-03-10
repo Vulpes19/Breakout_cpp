@@ -8,10 +8,11 @@
  *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
  *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
  * 
- * LevelMenu.cpp: 
+ * LevelMenu.cpp by Vulpes19
  * 
  * =========================================================
  */
+
 
 #include "LevelMenu.hpp"
 #include "TextManager.hpp"
@@ -104,19 +105,16 @@ void	LevelMenu::render( SDL_Renderer *renderer )
     Text::getInstance().writeText("pixelated", WIDTH - 160, HEIGHT / 2 - 80, 140, 70, renderer, "1337", color_button2, state);
     Text::getInstance().writeText("pixelated", 20, HEIGHT / 2 + 20, 140, 70, renderer, "Pyramid", color_button3, state);
     Text::getInstance().writeText("pixelated", WIDTH - 160, HEIGHT / 2 + 20, 140, 70, renderer, "Crazy", color_button4, state);
-    // Text::getInstance().writeText("pixelated", WIDTH / 2 - 80, HEIGHT / 2 + 5, 140, 70, renderer, "", color_button2, state);
     Texture::getInstance().draw( "quit_icon", WIDTH - 50, HEIGHT - 50, 40, 40, renderer, false );
 }
 
 bool    LevelMenu::onEnter( void )
 {
-    std::cout << "entering " << state << " state" << std::endl;
     return (true);
 }
 
 bool    LevelMenu::onExit( void )
 {
-    std::cout << "exiting " << state << " state" << std::endl;
     return (true);
 }
 

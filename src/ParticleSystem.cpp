@@ -8,10 +8,11 @@
  *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
  *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
  * 
- * ParticleSystem.cpp: 
+ * ParticleSystem.cpp by Vulpes19
  * 
  * =========================================================
  */
+
 
 #include "ParticleSystem.hpp"
 #include "TextureManager.hpp"

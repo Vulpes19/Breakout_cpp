@@ -8,10 +8,11 @@
  *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
  *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
  * 
- * InputHandling.cpp: 
+ * InputHandling.cpp by Vulpes19
  * 
  * =========================================================
  */
+
 
 #include "InputHandling.hpp"
 
@@ -19,8 +20,6 @@ InputHandler *InputHandler::instancePtr = nullptr;
 
 InputHandler::InputHandler( void )
 {
-    // cursorPosition.setX(-1);
-    // cursorPosition.setY(-1);
     for ( int i = 0; i < 3; i++ )
         mouseButtonStates.push_back(false);
 }

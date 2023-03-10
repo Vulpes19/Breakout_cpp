@@ -8,10 +8,11 @@
  *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
  *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
  * 
- * GameOver.cpp: 
+ * GameOver.cpp by Vulpes19
  * 
  * =========================================================
  */
+
 
 #include "GameOver.hpp"
 #include "TextManager.hpp"
@@ -37,13 +38,11 @@ void    GameOver::render( SDL_Renderer *renderer )
 
 bool	GameOver::onEnter( void )
 {
-	std::cout << "entering " << state << " state" << std::endl;
 	return (true);
 }
 
 bool	GameOver::onExit( void )
 {
-	std::cout << "exiting " << state << " state" << std::endl;
 	return (true);
 }
 

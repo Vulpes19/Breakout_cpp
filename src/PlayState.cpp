@@ -8,10 +8,11 @@
  *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
  *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
  * 
- * PlayState.cpp: 
+ * PlayState.cpp by Vulpes19
  * 
  * =========================================================
  */
+
 
 #include "PlayState.hpp"
 #include "TextManager.hpp"
@@ -21,9 +22,8 @@
 const   std::string PlayState::state = "Play";
 
 PlayState::PlayState( void )
-{
-    // LevelManager::getInstance().readFile("pyramid");
-}
+{}
+
 int    PlayState::update( void )
 {
     return (NO_BUTTON);
@@ -36,13 +36,11 @@ void    PlayState::render( SDL_Renderer *renderer )
 
 bool    PlayState::onEnter( void )
 {
-    std::cout << "entering " << state << " state" << std::endl;
     return (true);
 }
 
 bool    PlayState::onExit( void )
 {
-    std::cout << "exiting " << state << " state" << std::endl;
     return (true);
 }
 

@@ -8,10 +8,11 @@
  *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
  *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
  * 
- * Player.cpp: 
+ * Player.cpp by Vulpes19
  * 
  * =========================================================
  */
+
 
 #include "InputHandling.hpp"
 #include "Game.hpp"
@@ -44,7 +45,6 @@ void    Player::handleInput( void )
 
 void    Player::update( void )
 {
-    // this->frame = int(((SDL_GetTicks() / 100) % 6));
     GameObject::update();
     velocity.setX(0);
 }
