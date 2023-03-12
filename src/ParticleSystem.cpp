@@ -39,3 +39,5 @@ void    Particles::render( SDL_Renderer *renderer )
 }
 
 int     Particles::getLife( void ) const { return (life); }
+
+void	Particles::killParticles( void ) { life = 0; };

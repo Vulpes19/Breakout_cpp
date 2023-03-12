@@ -17,7 +17,9 @@
 #include "HighScore.hpp"
 
 HighScore::HighScore( void )
-{}
+{
+    highScore = 0;
+}
 
 HighScore::~HighScore( void )
 {

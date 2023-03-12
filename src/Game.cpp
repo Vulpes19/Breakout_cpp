@@ -37,6 +37,7 @@ Game::Game( void )
 	hit = false;
 	sound = true;
 	gameOver = false;
+	gameWon = false;
 }
 
 Game::~Game( void )
@@ -150,6 +151,7 @@ void    Game::handleEvents( void )
 				states->popState();
 			else if ( states->getState() == "Game Over" )
 			{
+				score = 0;
 				gameOver = true;
 				states->popState();
 				states->popState();
@@ -157,6 +159,8 @@ void    Game::handleEvents( void )
 			}
 			else if ( states->getState() == "Game Won")
 			{
+				score = 0;
+				gameWon = false;
 				states->popState();
 				states->popState();
 				states->popState();
@@ -266,6 +270,8 @@ void Game::update( void )
 	{
 		player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
 		ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
+		ball.setVelocity();
+		f
 		LevelManager::getInstance().readFile("standard");
 		states->pushState( new PlayState() );
 		states->setMode("standard");
@@ -274,6 +280,7 @@ void Game::update( void )
 	{
 		player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
 		ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
+		ball.setVelocity();
 		LevelManager::getInstance().readFile("pyramid");
 		states->pushState( new PlayState() );
 		states->setMode("pyramid");
@@ -282,6 +289,7 @@ void Game::update( void )
 	{
 		player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
 		ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
+		ball.setVelocity();
 		LevelManager::getInstance().readFile("1337");
 		states->pushState( new PlayState() );
 		states->setMode("1337");
@@ -290,20 +298,36 @@ void Game::update( void )
 	{
 		player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
 		ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
+		ball.setVelocity();
 		LevelManager::getInstance().readFile("crazy");
 		states->pushState( new PlayState() );
 		states->setMode("crazy");
 	}
 	if ( lives == 0 && gameOver == false && states->getState() != "Game Over" )
+	{
+		gameWon = true;
 		states->pushState(new GameOver());
-	if ( score == STANDARD_HIGHSCORE && states->getMode() == "standard" )
-		states->pushState( new GameWon() );
-	if ( score == LEET_HIGHSCORE && states->getMode() == "1337" )
-		states->pushState( new GameWon() );
-	if ( score == PYRAMID_HIGHSCORE && states->getMode() == "pyramid" )
-		states->pushState( new GameWon() );
-	if ( score == CRAZY_HIGHSCORE && states->getMode() == "crazy" )
-		states->pushState( new GameWon() );
+	}
+	if ( score == STANDARD_HIGHSCORE && states->getMode() == "standard" && gameWon == false && states->getState() != "Game Won" )
+	{
+		gameWon = true;
+		states->pushState(new GameWon());
+	}
+	if ( score == LEET_HIGHSCORE && states->getMode() == "1337" && gameWon == false && states->getState() != "Game Won" )
+	{
+		gameWon = true;
+		states->pushState(new GameWon());
+	}
+	if ( score == PYRAMID_HIGHSCORE && states->getMode() == "pyramid" && gameWon == false && states->getState() != "Game Won" )
+	{
+		gameWon = true;
+		states->pushState(new GameWon());
+	}
+	if ( score == CRAZY_HIGHSCORE && states->getMode() == "crazy" && gameWon == false && states->getState() != "Game Won" )
+	{
+		gameWon = true;
+		states->pushState(new GameWon());
+	}
 }
 
 bool    Game::getRunning( void ) const { return (running); }

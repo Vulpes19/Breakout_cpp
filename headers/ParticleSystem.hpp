@@ -27,6 +27,7 @@ class Particles
         void    update( void );
         void    render( SDL_Renderer *renderer );
         int     getLife( void ) const;
+        void    killParticles( void );
     private:
         // std::string ID;
         Vector position;

@@ -64,6 +64,7 @@ class Game
 		bool    hit;
 		bool	sound;
 		bool	gameOver;
+		bool	gameWon;
 		Player  player;
 		Ball    ball;
 		HighScore highScore;

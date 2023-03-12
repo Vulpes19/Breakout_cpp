@@ -19,6 +19,8 @@
 
 void    Player::loadTexture( int x, int y, int width, int height, std::string ID )
 {
+    this->width = width;
+    this->height = height;
     GameObject::loadTexture( x, y, width, height, ID );
 }
 
