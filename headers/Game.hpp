@@ -35,7 +35,7 @@
 #include "PauseMenu.hpp"
 #include "GameOver.hpp"
 #include "LevelManager.hpp"
-#include "ParticleSystem.hpp"
+#include "ParticlesManager.hpp"
 #include "AudioManager.hpp"
 #include "LevelMenu.hpp"
 #include "HighScore.hpp"
@@ -69,5 +69,6 @@ class Game
 		Ball    ball;
 		HighScore highScore;
 		StateControl   *states;
-		std::vector<Particles> particles;
+		// std::vector<Particles> particles;
+		ParticlesManager *particles;
 };

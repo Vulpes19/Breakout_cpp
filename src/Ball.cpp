@@ -16,7 +16,7 @@
 
 #include "Ball.hpp"
 #include "Game.hpp"
-#include "ParticleSystem.hpp"
+#include "ParticlesManager.hpp"
 
 // #define BRICK_TYPE LevelManager::getInstance().mapGrid[r][c]
 #define RED '4'
@@ -47,7 +47,7 @@ void    Ball::draw( SDL_Renderer *renderer, bool brightness )
 	GameObject::draw( renderer, brightness );
 }
 
-void    Ball::update( Player &player, int &score, int &lives, std::vector<Particles> &particles, bool &hit, SDL_Renderer *renderer )
+void    Ball::update( Player &player, int &score, int &lives, ParticlesManager *particles, bool &hit, SDL_Renderer *renderer )
 {
 	this->frame = int(((SDL_GetTicks() / 100) % 6));
 	wallCollision( player, lives, score );
@@ -92,7 +92,7 @@ void    Ball::wallCollision( Player &player, int &lives, int &score )
 
 }
 
-void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bool &hit, SDL_Renderer *renderer )
+void    Ball::bricksCollision( int &score, ParticlesManager *particles, bool &hit, SDL_Renderer *renderer )
 {
 	int columns, rows;
 
@@ -114,7 +114,7 @@ void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bo
 				{
 					hit = true;
 					AudioManager::getInstance().playSound("hit");
-					particles.reserve(10);
+					// particles.reserve(10);
 					if ( LevelManager::getInstance().mapGrid[r][c] == YELLOW )
 					{
 						Texture::getInstance().loadImage("assets/yellow_brick.png", "effect", renderer );
@@ -139,8 +139,7 @@ void    Ball::bricksCollision( int &score, std::vector<Particles> &particles, bo
 						Texture::getInstance().loadImage("assets/red_brick.png", "effect", renderer );
 						score += 7;
 					}
-					for( int i = 0; i < 10; i++ )
-						particles[i].init( brickX + TILE_SIZE_W / 2, brickY + TILE_SIZE_H );
+					particles->initParticles( brickX, brickY, TILE_SIZE_W, TILE_SIZE_H);
 					LevelManager::getInstance().mapGrid[r][c] = '0';
 					velocity.setY( -velocity.getY() );
 				}

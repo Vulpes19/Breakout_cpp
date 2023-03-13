@@ -32,8 +32,9 @@ Game::Game( void )
 	score = 0;
 	lives = 3;
 	states = new StateControl();
+	particles = new ParticlesManager( 10 );
 	states->pushState( new MainMenu() );
-	particles.reserve(10);
+	// particles.reserve(10);
 	hit = false;
 	sound = true;
 	gameOver = false;
@@ -92,13 +93,10 @@ void    Game::render( void )
 	{
 		player.draw( renderer, brightness );
 		ball.draw( renderer, brightness );
-		if ( particles.size() == 0 )
+		if ( particles->getSize() == 0 )
 			hit = false;
 		if ( hit )
-		{
-			for ( int i = 0; i < 10; i++ )
-				particles[i].render( renderer );
-		}
+			particles->renderParticles( renderer );
 		LevelManager::getInstance().render( renderer, brightness );
 		std::string tmp = "Score: " + std::to_string(score);
 		SDL_Color color = {165, 145, 50, 255};
@@ -174,6 +172,8 @@ void    Game::handleEvents( void )
 
 void    Game::clean()
 {
+	delete particles;
+	delete states;
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
@@ -186,13 +186,8 @@ void Game::update( void )
 	if ( states->getState() == "Play" )
 	{
 		player.update();
-		for ( int i = 0; i < 10; i++ )
-		{
-			particles[i].update();
-			if ( particles[i].getLife() <= 0 )
-				particles.pop_back();
-		}
-		if ( particles.size() == 0 )
+		particles->updateParticles();
+		if ( particles->getSize() == 0 )
 			hit = false;
 		ball.update(player, score, lives, particles, hit, renderer);
 	}

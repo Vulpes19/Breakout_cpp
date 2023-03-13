@@ -8,7 +8,7 @@
  *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
  *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
  * 
- * ParticleSystem.hpp by Vulpes19
+ * Particle.hpp by Vulpes19
  * 
  * =========================================================
  */
@@ -20,16 +20,15 @@
 #include <SDL.h>
 #include "Vector.hpp"
 
-class Particles
+class Particle
 {
     public:
         void    init( float x, float y );
         void    update( void );
         void    render( SDL_Renderer *renderer );
         int     getLife( void ) const;
-        void    killParticles( void );
+        void    kill( void );
     private:
-        // std::string ID;
         Vector position;
         Vector velocity;
         int life;

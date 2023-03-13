@@ -8,16 +8,16 @@
  *|     ||  .  \|     ||  |  ||  .  ||     ||     |  |  |  
  *|_____||__|\_||_____||__|__||__|\_| \___/  \__,_|  |__|  
  * 
- * ParticleSystem.cpp by Vulpes19
+ * Particle.cpp by Vulpes19
  * 
  * =========================================================
  */
 
 
-#include "ParticleSystem.hpp"
+#include "Particle.hpp"
 #include "TextureManager.hpp"
 
-void    Particles::init( float x, float y )
+void    Particle::init( float x, float y )
 {
 	position.setX(x);
 	position.setY(y);
@@ -26,18 +26,18 @@ void    Particles::init( float x, float y )
 	life = 2;
 }
 
-void    Particles::update( void )
+void    Particle::update( void )
 {
 	position.setX(position.getX() + velocity.getX());
 	position.setY(position.getY() + velocity.getY());
 	life--;
 }
 
-void    Particles::render( SDL_Renderer *renderer )
+void    Particle::render( SDL_Renderer *renderer )
 {
 	Texture::getInstance().draw("effect", position.getX(), position.getY(), 5, 5, renderer, false);
 }
 
-int     Particles::getLife( void ) const { return (life); }
+int     Particle::getLife( void ) const { return (life); }
 
-void	Particles::killParticles( void ) { life = 0; };
+void	Particle::kill( void ) { life = 0; };

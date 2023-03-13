@@ -12,4 +12,22 @@
  * 
  * =========================================================
  */
-#pragma
+#pragma once
+
+#include "Particle.hpp"
+#include <vector>
+
+class ParticlesManager
+{
+    public:
+        ParticlesManager( size_t size );
+        ~ParticlesManager( void );
+        void    initParticles( float x, float y, int w, int h );
+        void    updateParticles( void );
+        void    renderParticles( SDL_Renderer *renderer );
+        size_t  getSize( void ) const;
+        void    killParticles( void );
+    private:
+        size_t  size;
+        std::vector<Particle> particles;
+};

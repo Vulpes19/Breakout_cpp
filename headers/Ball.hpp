@@ -21,7 +21,7 @@
 #include "GameObject.hpp"
 #include "Player.hpp"
 #include "LevelManager.hpp"
-#include "ParticleSystem.hpp"
+#include "ParticlesManager.hpp"
 
 class   Ball : public GameObject
 {
@@ -30,9 +30,9 @@ class   Ball : public GameObject
         virtual ~Ball( void ) {};
         void    loadTexture( int x, int y, int width, int height, std::string ID );
         void    draw( SDL_Renderer *renderer, bool brightness );
-        void    update( Player &player, int &score, int &lives, std::vector<Particles> &particles, bool &hit, SDL_Renderer *renderer );
+        void    update( Player &player, int &score, int &lives, ParticlesManager *particles, bool &hit, SDL_Renderer *renderer );
         void    wallCollision( Player &player, int &lives, int &score );
-        void    bricksCollision( int &score, std::vector<Particles> &particles, bool &hit, SDL_Renderer *renderer );
+        void    bricksCollision( int &score, ParticlesManager *particles, bool &hit, SDL_Renderer *renderer );
         void    setVelocity( void );
     private:
         double  radius;
