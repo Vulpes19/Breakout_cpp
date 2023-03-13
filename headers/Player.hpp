@@ -17,7 +17,7 @@
 #pragma once
 
 #include "GameObject.hpp"
-#include <pair>
+// #include <pair>
 
 class Player : public GameObject
 {
@@ -30,7 +30,8 @@ class Player : public GameObject
 		void    draw( SDL_Renderer *renderer, bool brightness);
 		void    handleInput( void );
 		void    update( void );
-		std::pair<int, int>    &getDimensions( void ) const { return (dimensions); };
+		std::pair<int, int>    getDimensions( void );
 	private:
-		std::pair<int, int> dimensions;
+		int	width;
+		int	height;
 };

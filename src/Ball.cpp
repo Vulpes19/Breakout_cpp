@@ -61,7 +61,7 @@ void    Ball::wallCollision( Player &player, int &lives, int &score )
 	(void)score;
 	if ( position.getY() + radius * 2 >= player.getPosition().getY() &&
 		position.getX() + radius >= player.getPosition().getX() &&
-		position.getX() <= player.getPosition().getX() + 100)
+		position.getX() <= player.getPosition().getX() + player.getDimensions().first )
 		velocity.setY(-velocity.getY() );
 	else if ( position.getX() <= 0 )
 	{
@@ -75,7 +75,7 @@ void    Ball::wallCollision( Player &player, int &lives, int &score )
 	}
 	else if ( position.getY() <= 22 )
 	{
-		player.loadTexture( WIDTH / 2 - 25, HEIGHT - 20, 50, 20, "paddle" );
+		player.loadTexture( player.getPosition().getX(), HEIGHT - 20, 50, 20, "paddle" );
 		position.setY( position.getY() );
 		velocity.setX( velocity.getX() + 0.2 );
 		velocity.setY( -velocity.getY() + 0.2 );
@@ -86,7 +86,7 @@ void    Ball::wallCollision( Player &player, int &lives, int &score )
 		this->position.setY(HEIGHT / 2 + 5);
 		velocity.setX(0.7f);
 		velocity.setY(0.7f);
-		player.loadTexture( WIDTH / 2 - 50, HEIGHT - 20, 100, 20, "paddle" );
+		player.loadTexture( player.getPosition().getX(), HEIGHT - 20, 100, 20, "paddle" );
 		lives--;
 	}
 

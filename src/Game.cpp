@@ -271,7 +271,6 @@ void Game::update( void )
 		player.loadTexture( WIDTH / 2 - 100, HEIGHT - 20, 100, 20, "paddle" );
 		ball.loadTexture( 40, HEIGHT / 2 + 5, 20, 20, "ball" );
 		ball.setVelocity();
-		f
 		LevelManager::getInstance().readFile("standard");
 		states->pushState( new PlayState() );
 		states->setMode("standard");

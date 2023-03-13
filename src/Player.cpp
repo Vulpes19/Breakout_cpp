@@ -33,7 +33,7 @@ void    Player::handleInput( void )
 {
     if (InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_RIGHT) || InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_D))
     {
-        if ( position.getX() + 100 >= WIDTH )
+        if ( position.getX() + width >= WIDTH )
             return ;
         velocity.setX(14);
     }
@@ -50,3 +50,5 @@ void    Player::update( void )
     GameObject::update();
     velocity.setX(0);
 }
+
+std::pair<int, int> Player::getDimensions( void ) { return (std::make_pair(width, height)); };
