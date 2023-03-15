@@ -24,7 +24,6 @@
 #define ON_BUTTON_THREE cursor.getX() >= 20 && cursor.getX() <= 160 && cursor.getY() >= HEIGHT / 2 + 20 && cursor.getY() <= HEIGHT / 2 + 20 + 70
 #define NOT_ON_BUTTON_THREE !(cursor.getX() >= 20 && cursor.getX() <= 160 && cursor.getY() >= HEIGHT / 2 + 20 && cursor.getY() <= HEIGHT / 2 + 20 + 70)
 #define ON_BUTTON_FOUR cursor.getX() >= WIDTH - 160 && cursor.getX() <= WIDTH - 20 && cursor.getY() >= HEIGHT / 2 + 20 && cursor.getY() <= HEIGHT / 2 + 20 + 70
-// #define NOT_ON_BUTTON_FOUR !(cursor.getX() >= WIDTH - 160 && cursor.getX() <= WIDTH - 20 && cursor.getY() >= HEIGHT / 2 + 20 && cursor.getY() <= cursor.getY() <= HEIGHT / 2 + 20 + 70)
 #define NOT_ON_BUTTON_FOUR !(cursor.getX() >= WIDTH - 160 && cursor.getX() <= WIDTH - 20 && cursor.getY() >= HEIGHT / 2 + 20 && cursor.getY() <= HEIGHT / 2 + 20 + 70)
 
 const   std::string LevelMenu::state = "Level";

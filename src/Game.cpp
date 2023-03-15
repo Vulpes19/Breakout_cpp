@@ -34,7 +34,6 @@ Game::Game( void )
 	states = new StateControl();
 	particles = new ParticlesManager( 10 );
 	states->pushState( new MainMenu() );
-	// particles.reserve(10);
 	hit = false;
 	sound = true;
 	gameOver = false;

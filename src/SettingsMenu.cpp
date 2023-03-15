@@ -51,13 +51,11 @@ void    SettingsMenu::render( SDL_Renderer *renderer )
 
 bool    SettingsMenu::onEnter( void )
 {
-    std::cout << "entering " << state << " state" << std::endl;
     return (true);
 }
 
 bool    SettingsMenu::onExit( void )
 {
-    std::cout << "exiting " << state << " state" << std::endl;
     return (true);
 }
 
