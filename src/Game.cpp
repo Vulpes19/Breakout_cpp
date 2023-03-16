@@ -102,8 +102,8 @@ void    Game::render( void )
 		Text::getInstance().writeText("regular", WIDTH - 100, -7, 90, 45, renderer, tmp.c_str(), color, states->getState());
 		tmp = "lives: " + std::to_string(lives);
 		Text::getInstance().writeText("regular", 2, -7, 90, 45, renderer, tmp.c_str(), color, states->getState());
-		tmp = "Highest score: " + std::to_string( highScore.getHighScore() );
-		Text::getInstance().writeText("regular", WIDTH / 2 - 60, -7, 120, 45, renderer, tmp.c_str(), color, states->getState());
+		// tmp = "Highest score: " + std::to_string( highScore.getHighScore() );
+		// Text::getInstance().writeText("regular", WIDTH / 2 - 60, -7, 120, 45, renderer, tmp.c_str(), color, states->getState());
 	}
 	SDL_RenderPresent( renderer );
 }
@@ -180,8 +180,8 @@ void    Game::clean()
 
 void Game::update( void )
 {
-	highScore.openFile();
-	highScore.checkScore(score);
+	// highScore.openFile();
+	// highScore.checkScore(score);
 	if ( states->getState() == "Play" )
 	{
 		player.update();

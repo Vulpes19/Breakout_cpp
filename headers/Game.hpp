@@ -38,7 +38,7 @@
 #include "ParticlesManager.hpp"
 #include "AudioManager.hpp"
 #include "LevelMenu.hpp"
-#include "HighScore.hpp"
+// #include "HighScore.hpp"
 #include "SettingsMenu.hpp"
 #include "GameWon.hpp"
 
@@ -67,8 +67,7 @@ class Game
 		bool	gameWon;
 		Player  player;
 		Ball    ball;
-		HighScore highScore;
+		// HighScore highScore;
 		StateControl   *states;
-		// std::vector<Particles> particles;
 		ParticlesManager *particles;
 };

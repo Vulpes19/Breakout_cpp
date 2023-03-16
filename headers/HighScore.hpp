@@ -28,6 +28,7 @@ class HighScore
 		void    openFile( void );
 		void    checkScore( int score );
 		int		getHighScore( void ) const;
+		std::string	getCurrentPath( void ) const;
 	private:
 		std::fstream file;
 		int highScore;

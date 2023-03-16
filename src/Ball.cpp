@@ -27,8 +27,8 @@
 Ball::Ball( void ) : GameObject()
 {
 	radius = 10;
-	velocity.setX(0.7f);
-	velocity.setY(0.7f);
+	velocity.setX(0.5f);
+	velocity.setY(0.5f);
 	// this->position.setX(WIDTH / 2 - 50);
 	// this->position.setY(HEIGHT / 2 + 5);
 	this->position.setX(0);
@@ -127,15 +127,15 @@ void    Ball::bricksCollision( int &score, ParticlesManager *particles, bool &hi
 					}
 					else if ( LevelManager::getInstance().mapGrid[r][c] == ORANGE )
 					{
-						velocity.setX(0.9f);
-						velocity.setY(0.9f);
+						velocity.setX(0.7f);
+						velocity.setY(0.7f);
 						Texture::getInstance().loadImage("assets/orange_brick.png", "effect", renderer );
 						score += 5;
 					}
 					else if ( LevelManager::getInstance().mapGrid[r][c] == RED )
 					{
-						velocity.setX(0.9f);
-						velocity.setY(0.9f);
+						velocity.setX(0.7f);
+						velocity.setY(0.7f);
 						Texture::getInstance().loadImage("assets/red_brick.png", "effect", renderer );
 						score += 7;
 					}
@@ -150,6 +150,6 @@ void    Ball::bricksCollision( int &score, ParticlesManager *particles, bool &hi
 
 void	Ball::setVelocity( void )
 {
-	velocity.setX(0.7f);
-	velocity.setY(0.7f);
+	velocity.setX(0.5f);
+	velocity.setY(0.5f);
 }
