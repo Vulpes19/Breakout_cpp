@@ -52,12 +52,17 @@ bool    Game::init( const char *windowTitle, int xpos, int ypos, int height, int
 		std::cerr << "Unable to initialize SDL subsystems: " << SDL_GetError() << std::endl;
 		return (false);
 	}
+	SDL_Surface *icon = SDL_LoadBMP("assets/icon.bmp");
+	if ( icon == NULL)
+		std::cerr << "no icon availabe\n";
 	window = SDL_CreateWindow( windowTitle, xpos, ypos, width, height, SDL_WINDOW_SHOWN );
 	if ( !window )
 	{
 		std::cerr << "Window creation failed: " << SDL_GetError() << std::endl;
 		return (false);
 	}
+	SDL_SetWindowIcon(window, icon);
+	SDL_FreeSurface(icon);
 	renderer = SDL_CreateRenderer( window, -1, 0 );
 	 if ( !renderer )
 	{
