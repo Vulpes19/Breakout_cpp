@@ -45,8 +45,9 @@ int    PauseMenu::update( void )
 
 void    PauseMenu::render( SDL_Renderer *renderer )
 {
-    Text::getInstance().writeText( "regular", WIDTH / 2 - 150, HEIGHT - 400, 300, 150, renderer, "PAUSED", textColor, state );
+    Text::getInstance().writeText( "pixelated", WIDTH / 2 - 150, HEIGHT - 400, 300, 150, renderer, "PAUSED", textColor, state );
     Text::getInstance().writeText( "regular", WIDTH / 2 - 200, HEIGHT - 250, 400, 100, renderer, "press enter to continue", textColor, state );
+    Text::getInstance().writeText( "regular", WIDTH / 2 - 200, HEIGHT - 150, 400, 100, renderer, "press esc to exit", textColor, state );
     Texture::getInstance().draw( "quit_icon", WIDTH - 50, HEIGHT - 50, 40, 40, renderer, false );
     Texture::getInstance().draw( "restart_icon", WIDTH - 100, HEIGHT - 50, 40, 40, renderer, false );
 }
