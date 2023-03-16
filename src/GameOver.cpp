@@ -26,7 +26,9 @@ GameOver::GameOver( void )
 
 int    GameOver::update( void )
 {
-	color = {249, 235, 224, 255};
+	if ( InputHandler::getInstance().isKeyPressed(SDL_SCANCODE_ESCAPE) )
+		return (GAME_OVER);
+	// color = {249, 235, 224, 255};
 	return (NO_BUTTON);
 }
 

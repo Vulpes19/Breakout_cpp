@@ -29,7 +29,9 @@ enum MODES
 	NO_BUTTON = 2,
 	MODE_BUTTON = 3,
 	SETTINGS_BUTTON = 4,
-	SOUND = 5
+	SOUND = 5,
+	GAME_OVER = 6,
+	GAME_WON = 7
 };
 class GameState
 {

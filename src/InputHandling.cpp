@@ -40,7 +40,9 @@ bool    InputHandler::isKeyPressed( SDL_Scancode key )
     if ( key != 0 )
     {
         if (keyboardState[key] == 1)
+        {
             return (true);
+        }
         else
             return (false);
     }

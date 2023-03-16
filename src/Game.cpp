@@ -146,21 +146,25 @@ void    Game::handleEvents( void )
 			}
 			else if ( states->getState() == "Settings Menu" )
 				states->popState();
-			else if ( states->getState() == "Game Over" )
+			else if ( states->getState() == "Game Over" && gameOver == true )
 			{
+				lives = 3;
 				score = 0;
-				gameOver = true;
+				gameOver = false;
 				states->popState();
 				states->popState();
 				states->popState();
+				return ;
 			}
 			else if ( states->getState() == "Game Won")
 			{
+				lives = 3;
 				score = 0;
 				gameWon = false;
 				states->popState();
 				states->popState();
 				states->popState();
+				return ;
 			}
 		}
 		if ( ENTER_KEY_PRESSED && states->getState() == "Pause Menu" )
@@ -298,7 +302,7 @@ void Game::update( void )
 	}
 	if ( lives == 0 && gameOver == false && states->getState() != "Game Over" )
 	{
-		gameWon = true;
+		gameOver = true;
 		states->pushState(new GameOver());
 	}
 	if ( score == STANDARD_HIGHSCORE && states->getMode() == "standard" && gameWon == false && states->getState() != "Game Won" )
